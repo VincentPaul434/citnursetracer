@@ -20,7 +20,7 @@ export default function SurveyShell({ children }: SurveyShellProps) {
       </div>
 
       <div className="flex-1 flex items-center justify-center p-4 overflow-y-auto">
-        <Card className="w-full max-w-3xl bg-card p-8 shadow-xl my-8 border border-maroon/20">{children}</Card>
+        <Card className="w-full max-w-5xl bg-card p-8 shadow-xl my-8 border border-maroon/20">{children}</Card>
       </div>
 
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center opacity-5">

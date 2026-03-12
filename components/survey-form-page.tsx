@@ -8,7 +8,6 @@ import SurveySectionConsent from "@/components/survey-section-consent"
 import SurveySectionEducationalBackground from "@/components/survey-section-educational-background"
 import SurveySectionEmploymentInformation from "@/components/survey-section-employment-information"
 import SurveySectionEmploymentStatus from "@/components/survey-section-employment-status"
-import SurveySectionIntro from "@/components/survey-section-intro"
 import SurveySectionLicensureExamination from "@/components/survey-section-licensure-examination"
 import SurveySectionPersonalInfo from "@/components/survey-section-personal-info"
 import SurveySectionPreferredCommunicationEvents from "@/components/survey-section-preferred-communication-events"
@@ -16,6 +15,8 @@ import SurveySectionProgramEvaluation from "@/components/survey-section-program-
 import SurveySectionRelevanceOfEducation from "@/components/survey-section-relevance-of-education"
 import SurveySectionUnemploymentInformation from "@/components/survey-section-unemployment-information"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 
 interface SurveyFormPageProps {
   onSurveyComplete?: () => void
@@ -103,15 +104,17 @@ const createInitialFormData = () => ({
   alumniPlatform: "",
 })
 
+const hasAtLeastOneChecked = (values: Record<string, boolean>) => Object.values(values).some(Boolean)
+
 export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps) {
   const [formData, setFormData] = useState(createInitialFormData)
-  const [currentSection, setCurrentSection] = useState<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11>(1)
   const [consentDeclined, setConsentDeclined] = useState(false)
   const [honorsError, setHonorsError] = useState("")
   const [firstJobSourceError, setFirstJobSourceError] = useState("")
   const [unemploymentReasonError, setUnemploymentReasonError] = useState("")
   const [invitationChannelError, setInvitationChannelError] = useState("")
   const [alumniPlatformError, setAlumniPlatformError] = useState("")
+  const [formError, setFormError] = useState("")
   const [isSubmitted, setIsSubmitted] = useState(false)
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -129,31 +132,12 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
     }))
   }
 
-  const handleContinueToConsent = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (formData.email) {
-      setCurrentSection(2)
-    }
-  }
-
   const handleConsentChange = (value: "yes" | "no") => {
     setFormData((prev) => ({
       ...prev,
       consent: value,
     }))
     setConsentDeclined(false)
-  }
-
-  const handleConsentSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!formData.consent) return
-
-    if (formData.consent === "yes") {
-      setCurrentSection(3)
-      return
-    }
-
-    setConsentDeclined(true)
   }
 
   const handleDegreeProgramChange = (value: string) => {
@@ -247,6 +231,8 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
       ...prev,
       employmentStatus: value,
     }))
+    setFirstJobSourceError("")
+    setUnemploymentReasonError("")
   }
 
   const handleJobRelatedToDegreeChange = (value: "Yes" | "No") => {
@@ -423,128 +409,119 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
     }))
   }
 
-  const handlePersonalInfoSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+  const handleCombinedSubmit = () => {
+    let hasError = false
 
-    setCurrentSection(4)
-  }
-
-  const handleEducationalSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-
-    const selectedHonorCount = Object.values(formData.academicHonors).filter(Boolean).length
-    if (selectedHonorCount === 0) {
-      setHonorsError("Please select at least one option for academic honor.")
-      return
-    }
-
-    setCurrentSection(5)
-  }
-
-  const handleLicensureSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-
-    setCurrentSection(6)
-  }
-
-  const handleEmploymentSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-
-    if (formData.employmentStatus === "Unemployed" || formData.employmentStatus === "Currently studying") {
-      setCurrentSection(8)
-      return
-    }
-
-    setCurrentSection(7)
-  }
-
-  const handleEmploymentInformationSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-
-    const selectedSourceCount = Object.values(formData.firstJobSources).filter(Boolean).length
-    if (selectedSourceCount === 0) {
-      setFirstJobSourceError("Please select at least one option for how you found your first job.")
-      return
-    }
-
-    setCurrentSection(8)
-  }
-
-  const handleUnemploymentInformationSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-
+    const requiresEmploymentInformation =
+      formData.employmentStatus === "Employed" || formData.employmentStatus === "Self employed"
     const requiresUnemploymentReason =
       formData.employmentStatus === "Unemployed" || formData.employmentStatus === "Currently studying"
 
-    if (requiresUnemploymentReason) {
-      const selectedReasonCount = Object.values(formData.unemploymentReasons).filter(Boolean).length
-      if (selectedReasonCount === 0) {
-        setUnemploymentReasonError("Please select at least one reason for unemployment.")
-        return
-      }
+    if (formData.consent !== "yes") {
+      setConsentDeclined(formData.consent === "no")
+      hasError = true
+    } else {
+      setConsentDeclined(false)
     }
 
-    setCurrentSection(9)
-  }
+    if (!hasAtLeastOneChecked(formData.academicHonors)) {
+      setHonorsError("Please select at least one option for academic honor.")
+      hasError = true
+    } else {
+      setHonorsError("")
+    }
 
-  const handleRelevanceOfEducationSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    if (requiresEmploymentInformation && !hasAtLeastOneChecked(formData.firstJobSources)) {
+      setFirstJobSourceError("Please select at least one option for how you found your first job.")
+      hasError = true
+    } else {
+      setFirstJobSourceError("")
+    }
 
-    setCurrentSection(10)
-  }
+    if (requiresUnemploymentReason && !hasAtLeastOneChecked(formData.unemploymentReasons)) {
+      setUnemploymentReasonError("Please select at least one reason for unemployment.")
+      hasError = true
+    } else {
+      setUnemploymentReasonError("")
+    }
 
-  const handleProgramEvaluationSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-
-    setCurrentSection(11)
-  }
-
-  const handlePreferredCommunicationEventsSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-
-    const selectedInvitationChannelsCount = Object.values(formData.invitationChannels).filter(Boolean).length
-    if (selectedInvitationChannelsCount === 0) {
+    if (!hasAtLeastOneChecked(formData.invitationChannels)) {
       setInvitationChannelError("Please select at least one preferred communication channel.")
-      return
+      hasError = true
+    } else {
+      setInvitationChannelError("")
     }
 
     if (formData.alumniGroupWillingness === "Yes" && !formData.alumniPlatform) {
       setAlumniPlatformError("Please select your preferred alumni platform.")
+      hasError = true
+    } else {
+      setAlumniPlatformError("")
+    }
+
+    const requiredValues = [
+      formData.email.trim(),
+      formData.fullName.trim(),
+      formData.birthday,
+      formData.residence.trim(),
+      formData.contactInformation.trim(),
+      formData.degreeProgramCompleted,
+      formData.yearGraduated,
+      formData.hasTakenPnle,
+      formData.employmentStatus,
+      formData.careerPreparationLevel,
+      formData.nursingProgramAspect.trim(),
+      formData.nursingProgramSuggestion.trim(),
+      formData.updateFrequency,
+      formData.alumniGroupWillingness,
+    ]
+
+    if (requiredValues.some((value) => !value)) {
+      hasError = true
+    }
+
+    if (hasError) {
+      setFormError("Please complete all required fields and resolve highlighted sections before submitting.")
       return
     }
 
+    setFormError("")
     setIsSubmitted(true)
     onSurveyComplete?.()
   }
 
   const handleStartNewSurvey = () => {
     setFormData(createInitialFormData())
-    setCurrentSection(1)
     setConsentDeclined(false)
     setHonorsError("")
     setFirstJobSourceError("")
     setUnemploymentReasonError("")
     setInvitationChannelError("")
     setAlumniPlatformError("")
+    setFormError("")
     setIsSubmitted(false)
   }
+
+  const preventSectionSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+  }
+
+  const noop = () => {}
+
+  const showEmploymentInformation = formData.employmentStatus === "Employed" || formData.employmentStatus === "Self employed"
+  const showUnemploymentInformation =
+    formData.employmentStatus === "Unemployed" || formData.employmentStatus === "Currently studying"
 
   return (
     <SurveyShell>
       {isSubmitted ? (
         <div className="rounded-lg border border-maroon/20 p-5 space-y-4">
-          <div className="inline-flex rounded-md bg-gold px-3 py-1 text-sm font-semibold text-maroon">Section 12 of 12</div>
-          <h2 className="text-2xl font-bold text-maroon">Thank You for Your Participation!</h2>
+          <h2 className="text-2xl font-bold text-maroon">Thank You for Completing the Alumni Tracer Survey!</h2>
           <p className="text-foreground leading-relaxed">
-            Thank you very much for taking the time to complete this survey. Your responses are <span className="font-semibold">highly valuable</span> and will
-            help the <span className="font-semibold">CIT-U Nursing Program</span> track alumni outcomes, improve the curriculum, and support future innovations
-            in education.
+            Your responses are valuable and will help improve curriculum, alumni support services, and future educational initiatives.
           </p>
           <p className="text-foreground leading-relaxed">
-            Rest assured that all information you provided will remain <span className="font-semibold">confidential</span> and will only be used for <span className="font-semibold">academic research purposes</span>.
-          </p>
-          <p className="text-foreground leading-relaxed">
-            We truly appreciate your cooperation and contribution to this study. Your input makes a difference! 😊
+            All submitted information will be handled with confidentiality and used for academic and institutional development purposes.
           </p>
           <div className="pt-2">
             <Button type="button" onClick={handleStartNewSurvey} className="bg-gold text-maroon hover:bg-gold/90 font-semibold">
@@ -552,143 +529,206 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
             </Button>
           </div>
         </div>
-      ) : currentSection === 1 ? (
-        <SurveySectionIntro email={formData.email} onEmailChange={handleEmailChange} onContinue={handleContinueToConsent} />
-      ) : currentSection === 2 ? (
-        <SurveySectionConsent
-          consent={formData.consent}
-          consentDeclined={consentDeclined}
-          onConsentChange={handleConsentChange}
-          onBack={() => setCurrentSection(1)}
-          onSubmit={handleConsentSubmit}
-        />
-      ) : currentSection === 3 ? (
-        <SurveySectionPersonalInfo
-          fullName={formData.fullName}
-          gender={formData.gender}
-          genderOther={formData.genderOther}
-          civilStatus={formData.civilStatus}
-          civilStatusOther={formData.civilStatusOther}
-          birthday={formData.birthday}
-          residence={formData.residence}
-          contactInformation={formData.contactInformation}
-          onTextChange={handleTextChange}
-          onGenderChange={handleGenderChange}
-          onCivilStatusChange={handleCivilStatusChange}
-          onBack={() => setCurrentSection(2)}
-          onSubmit={handlePersonalInfoSubmit}
-        />
-      ) : currentSection === 4 ? (
-        <SurveySectionEducationalBackground
-          degreeProgramCompleted={formData.degreeProgramCompleted}
-          yearGraduated={formData.yearGraduated}
-          yearGraduatedOther={formData.yearGraduatedOther}
-          academicHonors={formData.academicHonors}
-          academicHonorsOtherText={formData.academicHonorsOtherText}
-          pursuedFurtherStudies={formData.pursuedFurtherStudies}
-          furtherDegreeProgram={formData.furtherDegreeProgram}
-          honorsError={honorsError}
-          onDegreeProgramChange={handleDegreeProgramChange}
-          onYearGraduatedChange={handleYearGraduatedChange}
-          onHonorChange={handleAcademicHonorChange}
-          onTextChange={handleTextChange}
-          onFurtherStudiesChange={handleFurtherStudiesChange}
-          onBack={() => setCurrentSection(3)}
-          onSubmit={handleEducationalSubmit}
-        />
-      ) : currentSection === 5 ? (
-        <SurveySectionLicensureExamination
-          hasTakenPnle={formData.hasTakenPnle}
-          licensureStatus={formData.licensureStatus}
-          pnleYearPassed={formData.pnleYearPassed}
-          pnleYearPassedOther={formData.pnleYearPassedOther}
-          examTakeCount={formData.examTakeCount}
-          onHasTakenPnleChange={handleHasTakenPnleChange}
-          onLicensureStatusChange={handleLicensureStatusChange}
-          onPnleYearPassedChange={handlePnleYearPassedChange}
-          onExamTakeCountChange={handleExamTakeCountChange}
-          onTextChange={handleTextChange}
-          onBack={() => setCurrentSection(4)}
-          onSubmit={handleLicensureSubmit}
-        />
-      ) : currentSection === 6 ? (
-        <SurveySectionEmploymentStatus
-          employmentStatus={formData.employmentStatus}
-          onEmploymentStatusChange={handleEmploymentStatusChange}
-          onBack={() => setCurrentSection(5)}
-          onSubmit={handleEmploymentSubmit}
-        />
-      ) : currentSection === 7 ? (
-        <SurveySectionEmploymentInformation
-          jobRelatedToDegree={formData.jobRelatedToDegree}
-          employmentSector={formData.employmentSector}
-          employmentSectorOther={formData.employmentSectorOther}
-          positionDesignation={formData.positionDesignation}
-          positionDesignationOther={formData.positionDesignationOther}
-          firstJobDuration={formData.firstJobDuration}
-          firstJobSources={formData.firstJobSources}
-          firstJobSourceOtherText={formData.firstJobSourceOtherText}
-          estimatedMonthlySalary={formData.estimatedMonthlySalary}
-          firstJobSourceError={firstJobSourceError}
-          onJobRelatedToDegreeChange={handleJobRelatedToDegreeChange}
-          onEmploymentSectorChange={handleEmploymentSectorChange}
-          onPositionDesignationChange={handlePositionDesignationChange}
-          onFirstJobDurationChange={handleFirstJobDurationChange}
-          onFirstJobSourceChange={handleFirstJobSourceChange}
-          onEstimatedMonthlySalaryChange={handleEstimatedMonthlySalaryChange}
-          onTextChange={handleTextChange}
-          onBack={() => setCurrentSection(6)}
-          onSubmit={handleEmploymentInformationSubmit}
-        />
-      ) : currentSection === 8 ? (
-        <SurveySectionUnemploymentInformation
-          unemploymentReasons={formData.unemploymentReasons}
-          unemploymentReasonOtherText={formData.unemploymentReasonOtherText}
-          unemploymentReasonError={unemploymentReasonError}
-          onUnemploymentReasonChange={handleUnemploymentReasonChange}
-          onTextChange={handleTextChange}
-          onBack={() =>
-            setCurrentSection(
-              formData.employmentStatus === "Unemployed" || formData.employmentStatus === "Currently studying" ? 6 : 7,
-            )
-          }
-          onSubmit={handleUnemploymentInformationSubmit}
-        />
-      ) : currentSection === 9 ? (
-        <SurveySectionRelevanceOfEducation
-          relevanceSkills={formData.relevanceSkills}
-          onRelevanceSkillChange={handleRelevanceSkillChange}
-          onBack={() => setCurrentSection(8)}
-          onSubmit={handleRelevanceOfEducationSubmit}
-        />
-      ) : currentSection === 10 ? (
-        <SurveySectionProgramEvaluation
-          careerPreparationLevel={formData.careerPreparationLevel}
-          nursingProgramAspect={formData.nursingProgramAspect}
-          nursingProgramSuggestion={formData.nursingProgramSuggestion}
-          onCareerPreparationLevelChange={handleCareerPreparationLevelChange}
-          onProgramEvaluationTextChange={handleProgramEvaluationTextChange}
-          onBack={() => setCurrentSection(9)}
-          onSubmit={handleProgramEvaluationSubmit}
-        />
       ) : (
-        <SurveySectionPreferredCommunicationEvents
-          invitationChannels={formData.invitationChannels}
-          invitationChannelOtherText={formData.invitationChannelOtherText}
-          invitationChannelError={invitationChannelError}
-          updateFrequency={formData.updateFrequency}
-          alumniGroupWillingness={formData.alumniGroupWillingness}
-          alumniPlatform={formData.alumniPlatform}
-          alumniPlatformError={alumniPlatformError}
-          onInvitationChannelChange={handleInvitationChannelChange}
-          onUpdateFrequencyChange={handleUpdateFrequencyChange}
-          onAlumniGroupWillingnessChange={handleAlumniGroupWillingnessChange}
-          onAlumniPlatformChange={handleAlumniPlatformChange}
-          onTextChange={handleTextChange}
-          onBack={() => setCurrentSection(10)}
-          onSubmit={handlePreferredCommunicationEventsSubmit}
-        />
+        <div className="combined-survey space-y-6">
+          <div className="rounded-lg border border-maroon/20 p-5 space-y-3">
+            <p className="text-sm font-semibold uppercase tracking-wide text-maroon">Alumni Tracer Survey</p>
+            <h2 className="text-3xl font-bold text-maroon">Please take a few minutes to answer this survey</h2>
+            <p className="text-foreground leading-relaxed">
+              Your participation is voluntary, and all responses will be kept confidential. The information you provide will be used solely
+              for research and program improvement purposes.
+            </p>
+          </div>
+
+          <div className="rounded-lg border border-maroon/20 bg-muted/20 px-4 py-3">
+            <h3 className="text-lg font-bold text-maroon">A. GENERAL INFORMATION</h3>
+          </div>
+
+          <div className="rounded-lg border border-maroon/20 p-5 space-y-2">
+            <Label htmlFor="email" className="text-foreground text-base">
+              Email <span className="text-maroon">*</span>
+            </Label>
+            <Input
+              id="email"
+              type="email"
+              placeholder="Short answer text"
+              value={formData.email}
+              onChange={handleEmailChange}
+              className="bg-white text-foreground border-maroon/20 placeholder:text-muted-foreground"
+              required
+            />
+          </div>
+
+          <SurveySectionConsent
+            consent={formData.consent}
+            consentDeclined={consentDeclined}
+            onConsentChange={handleConsentChange}
+            onBack={noop}
+            onSubmit={preventSectionSubmit}
+          />
+
+          <SurveySectionPersonalInfo
+            fullName={formData.fullName}
+            gender={formData.gender}
+            genderOther={formData.genderOther}
+            civilStatus={formData.civilStatus}
+            civilStatusOther={formData.civilStatusOther}
+            birthday={formData.birthday}
+            residence={formData.residence}
+            contactInformation={formData.contactInformation}
+            onTextChange={handleTextChange}
+            onGenderChange={handleGenderChange}
+            onCivilStatusChange={handleCivilStatusChange}
+            onBack={noop}
+            onSubmit={preventSectionSubmit}
+          />
+
+          <div className="rounded-lg border border-maroon/20 bg-muted/20 px-4 py-3">
+            <h3 className="text-lg font-bold text-maroon">B. EDUCATIONAL BACKGROUND</h3>
+          </div>
+
+          <SurveySectionEducationalBackground
+            degreeProgramCompleted={formData.degreeProgramCompleted}
+            yearGraduated={formData.yearGraduated}
+            yearGraduatedOther={formData.yearGraduatedOther}
+            academicHonors={formData.academicHonors}
+            academicHonorsOtherText={formData.academicHonorsOtherText}
+            pursuedFurtherStudies={formData.pursuedFurtherStudies}
+            furtherDegreeProgram={formData.furtherDegreeProgram}
+            honorsError={honorsError}
+            onDegreeProgramChange={handleDegreeProgramChange}
+            onYearGraduatedChange={handleYearGraduatedChange}
+            onHonorChange={handleAcademicHonorChange}
+            onTextChange={handleTextChange}
+            onFurtherStudiesChange={handleFurtherStudiesChange}
+            onBack={noop}
+            onSubmit={preventSectionSubmit}
+          />
+
+          <SurveySectionLicensureExamination
+            hasTakenPnle={formData.hasTakenPnle}
+            licensureStatus={formData.licensureStatus}
+            pnleYearPassed={formData.pnleYearPassed}
+            pnleYearPassedOther={formData.pnleYearPassedOther}
+            examTakeCount={formData.examTakeCount}
+            onHasTakenPnleChange={handleHasTakenPnleChange}
+            onLicensureStatusChange={handleLicensureStatusChange}
+            onPnleYearPassedChange={handlePnleYearPassedChange}
+            onExamTakeCountChange={handleExamTakeCountChange}
+            onTextChange={handleTextChange}
+            onBack={noop}
+            onSubmit={preventSectionSubmit}
+          />
+
+          <div className="rounded-lg border border-maroon/20 bg-muted/20 px-4 py-3">
+            <h3 className="text-lg font-bold text-maroon">C. EMPLOYMENT DATA</h3>
+          </div>
+
+          <SurveySectionEmploymentStatus
+            employmentStatus={formData.employmentStatus}
+            onEmploymentStatusChange={handleEmploymentStatusChange}
+            onBack={noop}
+            onSubmit={preventSectionSubmit}
+          />
+
+          {showEmploymentInformation && (
+            <SurveySectionEmploymentInformation
+              jobRelatedToDegree={formData.jobRelatedToDegree}
+              employmentSector={formData.employmentSector}
+              employmentSectorOther={formData.employmentSectorOther}
+              positionDesignation={formData.positionDesignation}
+              positionDesignationOther={formData.positionDesignationOther}
+              firstJobDuration={formData.firstJobDuration}
+              firstJobSources={formData.firstJobSources}
+              firstJobSourceOtherText={formData.firstJobSourceOtherText}
+              estimatedMonthlySalary={formData.estimatedMonthlySalary}
+              firstJobSourceError={firstJobSourceError}
+              onJobRelatedToDegreeChange={handleJobRelatedToDegreeChange}
+              onEmploymentSectorChange={handleEmploymentSectorChange}
+              onPositionDesignationChange={handlePositionDesignationChange}
+              onFirstJobDurationChange={handleFirstJobDurationChange}
+              onFirstJobSourceChange={handleFirstJobSourceChange}
+              onEstimatedMonthlySalaryChange={handleEstimatedMonthlySalaryChange}
+              onTextChange={handleTextChange}
+              onBack={noop}
+              onSubmit={preventSectionSubmit}
+            />
+          )}
+
+          {showUnemploymentInformation && (
+            <SurveySectionUnemploymentInformation
+              unemploymentReasons={formData.unemploymentReasons}
+              unemploymentReasonOtherText={formData.unemploymentReasonOtherText}
+              unemploymentReasonError={unemploymentReasonError}
+              onUnemploymentReasonChange={handleUnemploymentReasonChange}
+              onTextChange={handleTextChange}
+              onBack={noop}
+              onSubmit={preventSectionSubmit}
+            />
+          )}
+
+          <div className="rounded-lg border border-maroon/20 bg-muted/20 px-4 py-3">
+            <h3 className="text-lg font-bold text-maroon">D. PROGRAM FEEDBACK</h3>
+          </div>
+
+          <SurveySectionRelevanceOfEducation
+            relevanceSkills={formData.relevanceSkills}
+            onRelevanceSkillChange={handleRelevanceSkillChange}
+            onBack={noop}
+            onSubmit={preventSectionSubmit}
+          />
+
+          <SurveySectionProgramEvaluation
+            careerPreparationLevel={formData.careerPreparationLevel}
+            nursingProgramAspect={formData.nursingProgramAspect}
+            nursingProgramSuggestion={formData.nursingProgramSuggestion}
+            onCareerPreparationLevelChange={handleCareerPreparationLevelChange}
+            onProgramEvaluationTextChange={handleProgramEvaluationTextChange}
+            onBack={noop}
+            onSubmit={preventSectionSubmit}
+          />
+
+          <div className="rounded-lg border border-maroon/20 bg-muted/20 px-4 py-3">
+            <h3 className="text-lg font-bold text-maroon">E. PREFERRED COMMUNICATION EVENTS</h3>
+          </div>
+
+          <SurveySectionPreferredCommunicationEvents
+            invitationChannels={formData.invitationChannels}
+            invitationChannelOtherText={formData.invitationChannelOtherText}
+            invitationChannelError={invitationChannelError}
+            updateFrequency={formData.updateFrequency}
+            alumniGroupWillingness={formData.alumniGroupWillingness}
+            alumniPlatform={formData.alumniPlatform}
+            alumniPlatformError={alumniPlatformError}
+            onInvitationChannelChange={handleInvitationChannelChange}
+            onUpdateFrequencyChange={handleUpdateFrequencyChange}
+            onAlumniGroupWillingnessChange={handleAlumniGroupWillingnessChange}
+            onAlumniPlatformChange={handleAlumniPlatformChange}
+            onTextChange={handleTextChange}
+            onBack={noop}
+            onSubmit={preventSectionSubmit}
+          />
+
+          <div className="rounded-lg border border-maroon/20 p-5 space-y-4">
+            <p className="text-sm text-foreground leading-relaxed">
+              By clicking submit, you certify that the information provided is true and you agree to the terms and privacy consent for this
+              Alumni Tracer Survey.
+            </p>
+
+            {formError && <p className="text-sm text-maroon font-medium">{formError}</p>}
+
+            <Button type="button" onClick={handleCombinedSubmit} className="bg-gold text-maroon hover:bg-gold/90 font-semibold px-8">
+              Submit Survey
+            </Button>
+          </div>
+        </div>
       )}
+
+      <style jsx global>{`
+        .combined-survey form > div.flex.gap-3.pt-2 {
+          display: none;
+        }
+      `}</style>
     </SurveyShell>
   )
 }
