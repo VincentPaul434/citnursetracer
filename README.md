@@ -37,4 +37,4 @@ curl -X POST http://localhost:8080/api/v1/submissions/init \
 - Commit `.env.example` only with placeholder values.
 - For production, set `APP_JWT_PRIVATE_KEY` and `APP_JWT_PUBLIC_KEY`.
 - If JWT keys are not configured, the app generates an ephemeral RSA key pair at startup.
-- Future feature entities should use `@OneToOne(optional = false)` to `SurveySubmission` to enforce parent linkage.
+- Future feature entities should use `@OneToOne(optional = false)` to `SurveySubmission` to enforce parent linkage....
