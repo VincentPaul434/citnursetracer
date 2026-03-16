@@ -116,6 +116,7 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
   const [alumniPlatformError, setAlumniPlatformError] = useState("")
   const [formError, setFormError] = useState("")
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isConsentStepComplete, setIsConsentStepComplete] = useState(false)
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prev) => ({
@@ -137,7 +138,37 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
       ...prev,
       consent: value,
     }))
+
+    if (value === "no") {
+      setConsentDeclined(true)
+      setIsConsentStepComplete(false)
+      setFormError("")
+      return
+    }
+
     setConsentDeclined(false)
+    setIsConsentStepComplete(false)
+    setFormError("")
+  }
+
+  const handleConsentPageSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (formData.consent === "yes") {
+      setConsentDeclined(false)
+      setFormError("")
+      setIsConsentStepComplete(true)
+      return
+    }
+
+    if (formData.consent === "no") {
+      setConsentDeclined(true)
+      setIsConsentStepComplete(false)
+      setFormError("")
+      return
+    }
+
+    setFormError("Please choose whether you agree to participate before continuing.")
   }
 
   const handleDegreeProgramChange = (value: string) => {
@@ -410,6 +441,18 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
   }
 
   const handleCombinedSubmit = () => {
+    if (formData.consent === "no") {
+      setConsentDeclined(true)
+      setFormError("")
+      return
+    }
+
+    if (formData.consent !== "yes") {
+      setConsentDeclined(false)
+      setFormError("Please select “Yes, I voluntarily agree to participate” before submitting.")
+      return
+    }
+
     let hasError = false
 
     const requiresEmploymentInformation =
@@ -417,12 +460,7 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
     const requiresUnemploymentReason =
       formData.employmentStatus === "Unemployed" || formData.employmentStatus === "Currently studying"
 
-    if (formData.consent !== "yes") {
-      setConsentDeclined(formData.consent === "no")
-      hasError = true
-    } else {
-      setConsentDeclined(false)
-    }
+    setConsentDeclined(false)
 
     if (!hasAtLeastOneChecked(formData.academicHonors)) {
       setHonorsError("Please select at least one option for academic honor.")
@@ -500,6 +538,7 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
     setAlumniPlatformError("")
     setFormError("")
     setIsSubmitted(false)
+    setIsConsentStepComplete(false)
   }
 
   const preventSectionSubmit = (e: React.FormEvent) => {
@@ -528,6 +567,36 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
               Start New Survey
             </Button>
           </div>
+        </div>
+      ) : formData.consent === "no" ? (
+        <div className="rounded-lg border border-maroon/20 p-5 space-y-4">
+          <h2 className="text-2xl font-bold text-maroon">Survey Ended</h2>
+          <p className="text-foreground leading-relaxed">You chose not to participate in the study.</p>
+          <p className="text-foreground leading-relaxed">Thank you for your time.</p>
+          <div className="pt-2">
+            <Button type="button" onClick={handleStartNewSurvey} className="bg-gold text-maroon hover:bg-gold/90 font-semibold">
+              Start Survey Again
+            </Button>
+          </div>
+        </div>
+      ) : !isConsentStepComplete ? (
+        <div className="space-y-6">
+          <div className="rounded-lg border border-maroon/20 p-5 space-y-3">
+            <p className="text-sm font-semibold uppercase tracking-wide text-maroon">Alumni Tracer Survey</p>
+            <h2 className="text-3xl font-bold text-maroon">Data Privacy and Informed Consent</h2>
+            <p className="text-foreground leading-relaxed">
+              Please review the consent statement below before proceeding to the survey form.
+            </p>
+          </div>
+
+          <SurveySectionConsent
+            consent={formData.consent}
+            consentDeclined={consentDeclined}
+            onConsentChange={handleConsentChange}
+            onSubmit={handleConsentPageSubmit}
+          />
+
+          {formError && <p className="text-sm text-maroon font-medium">{formError}</p>}
         </div>
       ) : (
         <div className="combined-survey space-y-6">
@@ -558,14 +627,6 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
               required
             />
           </div>
-
-          <SurveySectionConsent
-            consent={formData.consent}
-            consentDeclined={consentDeclined}
-            onConsentChange={handleConsentChange}
-            onBack={noop}
-            onSubmit={preventSectionSubmit}
-          />
 
           <SurveySectionPersonalInfo
             fullName={formData.fullName}

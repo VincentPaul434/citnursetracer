@@ -6,7 +6,6 @@ interface SurveySectionConsentProps {
   consent: string
   consentDeclined: boolean
   onConsentChange: (value: "yes" | "no") => void
-  onBack: () => void
   onSubmit: (e: React.FormEvent) => void
 }
 
@@ -14,13 +13,12 @@ export default function SurveySectionConsent({
   consent,
   consentDeclined,
   onConsentChange,
-  onBack,
   onSubmit,
 }: SurveySectionConsentProps) {
   return (
     <>
       <div className="mb-6">
-        <div className="inline-flex rounded-md bg-gold px-3 py-1 text-sm font-semibold text-maroon mb-4">Section 2 of 12</div>
+        <div className="inline-flex rounded-md bg-gold px-3 py-1 text-sm font-semibold text-maroon mb-4">Step 1: Consent</div>
         <div className="rounded-lg border border-maroon/20 p-5 space-y-5">
           <h2 className="text-3xl font-bold text-maroon">Data Privacy and Informed Consent Statement</h2>
           <p className="italic text-foreground">(In accordance with the Data Privacy Act of 2012 – Republic Act No. 10173)</p>
@@ -92,9 +90,6 @@ export default function SurveySectionConsent({
         )}
 
         <div className="flex gap-3 pt-2">
-          <Button type="button" onClick={onBack} variant="secondary" className="bg-gold text-maroon hover:bg-gold/90">
-            Back
-          </Button>
           <Button type="submit" className="bg-gold text-maroon hover:bg-gold/90 font-semibold px-8">
             Continue
           </Button>

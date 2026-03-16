@@ -317,7 +317,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$ne
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/button.tsx [app-ssr] (ecmascript)");
 ;
 ;
-function SurveySectionConsent({ consent, consentDeclined, onConsentChange, onBack, onSubmit }) {
+function SurveySectionConsent({ consent, consentDeclined, onConsentChange, onSubmit }) {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -325,10 +325,10 @@ function SurveySectionConsent({ consent, consentDeclined, onConsentChange, onBac
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "inline-flex rounded-md bg-gold px-3 py-1 text-sm font-semibold text-maroon mb-4",
-                        children: "Section 2 of 12"
+                        children: "Step 1: Consent"
                     }, void 0, false, {
                         fileName: "[project]/components/survey-section-consent.tsx",
-                        lineNumber: 23,
+                        lineNumber: 21,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -339,7 +339,7 @@ function SurveySectionConsent({ consent, consentDeclined, onConsentChange, onBac
                                 children: "Data Privacy and Informed Consent Statement"
                             }, void 0, false, {
                                 fileName: "[project]/components/survey-section-consent.tsx",
-                                lineNumber: 25,
+                                lineNumber: 23,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -347,7 +347,7 @@ function SurveySectionConsent({ consent, consentDeclined, onConsentChange, onBac
                                 children: "(In accordance with the Data Privacy Act of 2012 – Republic Act No. 10173)"
                             }, void 0, false, {
                                 fileName: "[project]/components/survey-section-consent.tsx",
-                                lineNumber: 26,
+                                lineNumber: 24,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -358,7 +358,7 @@ function SurveySectionConsent({ consent, consentDeclined, onConsentChange, onBac
                                         children: "highest level of confidentiality"
                                     }, void 0, false, {
                                         fileName: "[project]/components/survey-section-consent.tsx",
-                                        lineNumber: 29,
+                                        lineNumber: 27,
                                         columnNumber: 86
                                     }, this),
                                     " in accordance with the ",
@@ -366,14 +366,14 @@ function SurveySectionConsent({ consent, consentDeclined, onConsentChange, onBac
                                         children: "Data Privacy Act of 2012 (Republic Act No. 10173)"
                                     }, void 0, false, {
                                         fileName: "[project]/components/survey-section-consent.tsx",
-                                        lineNumber: 30,
+                                        lineNumber: 28,
                                         columnNumber: 33
                                     }, this),
                                     "."
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/survey-section-consent.tsx",
-                                lineNumber: 28,
+                                lineNumber: 26,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -384,7 +384,7 @@ function SurveySectionConsent({ consent, consentDeclined, onConsentChange, onBac
                                         children: "does not include personally identifiable details"
                                     }, void 0, false, {
                                         fileName: "[project]/components/survey-section-consent.tsx",
-                                        lineNumber: 34,
+                                        lineNumber: 32,
                                         columnNumber: 72
                                     }, this),
                                     " that could directly reveal the identity of individual respondents. The information you provide will be used solely for ",
@@ -392,7 +392,7 @@ function SurveySectionConsent({ consent, consentDeclined, onConsentChange, onBac
                                         children: "academic research purposes"
                                     }, void 0, false, {
                                         fileName: "[project]/components/survey-section-consent.tsx",
-                                        lineNumber: 35,
+                                        lineNumber: 33,
                                         columnNumber: 121
                                     }, this),
                                     " related to the study entitled ",
@@ -400,7 +400,7 @@ function SurveySectionConsent({ consent, consentDeclined, onConsentChange, onBac
                                         children: "“Tracking Nursing Graduates through Innovation.”"
                                     }, void 0, false, {
                                         fileName: "[project]/components/survey-section-consent.tsx",
-                                        lineNumber: 36,
+                                        lineNumber: 34,
                                         columnNumber: 28
                                     }, this),
                                     " Your responses will ",
@@ -408,13 +408,13 @@ function SurveySectionConsent({ consent, consentDeclined, onConsentChange, onBac
                                         children: "not be disclosed, shared, or used by individuals outside the research team."
                                     }, void 0, false, {
                                         fileName: "[project]/components/survey-section-consent.tsx",
-                                        lineNumber: 36,
+                                        lineNumber: 34,
                                         columnNumber: 114
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/survey-section-consent.tsx",
-                                lineNumber: 33,
+                                lineNumber: 31,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -425,7 +425,7 @@ function SurveySectionConsent({ consent, consentDeclined, onConsentChange, onBac
                                         children: "controlled and secure systems"
                                     }, void 0, false, {
                                         fileName: "[project]/components/survey-section-consent.tsx",
-                                        lineNumber: 40,
+                                        lineNumber: 38,
                                         columnNumber: 69
                                     }, this),
                                     " to ensure the protection, storage, and proper analysis of information while preventing any ",
@@ -433,14 +433,14 @@ function SurveySectionConsent({ consent, consentDeclined, onConsentChange, onBac
                                         children: "unauthorized access to the data"
                                     }, void 0, false, {
                                         fileName: "[project]/components/survey-section-consent.tsx",
-                                        lineNumber: 41,
+                                        lineNumber: 39,
                                         columnNumber: 78
                                     }, this),
                                     "."
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/survey-section-consent.tsx",
-                                lineNumber: 39,
+                                lineNumber: 37,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -451,7 +451,7 @@ function SurveySectionConsent({ consent, consentDeclined, onConsentChange, onBac
                                         children: "completely voluntary"
                                     }, void 0, false, {
                                         fileName: "[project]/components/survey-section-consent.tsx",
-                                        lineNumber: 45,
+                                        lineNumber: 43,
                                         columnNumber: 50
                                     }, this),
                                     ". You have the right to ",
@@ -459,14 +459,14 @@ function SurveySectionConsent({ consent, consentDeclined, onConsentChange, onBac
                                         children: "decline participation, skip any question, or withdraw from the survey at any time without any penalty or consequence"
                                     }, void 0, false, {
                                         fileName: "[project]/components/survey-section-consent.tsx",
-                                        lineNumber: 45,
+                                        lineNumber: 43,
                                         columnNumber: 111
                                     }, this),
                                     "."
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/survey-section-consent.tsx",
-                                lineNumber: 44,
+                                lineNumber: 42,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -477,7 +477,7 @@ function SurveySectionConsent({ consent, consentDeclined, onConsentChange, onBac
                                         children: "aggregated form"
                                     }, void 0, false, {
                                         fileName: "[project]/components/survey-section-consent.tsx",
-                                        lineNumber: 50,
+                                        lineNumber: 48,
                                         columnNumber: 65
                                     }, this),
                                     ", ensuring that ",
@@ -485,14 +485,14 @@ function SurveySectionConsent({ consent, consentDeclined, onConsentChange, onBac
                                         children: "no individual participant will be identified"
                                     }, void 0, false, {
                                         fileName: "[project]/components/survey-section-consent.tsx",
-                                        lineNumber: 50,
+                                        lineNumber: 48,
                                         columnNumber: 113
                                     }, this),
                                     " in any report or publication."
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/survey-section-consent.tsx",
-                                lineNumber: 49,
+                                lineNumber: 47,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -503,25 +503,25 @@ function SurveySectionConsent({ consent, consentDeclined, onConsentChange, onBac
                                         children: "confirm that you have read and understood this statement and that you voluntarily agree to participate in this study and allow your responses to be used for research purposes."
                                     }, void 0, false, {
                                         fileName: "[project]/components/survey-section-consent.tsx",
-                                        lineNumber: 55,
+                                        lineNumber: 53,
                                         columnNumber: 49
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/survey-section-consent.tsx",
-                                lineNumber: 54,
+                                lineNumber: 52,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/survey-section-consent.tsx",
-                        lineNumber: 24,
+                        lineNumber: 22,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/survey-section-consent.tsx",
-                lineNumber: 22,
+                lineNumber: 20,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -537,13 +537,13 @@ function SurveySectionConsent({ consent, consentDeclined, onConsentChange, onBac
                                 children: "*"
                             }, void 0, false, {
                                 fileName: "[project]/components/survey-section-consent.tsx",
-                                lineNumber: 63,
+                                lineNumber: 61,
                                 columnNumber: 55
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/survey-section-consent.tsx",
-                        lineNumber: 62,
+                        lineNumber: 60,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -558,20 +558,20 @@ function SurveySectionConsent({ consent, consentDeclined, onConsentChange, onBac
                                 required: true
                             }, void 0, false, {
                                 fileName: "[project]/components/survey-section-consent.tsx",
-                                lineNumber: 67,
+                                lineNumber: 65,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 children: "Yes, I voluntarily agree to participate"
                             }, void 0, false, {
                                 fileName: "[project]/components/survey-section-consent.tsx",
-                                lineNumber: 75,
+                                lineNumber: 73,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/survey-section-consent.tsx",
-                        lineNumber: 66,
+                        lineNumber: 64,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -586,20 +586,20 @@ function SurveySectionConsent({ consent, consentDeclined, onConsentChange, onBac
                                 required: true
                             }, void 0, false, {
                                 fileName: "[project]/components/survey-section-consent.tsx",
-                                lineNumber: 79,
+                                lineNumber: 77,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 children: "No, I do not agree"
                             }, void 0, false, {
                                 fileName: "[project]/components/survey-section-consent.tsx",
-                                lineNumber: 87,
+                                lineNumber: 85,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/survey-section-consent.tsx",
-                        lineNumber: 78,
+                        lineNumber: 76,
                         columnNumber: 9
                     }, this),
                     consentDeclined && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -607,42 +607,29 @@ function SurveySectionConsent({ consent, consentDeclined, onConsentChange, onBac
                         children: "You selected “No, I do not agree”. You cannot proceed without consent."
                     }, void 0, false, {
                         fileName: "[project]/components/survey-section-consent.tsx",
-                        lineNumber: 91,
+                        lineNumber: 89,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "flex gap-3 pt-2",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
-                                type: "button",
-                                onClick: onBack,
-                                variant: "secondary",
-                                className: "bg-gold text-maroon hover:bg-gold/90",
-                                children: "Back"
-                            }, void 0, false, {
-                                fileName: "[project]/components/survey-section-consent.tsx",
-                                lineNumber: 95,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
-                                type: "submit",
-                                className: "bg-gold text-maroon hover:bg-gold/90 font-semibold px-8",
-                                children: "Continue"
-                            }, void 0, false, {
-                                fileName: "[project]/components/survey-section-consent.tsx",
-                                lineNumber: 98,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
+                            type: "submit",
+                            className: "bg-gold text-maroon hover:bg-gold/90 font-semibold px-8",
+                            children: "Continue"
+                        }, void 0, false, {
+                            fileName: "[project]/components/survey-section-consent.tsx",
+                            lineNumber: 93,
+                            columnNumber: 11
+                        }, this)
+                    }, void 0, false, {
                         fileName: "[project]/components/survey-section-consent.tsx",
-                        lineNumber: 94,
+                        lineNumber: 92,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/survey-section-consent.tsx",
-                lineNumber: 61,
+                lineNumber: 59,
                 columnNumber: 7
             }, this)
         ]
@@ -4796,6 +4783,7 @@ function SurveyFormPage({ onSurveyComplete }) {
     const [alumniPlatformError, setAlumniPlatformError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     const [formError, setFormError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     const [isSubmitted, setIsSubmitted] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [isConsentStepComplete, setIsConsentStepComplete] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const handleEmailChange = (e)=>{
         setFormData((prev)=>({
                 ...prev,
@@ -4814,7 +4802,31 @@ function SurveyFormPage({ onSurveyComplete }) {
                 ...prev,
                 consent: value
             }));
+        if (value === "no") {
+            setConsentDeclined(true);
+            setIsConsentStepComplete(false);
+            setFormError("");
+            return;
+        }
         setConsentDeclined(false);
+        setIsConsentStepComplete(false);
+        setFormError("");
+    };
+    const handleConsentPageSubmit = (e)=>{
+        e.preventDefault();
+        if (formData.consent === "yes") {
+            setConsentDeclined(false);
+            setFormError("");
+            setIsConsentStepComplete(true);
+            return;
+        }
+        if (formData.consent === "no") {
+            setConsentDeclined(true);
+            setIsConsentStepComplete(false);
+            setFormError("");
+            return;
+        }
+        setFormError("Please choose whether you agree to participate before continuing.");
     };
     const handleDegreeProgramChange = (value)=>{
         setFormData((prev)=>({
@@ -5018,15 +5030,20 @@ function SurveyFormPage({ onSurveyComplete }) {
             }));
     };
     const handleCombinedSubmit = ()=>{
+        if (formData.consent === "no") {
+            setConsentDeclined(true);
+            setFormError("");
+            return;
+        }
+        if (formData.consent !== "yes") {
+            setConsentDeclined(false);
+            setFormError("Please select “Yes, I voluntarily agree to participate” before submitting.");
+            return;
+        }
         let hasError = false;
         const requiresEmploymentInformation = formData.employmentStatus === "Employed" || formData.employmentStatus === "Self employed";
         const requiresUnemploymentReason = formData.employmentStatus === "Unemployed" || formData.employmentStatus === "Currently studying";
-        if (formData.consent !== "yes") {
-            setConsentDeclined(formData.consent === "no");
-            hasError = true;
-        } else {
-            setConsentDeclined(false);
-        }
+        setConsentDeclined(false);
         if (!hasAtLeastOneChecked(formData.academicHonors)) {
             setHonorsError("Please select at least one option for academic honor.");
             hasError = true;
@@ -5094,6 +5111,7 @@ function SurveyFormPage({ onSurveyComplete }) {
         setAlumniPlatformError("");
         setFormError("");
         setIsSubmitted(false);
+        setIsConsentStepComplete(false);
     };
     const preventSectionSubmit = (e)=>{
         e.preventDefault();
@@ -5111,7 +5129,7 @@ function SurveyFormPage({ onSurveyComplete }) {
                         children: "Thank You for Completing the Alumni Tracer Survey!"
                     }, void 0, false, {
                         fileName: "[project]/components/survey-form-page.tsx",
-                        lineNumber: 519,
+                        lineNumber: 558,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5119,7 +5137,7 @@ function SurveyFormPage({ onSurveyComplete }) {
                         children: "Your responses are valuable and will help improve curriculum, alumni support services, and future educational initiatives."
                     }, void 0, false, {
                         fileName: "[project]/components/survey-form-page.tsx",
-                        lineNumber: 520,
+                        lineNumber: 559,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5127,7 +5145,7 @@ function SurveyFormPage({ onSurveyComplete }) {
                         children: "All submitted information will be handled with confidentiality and used for academic and institutional development purposes."
                     }, void 0, false, {
                         fileName: "[project]/components/survey-form-page.tsx",
-                        lineNumber: 523,
+                        lineNumber: 562,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5139,18 +5157,126 @@ function SurveyFormPage({ onSurveyComplete }) {
                             children: "Start New Survey"
                         }, void 0, false, {
                             fileName: "[project]/components/survey-form-page.tsx",
-                            lineNumber: 527,
+                            lineNumber: 566,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/survey-form-page.tsx",
-                        lineNumber: 526,
+                        lineNumber: 565,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/survey-form-page.tsx",
-                lineNumber: 518,
+                lineNumber: 557,
+                columnNumber: 9
+            }, this) : formData.consent === "no" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "jsx-ed92165e8ecdb6bb" + " " + "rounded-lg border border-maroon/20 p-5 space-y-4",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                        className: "jsx-ed92165e8ecdb6bb" + " " + "text-2xl font-bold text-maroon",
+                        children: "Survey Ended"
+                    }, void 0, false, {
+                        fileName: "[project]/components/survey-form-page.tsx",
+                        lineNumber: 573,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                        className: "jsx-ed92165e8ecdb6bb" + " " + "text-foreground leading-relaxed",
+                        children: "You chose not to participate in the study."
+                    }, void 0, false, {
+                        fileName: "[project]/components/survey-form-page.tsx",
+                        lineNumber: 574,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                        className: "jsx-ed92165e8ecdb6bb" + " " + "text-foreground leading-relaxed",
+                        children: "Thank you for your time."
+                    }, void 0, false, {
+                        fileName: "[project]/components/survey-form-page.tsx",
+                        lineNumber: 575,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "jsx-ed92165e8ecdb6bb" + " " + "pt-2",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
+                            type: "button",
+                            onClick: handleStartNewSurvey,
+                            className: "bg-gold text-maroon hover:bg-gold/90 font-semibold",
+                            children: "Start Survey Again"
+                        }, void 0, false, {
+                            fileName: "[project]/components/survey-form-page.tsx",
+                            lineNumber: 577,
+                            columnNumber: 13
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/components/survey-form-page.tsx",
+                        lineNumber: 576,
+                        columnNumber: 11
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/components/survey-form-page.tsx",
+                lineNumber: 572,
+                columnNumber: 9
+            }, this) : !isConsentStepComplete ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "jsx-ed92165e8ecdb6bb" + " " + "space-y-6",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "jsx-ed92165e8ecdb6bb" + " " + "rounded-lg border border-maroon/20 p-5 space-y-3",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "jsx-ed92165e8ecdb6bb" + " " + "text-sm font-semibold uppercase tracking-wide text-maroon",
+                                children: "Alumni Tracer Survey"
+                            }, void 0, false, {
+                                fileName: "[project]/components/survey-form-page.tsx",
+                                lineNumber: 585,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                className: "jsx-ed92165e8ecdb6bb" + " " + "text-3xl font-bold text-maroon",
+                                children: "Data Privacy and Informed Consent"
+                            }, void 0, false, {
+                                fileName: "[project]/components/survey-form-page.tsx",
+                                lineNumber: 586,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "jsx-ed92165e8ecdb6bb" + " " + "text-foreground leading-relaxed",
+                                children: "Please review the consent statement below before proceeding to the survey form."
+                            }, void 0, false, {
+                                fileName: "[project]/components/survey-form-page.tsx",
+                                lineNumber: 587,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/components/survey-form-page.tsx",
+                        lineNumber: 584,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$survey$2d$section$2d$consent$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                        consent: formData.consent,
+                        consentDeclined: consentDeclined,
+                        onConsentChange: handleConsentChange,
+                        onSubmit: handleConsentPageSubmit
+                    }, void 0, false, {
+                        fileName: "[project]/components/survey-form-page.tsx",
+                        lineNumber: 592,
+                        columnNumber: 11
+                    }, this),
+                    formError && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                        className: "jsx-ed92165e8ecdb6bb" + " " + "text-sm text-maroon font-medium",
+                        children: formError
+                    }, void 0, false, {
+                        fileName: "[project]/components/survey-form-page.tsx",
+                        lineNumber: 599,
+                        columnNumber: 25
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/components/survey-form-page.tsx",
+                lineNumber: 583,
                 columnNumber: 9
             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "jsx-ed92165e8ecdb6bb" + " " + "combined-survey space-y-6",
@@ -5163,7 +5289,7 @@ function SurveyFormPage({ onSurveyComplete }) {
                                 children: "Alumni Tracer Survey"
                             }, void 0, false, {
                                 fileName: "[project]/components/survey-form-page.tsx",
-                                lineNumber: 535,
+                                lineNumber: 604,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -5171,7 +5297,7 @@ function SurveyFormPage({ onSurveyComplete }) {
                                 children: "Please take a few minutes to answer this survey"
                             }, void 0, false, {
                                 fileName: "[project]/components/survey-form-page.tsx",
-                                lineNumber: 536,
+                                lineNumber: 605,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5179,13 +5305,13 @@ function SurveyFormPage({ onSurveyComplete }) {
                                 children: "Your participation is voluntary, and all responses will be kept confidential. The information you provide will be used solely for research and program improvement purposes."
                             }, void 0, false, {
                                 fileName: "[project]/components/survey-form-page.tsx",
-                                lineNumber: 537,
+                                lineNumber: 606,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/survey-form-page.tsx",
-                        lineNumber: 534,
+                        lineNumber: 603,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5195,12 +5321,12 @@ function SurveyFormPage({ onSurveyComplete }) {
                             children: "A. GENERAL INFORMATION"
                         }, void 0, false, {
                             fileName: "[project]/components/survey-form-page.tsx",
-                            lineNumber: 544,
+                            lineNumber: 613,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/survey-form-page.tsx",
-                        lineNumber: 543,
+                        lineNumber: 612,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5216,13 +5342,13 @@ function SurveyFormPage({ onSurveyComplete }) {
                                         children: "*"
                                     }, void 0, false, {
                                         fileName: "[project]/components/survey-form-page.tsx",
-                                        lineNumber: 549,
+                                        lineNumber: 618,
                                         columnNumber: 21
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/survey-form-page.tsx",
-                                lineNumber: 548,
+                                lineNumber: 617,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -5235,24 +5361,13 @@ function SurveyFormPage({ onSurveyComplete }) {
                                 required: true
                             }, void 0, false, {
                                 fileName: "[project]/components/survey-form-page.tsx",
-                                lineNumber: 551,
+                                lineNumber: 620,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/survey-form-page.tsx",
-                        lineNumber: 547,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$survey$2d$section$2d$consent$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                        consent: formData.consent,
-                        consentDeclined: consentDeclined,
-                        onConsentChange: handleConsentChange,
-                        onBack: noop,
-                        onSubmit: preventSectionSubmit
-                    }, void 0, false, {
-                        fileName: "[project]/components/survey-form-page.tsx",
-                        lineNumber: 562,
+                        lineNumber: 616,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$survey$2d$section$2d$personal$2d$info$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -5271,7 +5386,7 @@ function SurveyFormPage({ onSurveyComplete }) {
                         onSubmit: preventSectionSubmit
                     }, void 0, false, {
                         fileName: "[project]/components/survey-form-page.tsx",
-                        lineNumber: 570,
+                        lineNumber: 631,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5281,12 +5396,12 @@ function SurveyFormPage({ onSurveyComplete }) {
                             children: "B. EDUCATIONAL BACKGROUND"
                         }, void 0, false, {
                             fileName: "[project]/components/survey-form-page.tsx",
-                            lineNumber: 587,
+                            lineNumber: 648,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/survey-form-page.tsx",
-                        lineNumber: 586,
+                        lineNumber: 647,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$survey$2d$section$2d$educational$2d$background$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -5307,7 +5422,7 @@ function SurveyFormPage({ onSurveyComplete }) {
                         onSubmit: preventSectionSubmit
                     }, void 0, false, {
                         fileName: "[project]/components/survey-form-page.tsx",
-                        lineNumber: 590,
+                        lineNumber: 651,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$survey$2d$section$2d$licensure$2d$examination$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -5325,7 +5440,7 @@ function SurveyFormPage({ onSurveyComplete }) {
                         onSubmit: preventSectionSubmit
                     }, void 0, false, {
                         fileName: "[project]/components/survey-form-page.tsx",
-                        lineNumber: 608,
+                        lineNumber: 669,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5335,12 +5450,12 @@ function SurveyFormPage({ onSurveyComplete }) {
                             children: "C. EMPLOYMENT DATA"
                         }, void 0, false, {
                             fileName: "[project]/components/survey-form-page.tsx",
-                            lineNumber: 624,
+                            lineNumber: 685,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/survey-form-page.tsx",
-                        lineNumber: 623,
+                        lineNumber: 684,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$survey$2d$section$2d$employment$2d$status$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -5350,7 +5465,7 @@ function SurveyFormPage({ onSurveyComplete }) {
                         onSubmit: preventSectionSubmit
                     }, void 0, false, {
                         fileName: "[project]/components/survey-form-page.tsx",
-                        lineNumber: 627,
+                        lineNumber: 688,
                         columnNumber: 11
                     }, this),
                     showEmploymentInformation && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$survey$2d$section$2d$employment$2d$information$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -5375,7 +5490,7 @@ function SurveyFormPage({ onSurveyComplete }) {
                         onSubmit: preventSectionSubmit
                     }, void 0, false, {
                         fileName: "[project]/components/survey-form-page.tsx",
-                        lineNumber: 635,
+                        lineNumber: 696,
                         columnNumber: 13
                     }, this),
                     showUnemploymentInformation && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$survey$2d$section$2d$unemployment$2d$information$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -5388,7 +5503,7 @@ function SurveyFormPage({ onSurveyComplete }) {
                         onSubmit: preventSectionSubmit
                     }, void 0, false, {
                         fileName: "[project]/components/survey-form-page.tsx",
-                        lineNumber: 659,
+                        lineNumber: 720,
                         columnNumber: 13
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5398,12 +5513,12 @@ function SurveyFormPage({ onSurveyComplete }) {
                             children: "D. PROGRAM FEEDBACK"
                         }, void 0, false, {
                             fileName: "[project]/components/survey-form-page.tsx",
-                            lineNumber: 671,
+                            lineNumber: 732,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/survey-form-page.tsx",
-                        lineNumber: 670,
+                        lineNumber: 731,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$survey$2d$section$2d$relevance$2d$of$2d$education$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -5413,7 +5528,7 @@ function SurveyFormPage({ onSurveyComplete }) {
                         onSubmit: preventSectionSubmit
                     }, void 0, false, {
                         fileName: "[project]/components/survey-form-page.tsx",
-                        lineNumber: 674,
+                        lineNumber: 735,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$survey$2d$section$2d$program$2d$evaluation$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -5426,7 +5541,7 @@ function SurveyFormPage({ onSurveyComplete }) {
                         onSubmit: preventSectionSubmit
                     }, void 0, false, {
                         fileName: "[project]/components/survey-form-page.tsx",
-                        lineNumber: 681,
+                        lineNumber: 742,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5436,12 +5551,12 @@ function SurveyFormPage({ onSurveyComplete }) {
                             children: "E. PREFERRED COMMUNICATION EVENTS"
                         }, void 0, false, {
                             fileName: "[project]/components/survey-form-page.tsx",
-                            lineNumber: 692,
+                            lineNumber: 753,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/survey-form-page.tsx",
-                        lineNumber: 691,
+                        lineNumber: 752,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$survey$2d$section$2d$preferred$2d$communication$2d$events$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -5461,7 +5576,7 @@ function SurveyFormPage({ onSurveyComplete }) {
                         onSubmit: preventSectionSubmit
                     }, void 0, false, {
                         fileName: "[project]/components/survey-form-page.tsx",
-                        lineNumber: 695,
+                        lineNumber: 756,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5472,7 +5587,7 @@ function SurveyFormPage({ onSurveyComplete }) {
                                 children: "By clicking submit, you certify that the information provided is true and you agree to the terms and privacy consent for this Alumni Tracer Survey."
                             }, void 0, false, {
                                 fileName: "[project]/components/survey-form-page.tsx",
-                                lineNumber: 713,
+                                lineNumber: 774,
                                 columnNumber: 13
                             }, this),
                             formError && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5480,7 +5595,7 @@ function SurveyFormPage({ onSurveyComplete }) {
                                 children: formError
                             }, void 0, false, {
                                 fileName: "[project]/components/survey-form-page.tsx",
-                                lineNumber: 718,
+                                lineNumber: 779,
                                 columnNumber: 27
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -5490,19 +5605,19 @@ function SurveyFormPage({ onSurveyComplete }) {
                                 children: "Submit Survey"
                             }, void 0, false, {
                                 fileName: "[project]/components/survey-form-page.tsx",
-                                lineNumber: 720,
+                                lineNumber: 781,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/survey-form-page.tsx",
-                        lineNumber: 712,
+                        lineNumber: 773,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/survey-form-page.tsx",
-                lineNumber: 533,
+                lineNumber: 602,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$styled$2d$jsx$40$5$2e$1$2e$6_react$40$19$2e$2$2e$0$2f$node_modules$2f$styled$2d$jsx$2f$style$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -5512,7 +5627,7 @@ function SurveyFormPage({ onSurveyComplete }) {
         ]
     }, void 0, true, {
         fileName: "[project]/components/survey-form-page.tsx",
-        lineNumber: 516,
+        lineNumber: 555,
         columnNumber: 5
     }, this);
 }
