@@ -3,6 +3,13 @@ import type React from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 type FirstJobSourceField =
   | "jobFairs"
@@ -70,6 +77,25 @@ export default function SurveySectionEmploymentInformation({
   onBack,
   onSubmit,
 }: SurveySectionEmploymentInformationProps) {
+  const firstJobSourceOptions: Array<{ field: FirstJobSourceField; label: string }> = [
+    { field: "jobFairs", label: "Job fairs" },
+    { field: "schoolPlacementOffice", label: "School placement office" },
+    { field: "onlineJobPortal", label: "Online job portal" },
+    { field: "recommendationFromFriendsRelatives", label: "Recommendation from friends/relatives" },
+    { field: "walkInApplication", label: "Walk-in application" },
+    { field: "other", label: "Other" },
+  ]
+
+  const selectedFirstJobSource = firstJobSourceOptions.find(({ field }) => firstJobSources[field])?.field
+
+  const handleFirstJobSourceSelectChange = (value: string) => {
+    const selectedField = value as FirstJobSourceField
+
+    firstJobSourceOptions.forEach(({ field }) => {
+      onFirstJobSourceChange(field, field === selectedField)
+    })
+  }
+
   return (
     <>
       <div className="mb-4 rounded-lg border border-maroon/20 p-5">
@@ -84,29 +110,15 @@ export default function SurveySectionEmploymentInformation({
             Is your current job related to your degree? <span className="text-maroon">*</span>
           </p>
 
-          <label className="flex items-center gap-3 text-foreground cursor-pointer">
-            <input
-              type="radio"
-              name="jobRelatedToDegree"
-              checked={jobRelatedToDegree === "Yes"}
-              onChange={() => onJobRelatedToDegreeChange("Yes")}
-              className="h-4 w-4 accent-maroon"
-              required
-            />
-            <span>Yes</span>
-          </label>
-
-          <label className="flex items-center gap-3 text-foreground cursor-pointer">
-            <input
-              type="radio"
-              name="jobRelatedToDegree"
-              checked={jobRelatedToDegree === "No"}
-              onChange={() => onJobRelatedToDegreeChange("No")}
-              className="h-4 w-4 accent-maroon"
-              required
-            />
-            <span>No</span>
-          </label>
+          <Select value={jobRelatedToDegree || undefined} onValueChange={(value) => onJobRelatedToDegreeChange(value as "Yes" | "No")}>
+            <SelectTrigger className="w-full bg-white text-foreground border-maroon/20">
+              <SelectValue placeholder="Select an option" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="Yes">Yes</SelectItem>
+              <SelectItem value="No">No</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="rounded-lg border border-maroon/20 p-5 space-y-4">
@@ -114,48 +126,50 @@ export default function SurveySectionEmploymentInformation({
             Employment Sector <span className="text-maroon">*</span>
           </p>
 
-          {[
-            "Government Hospital",
-            "Private Hospital",
-            "Clinic",
-            "Community Health Center",
-            "Non-healthcare related",
-            "Abroad",
-          ].map((option) => (
-            <label key={option} className="flex items-center gap-3 text-foreground cursor-pointer">
-              <input
-                type="radio"
-                name="employmentSector"
-                checked={employmentSector === option}
-                onChange={() => onEmploymentSectorChange(option as "Government Hospital" | "Private Hospital" | "Clinic" | "Community Health Center" | "Non-healthcare related" | "Abroad")}
-                className="h-4 w-4 accent-maroon"
+          <Select
+            value={employmentSector || undefined}
+            onValueChange={(value) =>
+              onEmploymentSectorChange(
+                value as
+                  | "Government Hospital"
+                  | "Private Hospital"
+                  | "Clinic"
+                  | "Community Health Center"
+                  | "Non-healthcare related"
+                  | "Abroad"
+                  | "Other",
+              )
+            }
+          >
+            <SelectTrigger className="w-full bg-white text-foreground border-maroon/20">
+              <SelectValue placeholder="Select employment sector" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="Government Hospital">Government Hospital</SelectItem>
+              <SelectItem value="Private Hospital">Private Hospital</SelectItem>
+              <SelectItem value="Clinic">Clinic</SelectItem>
+              <SelectItem value="Community Health Center">Community Health Center</SelectItem>
+              <SelectItem value="Non-healthcare related">Non-healthcare related</SelectItem>
+              <SelectItem value="Abroad">Abroad</SelectItem>
+              <SelectItem value="Other">Other</SelectItem>
+            </SelectContent>
+          </Select>
+
+          {employmentSector === "Other" && (
+            <div className="space-y-2">
+              <Label htmlFor="employmentSectorOther" className="text-foreground text-sm">
+                Please specify
+              </Label>
+              <Input
+                id="employmentSectorOther"
+                type="text"
+                value={employmentSectorOther}
+                onChange={onTextChange}
+                className="bg-white text-foreground border-maroon/20 placeholder:text-muted-foreground"
                 required
               />
-              <span>{option}</span>
-            </label>
-          ))}
-
-          <div className="flex items-center gap-3">
-            <input
-              type="radio"
-              name="employmentSector"
-              checked={employmentSector === "Other"}
-              onChange={() => onEmploymentSectorChange("Other")}
-              className="h-4 w-4 accent-maroon"
-              required
-            />
-            <Label htmlFor="employmentSectorOther" className="text-foreground text-sm">
-              Other:
-            </Label>
-            <Input
-              id="employmentSectorOther"
-              type="text"
-              value={employmentSectorOther}
-              onChange={onTextChange}
-              className="bg-white text-foreground border-maroon/20 placeholder:text-muted-foreground"
-              required={employmentSector === "Other"}
-            />
-          </div>
+            </div>
+          )}
         </div>
 
         <div className="rounded-lg border border-maroon/20 p-5 space-y-4">
@@ -163,46 +177,39 @@ export default function SurveySectionEmploymentInformation({
             Position/Designation <span className="text-maroon">*</span>
           </p>
 
-          {[
-            "Staff Nurse",
-            "Nurse Trainee",
-            "Private Duty Nurse",
-            "Nursing Assistant",
-          ].map((option) => (
-            <label key={option} className="flex items-center gap-3 text-foreground cursor-pointer">
-              <input
-                type="radio"
-                name="positionDesignation"
-                checked={positionDesignation === option}
-                onChange={() => onPositionDesignationChange(option as "Staff Nurse" | "Nurse Trainee" | "Private Duty Nurse" | "Nursing Assistant")}
-                className="h-4 w-4 accent-maroon"
+          <Select
+            value={positionDesignation || undefined}
+            onValueChange={(value) =>
+              onPositionDesignationChange(value as "Staff Nurse" | "Nurse Trainee" | "Private Duty Nurse" | "Nursing Assistant" | "Other")
+            }
+          >
+            <SelectTrigger className="w-full bg-white text-foreground border-maroon/20">
+              <SelectValue placeholder="Select position/designation" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="Staff Nurse">Staff Nurse</SelectItem>
+              <SelectItem value="Nurse Trainee">Nurse Trainee</SelectItem>
+              <SelectItem value="Private Duty Nurse">Private Duty Nurse</SelectItem>
+              <SelectItem value="Nursing Assistant">Nursing Assistant</SelectItem>
+              <SelectItem value="Other">Other</SelectItem>
+            </SelectContent>
+          </Select>
+
+          {positionDesignation === "Other" && (
+            <div className="space-y-2">
+              <Label htmlFor="positionDesignationOther" className="text-foreground text-sm">
+                Please specify
+              </Label>
+              <Input
+                id="positionDesignationOther"
+                type="text"
+                value={positionDesignationOther}
+                onChange={onTextChange}
+                className="bg-white text-foreground border-maroon/20 placeholder:text-muted-foreground"
                 required
               />
-              <span>{option}</span>
-            </label>
-          ))}
-
-          <div className="flex items-center gap-3">
-            <input
-              type="radio"
-              name="positionDesignation"
-              checked={positionDesignation === "Other"}
-              onChange={() => onPositionDesignationChange("Other")}
-              className="h-4 w-4 accent-maroon"
-              required
-            />
-            <Label htmlFor="positionDesignationOther" className="text-foreground text-sm">
-              Other:
-            </Label>
-            <Input
-              id="positionDesignationOther"
-              type="text"
-              value={positionDesignationOther}
-              onChange={onTextChange}
-              className="bg-white text-foreground border-maroon/20 placeholder:text-muted-foreground"
-              required={positionDesignation === "Other"}
-            />
-          </div>
+            </div>
+          )}
         </div>
 
         <div className="rounded-lg border border-maroon/20 p-5 space-y-4">
@@ -210,24 +217,20 @@ export default function SurveySectionEmploymentInformation({
             How long did it take you to get your first job after graduation? <span className="text-maroon">*</span>
           </p>
 
-          {[
-            "Less than 3 months",
-            "3-6 months",
-            "6-12 months",
-            "More than 1 year",
-          ].map((option) => (
-            <label key={option} className="flex items-center gap-3 text-foreground cursor-pointer">
-              <input
-                type="radio"
-                name="firstJobDuration"
-                checked={firstJobDuration === option}
-                onChange={() => onFirstJobDurationChange(option as "Less than 3 months" | "3-6 months" | "6-12 months" | "More than 1 year")}
-                className="h-4 w-4 accent-maroon"
-                required
-              />
-              <span>{option}</span>
-            </label>
-          ))}
+          <Select
+            value={firstJobDuration || undefined}
+            onValueChange={(value) => onFirstJobDurationChange(value as "Less than 3 months" | "3-6 months" | "6-12 months" | "More than 1 year")}
+          >
+            <SelectTrigger className="w-full bg-white text-foreground border-maroon/20">
+              <SelectValue placeholder="Select duration" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="Less than 3 months">Less than 3 months</SelectItem>
+              <SelectItem value="3-6 months">3-6 months</SelectItem>
+              <SelectItem value="6-12 months">6-12 months</SelectItem>
+              <SelectItem value="More than 1 year">More than 1 year</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="rounded-lg border border-maroon/20 p-5 space-y-4">
@@ -235,75 +238,34 @@ export default function SurveySectionEmploymentInformation({
             How did you find your first job? <span className="text-maroon">*</span>
           </p>
 
-          <label className="flex items-center gap-3 text-foreground cursor-pointer">
-            <input
-              type="checkbox"
-              checked={firstJobSources.jobFairs}
-              onChange={(e) => onFirstJobSourceChange("jobFairs", e.target.checked)}
-              className="h-4 w-4 accent-maroon"
-            />
-            <span>Job fairs</span>
-          </label>
+          <Select value={selectedFirstJobSource} onValueChange={handleFirstJobSourceSelectChange}>
+            <SelectTrigger className="w-full bg-white text-foreground border-maroon/20">
+              <SelectValue placeholder="Select first job source" />
+            </SelectTrigger>
+            <SelectContent>
+              {firstJobSourceOptions.map((option) => (
+                <SelectItem key={option.field} value={option.field}>
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
 
-          <label className="flex items-center gap-3 text-foreground cursor-pointer">
-            <input
-              type="checkbox"
-              checked={firstJobSources.schoolPlacementOffice}
-              onChange={(e) => onFirstJobSourceChange("schoolPlacementOffice", e.target.checked)}
-              className="h-4 w-4 accent-maroon"
-            />
-            <span>School placement office</span>
-          </label>
-
-          <label className="flex items-center gap-3 text-foreground cursor-pointer">
-            <input
-              type="checkbox"
-              checked={firstJobSources.onlineJobPortal}
-              onChange={(e) => onFirstJobSourceChange("onlineJobPortal", e.target.checked)}
-              className="h-4 w-4 accent-maroon"
-            />
-            <span>Online job portal</span>
-          </label>
-
-          <label className="flex items-center gap-3 text-foreground cursor-pointer">
-            <input
-              type="checkbox"
-              checked={firstJobSources.recommendationFromFriendsRelatives}
-              onChange={(e) => onFirstJobSourceChange("recommendationFromFriendsRelatives", e.target.checked)}
-              className="h-4 w-4 accent-maroon"
-            />
-            <span>Recommendation from friends/relatives</span>
-          </label>
-
-          <label className="flex items-center gap-3 text-foreground cursor-pointer">
-            <input
-              type="checkbox"
-              checked={firstJobSources.walkInApplication}
-              onChange={(e) => onFirstJobSourceChange("walkInApplication", e.target.checked)}
-              className="h-4 w-4 accent-maroon"
-            />
-            <span>Walk-in application</span>
-          </label>
-
-          <div className="flex items-center gap-3">
-            <input
-              type="checkbox"
-              checked={firstJobSources.other}
-              onChange={(e) => onFirstJobSourceChange("other", e.target.checked)}
-              className="h-4 w-4 accent-maroon"
-            />
-            <Label htmlFor="firstJobSourceOtherText" className="text-foreground text-sm">
-              Other:
-            </Label>
-            <Input
-              id="firstJobSourceOtherText"
-              type="text"
-              value={firstJobSourceOtherText}
-              onChange={onTextChange}
-              className="bg-white text-foreground border-maroon/20 placeholder:text-muted-foreground"
-              required={firstJobSources.other}
-            />
-          </div>
+          {firstJobSources.other && (
+            <div className="space-y-2">
+              <Label htmlFor="firstJobSourceOtherText" className="text-foreground text-sm">
+                Please specify
+              </Label>
+              <Input
+                id="firstJobSourceOtherText"
+                type="text"
+                value={firstJobSourceOtherText}
+                onChange={onTextChange}
+                className="bg-white text-foreground border-maroon/20 placeholder:text-muted-foreground"
+                required
+              />
+            </div>
+          )}
 
           {firstJobSourceError && <p className="text-sm text-maroon font-medium">{firstJobSourceError}</p>}
         </div>
@@ -313,29 +275,25 @@ export default function SurveySectionEmploymentInformation({
             Estimated Monthly Salary <span className="text-maroon">*</span>
           </p>
 
-          {[
-            "Below ₱10,000",
-            "₱10,000–₱20,000",
-            "₱20,001–₱30,000",
-            "₱30,001–₱40,000",
-            "₱40,001 and above",
-          ].map((option) => (
-            <label key={option} className="flex items-center gap-3 text-foreground cursor-pointer">
-              <input
-                type="radio"
-                name="estimatedMonthlySalary"
-                checked={estimatedMonthlySalary === option}
-                onChange={() =>
-                  onEstimatedMonthlySalaryChange(
-                    option as "Below ₱10,000" | "₱10,000–₱20,000" | "₱20,001–₱30,000" | "₱30,001–₱40,000" | "₱40,001 and above",
-                  )
-                }
-                className="h-4 w-4 accent-maroon"
-                required
-              />
-              <span>{option}</span>
-            </label>
-          ))}
+          <Select
+            value={estimatedMonthlySalary || undefined}
+            onValueChange={(value) =>
+              onEstimatedMonthlySalaryChange(
+                value as "Below ₱10,000" | "₱10,000–₱20,000" | "₱20,001–₱30,000" | "₱30,001–₱40,000" | "₱40,001 and above",
+              )
+            }
+          >
+            <SelectTrigger className="w-full bg-white text-foreground border-maroon/20">
+              <SelectValue placeholder="Select salary range" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="Below ₱10,000">Below ₱10,000</SelectItem>
+              <SelectItem value="₱10,000–₱20,000">₱10,000–₱20,000</SelectItem>
+              <SelectItem value="₱20,001–₱30,000">₱20,001–₱30,000</SelectItem>
+              <SelectItem value="₱30,001–₱40,000">₱30,001–₱40,000</SelectItem>
+              <SelectItem value="₱40,001 and above">₱40,001 and above</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="flex gap-3 pt-2">

@@ -1,6 +1,13 @@
 import type React from "react"
 
 import { Button } from "@/components/ui/button"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 type RelevanceSkillField =
   | "clinicalSkills"
@@ -34,6 +41,26 @@ export default function SurveySectionRelevanceOfEducation({
   onBack,
   onSubmit,
 }: SurveySectionRelevanceOfEducationProps) {
+  const relevanceSkillOptions: Array<{ field: RelevanceSkillField; label: string }> = [
+    { field: "clinicalSkills", label: "Clinical skills" },
+    { field: "criticalThinking", label: "Critical thinking" },
+    { field: "communicationSkills", label: "Communication skills" },
+    { field: "leadership", label: "Leadership" },
+    { field: "patientCare", label: "Patient care" },
+    { field: "teamwork", label: "Teamwork" },
+    { field: "problemSolving", label: "Problem-solving" },
+  ]
+
+  const selectedRelevanceSkill = relevanceSkillOptions.find(({ field }) => relevanceSkills[field])?.field
+
+  const handleRelevanceSkillSelectChange = (value: string) => {
+    const selectedField = value as RelevanceSkillField
+
+    relevanceSkillOptions.forEach(({ field }) => {
+      onRelevanceSkillChange(field, field === selectedField)
+    })
+  }
+
   return (
     <>
       <div className="mb-4 rounded-lg border border-maroon/20 p-5">
@@ -46,75 +73,18 @@ export default function SurveySectionRelevanceOfEducation({
         <div className="rounded-lg border border-maroon/20 p-5 space-y-4">
           <p className="text-base font-medium text-foreground">Skills learned in college that helped you in employment</p>
 
-          <label className="flex items-center gap-3 text-foreground cursor-pointer">
-            <input
-              type="checkbox"
-              checked={relevanceSkills.clinicalSkills}
-              onChange={(e) => onRelevanceSkillChange("clinicalSkills", e.target.checked)}
-              className="h-4 w-4 accent-maroon"
-            />
-            <span>Clinical skills</span>
-          </label>
-
-          <label className="flex items-center gap-3 text-foreground cursor-pointer">
-            <input
-              type="checkbox"
-              checked={relevanceSkills.criticalThinking}
-              onChange={(e) => onRelevanceSkillChange("criticalThinking", e.target.checked)}
-              className="h-4 w-4 accent-maroon"
-            />
-            <span>Critical thinking</span>
-          </label>
-
-          <label className="flex items-center gap-3 text-foreground cursor-pointer">
-            <input
-              type="checkbox"
-              checked={relevanceSkills.communicationSkills}
-              onChange={(e) => onRelevanceSkillChange("communicationSkills", e.target.checked)}
-              className="h-4 w-4 accent-maroon"
-            />
-            <span>Communication skills</span>
-          </label>
-
-          <label className="flex items-center gap-3 text-foreground cursor-pointer">
-            <input
-              type="checkbox"
-              checked={relevanceSkills.leadership}
-              onChange={(e) => onRelevanceSkillChange("leadership", e.target.checked)}
-              className="h-4 w-4 accent-maroon"
-            />
-            <span>Leadership</span>
-          </label>
-
-          <label className="flex items-center gap-3 text-foreground cursor-pointer">
-            <input
-              type="checkbox"
-              checked={relevanceSkills.patientCare}
-              onChange={(e) => onRelevanceSkillChange("patientCare", e.target.checked)}
-              className="h-4 w-4 accent-maroon"
-            />
-            <span>Patient care</span>
-          </label>
-
-          <label className="flex items-center gap-3 text-foreground cursor-pointer">
-            <input
-              type="checkbox"
-              checked={relevanceSkills.teamwork}
-              onChange={(e) => onRelevanceSkillChange("teamwork", e.target.checked)}
-              className="h-4 w-4 accent-maroon"
-            />
-            <span>Teamwork</span>
-          </label>
-
-          <label className="flex items-center gap-3 text-foreground cursor-pointer">
-            <input
-              type="checkbox"
-              checked={relevanceSkills.problemSolving}
-              onChange={(e) => onRelevanceSkillChange("problemSolving", e.target.checked)}
-              className="h-4 w-4 accent-maroon"
-            />
-            <span>Problem-solving</span>
-          </label>
+          <Select value={selectedRelevanceSkill} onValueChange={handleRelevanceSkillSelectChange}>
+            <SelectTrigger className="w-full bg-white text-foreground border-maroon/20">
+              <SelectValue placeholder="Select a skill" />
+            </SelectTrigger>
+            <SelectContent>
+              {relevanceSkillOptions.map((option) => (
+                <SelectItem key={option.field} value={option.field}>
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="flex gap-3 pt-2">

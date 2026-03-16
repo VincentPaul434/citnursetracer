@@ -3,6 +3,13 @@ import type React from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 type InvitationChannelField =
   | "email"
@@ -67,6 +74,25 @@ export default function SurveySectionPreferredCommunicationEvents({
   onSubmit,
 }: SurveySectionPreferredCommunicationEventsProps) {
   const requiresAlumniPlatform = alumniGroupWillingness === "Yes"
+  const invitationChannelOptions: Array<{ field: InvitationChannelField; label: string }> = [
+    { field: "email", label: "Email" },
+    { field: "facebookPageGroup", label: "Facebook Page/Group" },
+    { field: "messenger", label: "Messenger" },
+    { field: "smsTextMessage", label: "SMS/Text Message" },
+    { field: "officialSchoolWebsite", label: "Official School Website" },
+    { field: "phoneCall", label: "Phone Call" },
+    { field: "other", label: "Other" },
+  ]
+
+  const selectedInvitationChannel = invitationChannelOptions.find(({ field }) => invitationChannels[field])?.field
+
+  const handleInvitationChannelSelectChange = (value: string) => {
+    const selectedField = value as InvitationChannelField
+
+    invitationChannelOptions.forEach(({ field }) => {
+      onInvitationChannelChange(field, field === selectedField)
+    })
+  }
 
   return (
     <>
@@ -83,85 +109,34 @@ export default function SurveySectionPreferredCommunicationEvents({
             <span className="text-maroon">*</span>
           </p>
 
-          <label className="flex items-center gap-3 text-foreground cursor-pointer">
-            <input
-              type="checkbox"
-              checked={invitationChannels.email}
-              onChange={(e) => onInvitationChannelChange("email", e.target.checked)}
-              className="h-4 w-4 accent-maroon"
-            />
-            <span>Email</span>
-          </label>
+          <Select value={selectedInvitationChannel} onValueChange={handleInvitationChannelSelectChange}>
+            <SelectTrigger className="w-full bg-white text-foreground border-maroon/20">
+              <SelectValue placeholder="Select preferred invitation channel" />
+            </SelectTrigger>
+            <SelectContent>
+              {invitationChannelOptions.map((option) => (
+                <SelectItem key={option.field} value={option.field}>
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
 
-          <label className="flex items-center gap-3 text-foreground cursor-pointer">
-            <input
-              type="checkbox"
-              checked={invitationChannels.facebookPageGroup}
-              onChange={(e) => onInvitationChannelChange("facebookPageGroup", e.target.checked)}
-              className="h-4 w-4 accent-maroon"
-            />
-            <span>Facebook Page/Group</span>
-          </label>
-
-          <label className="flex items-center gap-3 text-foreground cursor-pointer">
-            <input
-              type="checkbox"
-              checked={invitationChannels.messenger}
-              onChange={(e) => onInvitationChannelChange("messenger", e.target.checked)}
-              className="h-4 w-4 accent-maroon"
-            />
-            <span>Messenger</span>
-          </label>
-
-          <label className="flex items-center gap-3 text-foreground cursor-pointer">
-            <input
-              type="checkbox"
-              checked={invitationChannels.smsTextMessage}
-              onChange={(e) => onInvitationChannelChange("smsTextMessage", e.target.checked)}
-              className="h-4 w-4 accent-maroon"
-            />
-            <span>SMS/Text Message</span>
-          </label>
-
-          <label className="flex items-center gap-3 text-foreground cursor-pointer">
-            <input
-              type="checkbox"
-              checked={invitationChannels.officialSchoolWebsite}
-              onChange={(e) => onInvitationChannelChange("officialSchoolWebsite", e.target.checked)}
-              className="h-4 w-4 accent-maroon"
-            />
-            <span>Official School Website</span>
-          </label>
-
-          <label className="flex items-center gap-3 text-foreground cursor-pointer">
-            <input
-              type="checkbox"
-              checked={invitationChannels.phoneCall}
-              onChange={(e) => onInvitationChannelChange("phoneCall", e.target.checked)}
-              className="h-4 w-4 accent-maroon"
-            />
-            <span>Phone Call</span>
-          </label>
-
-          <div className="flex items-center gap-3">
-            <input
-              type="checkbox"
-              checked={invitationChannels.other}
-              onChange={(e) => onInvitationChannelChange("other", e.target.checked)}
-              className="h-4 w-4 accent-maroon"
-            />
-            <Label htmlFor="invitationChannelOtherText" className="text-foreground text-sm">
-              Other:
-            </Label>
-            <Input
-              id="invitationChannelOtherText"
-              type="text"
-              value={invitationChannelOtherText}
-              onChange={onTextChange}
-              className="h-8 bg-transparent text-foreground border-0 border-b border-dotted border-maroon/30 rounded-none px-1 focus-visible:ring-0"
-              required={invitationChannels.other}
-            />
-          </div>
+          {invitationChannels.other && (
+            <div className="space-y-2">
+              <Label htmlFor="invitationChannelOtherText" className="text-foreground text-sm">
+                Please specify
+              </Label>
+              <Input
+                id="invitationChannelOtherText"
+                type="text"
+                value={invitationChannelOtherText}
+                onChange={onTextChange}
+                className="bg-white text-foreground border-maroon/20 placeholder:text-muted-foreground"
+                required
+              />
+            </div>
+          )}
 
           {invitationChannelError && <p className="text-sm text-maroon font-medium">{invitationChannelError}</p>}
         </div>
@@ -171,32 +146,28 @@ export default function SurveySectionPreferredCommunicationEvents({
             How often would you like to receive updates about school or alumni activities? <span className="text-maroon">*</span>
           </p>
 
-          {[
-            "Very often (every event announcement)",
-            "Occasionally (major events only)",
-            "Rarely",
-            "I prefer not to receive updates",
-          ].map((option) => (
-            <label key={option} className="flex items-center gap-3 text-foreground cursor-pointer">
-              <input
-                type="radio"
-                name="updateFrequency"
-                checked={updateFrequency === option}
-                onChange={() =>
-                  onUpdateFrequencyChange(
-                    option as
-                      | "Very often (every event announcement)"
-                      | "Occasionally (major events only)"
-                      | "Rarely"
-                      | "I prefer not to receive updates",
-                  )
-                }
-                className="h-4 w-4 accent-maroon"
-                required
-              />
-              <span>{option}</span>
-            </label>
-          ))}
+          <Select
+            value={updateFrequency || undefined}
+            onValueChange={(value) =>
+              onUpdateFrequencyChange(
+                value as
+                  | "Very often (every event announcement)"
+                  | "Occasionally (major events only)"
+                  | "Rarely"
+                  | "I prefer not to receive updates",
+              )
+            }
+          >
+            <SelectTrigger className="w-full bg-white text-foreground border-maroon/20">
+              <SelectValue placeholder="Select update frequency" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="Very often (every event announcement)">Very often (every event announcement)</SelectItem>
+              <SelectItem value="Occasionally (major events only)">Occasionally (major events only)</SelectItem>
+              <SelectItem value="Rarely">Rarely</SelectItem>
+              <SelectItem value="I prefer not to receive updates">I prefer not to receive updates</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="rounded-lg border border-maroon/20 p-5 space-y-4">
@@ -205,23 +176,19 @@ export default function SurveySectionPreferredCommunicationEvents({
             <span className="text-maroon">*</span>
           </p>
 
-          {[
-            "Yes",
-            "No",
-            "Maybe",
-          ].map((option) => (
-            <label key={option} className="flex items-center gap-3 text-foreground cursor-pointer">
-              <input
-                type="radio"
-                name="alumniGroupWillingness"
-                checked={alumniGroupWillingness === option}
-                onChange={() => onAlumniGroupWillingnessChange(option as "Yes" | "No" | "Maybe")}
-                className="h-4 w-4 accent-maroon"
-                required
-              />
-              <span>{option}</span>
-            </label>
-          ))}
+          <Select
+            value={alumniGroupWillingness || undefined}
+            onValueChange={(value) => onAlumniGroupWillingnessChange(value as "Yes" | "No" | "Maybe")}
+          >
+            <SelectTrigger className="w-full bg-white text-foreground border-maroon/20">
+              <SelectValue placeholder="Select an option" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="Yes">Yes</SelectItem>
+              <SelectItem value="No">No</SelectItem>
+              <SelectItem value="Maybe">Maybe</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="rounded-lg border border-maroon/20 p-5 space-y-4">
@@ -229,29 +196,24 @@ export default function SurveySectionPreferredCommunicationEvents({
             If yes, which platform do you prefer for the alumni community? <span className="text-maroon">*</span>
           </p>
 
-          {[
-            "Facebook Community",
-            "Viber Group",
-            "Whats App",
-            "Email Newsletter",
-            "School Website Portal",
-          ].map((option) => (
-            <label key={option} className="flex items-center gap-3 text-foreground cursor-pointer">
-              <input
-                type="radio"
-                name="alumniPlatform"
-                checked={alumniPlatform === option}
-                onChange={() =>
-                  onAlumniPlatformChange(
-                    option as "Facebook Community" | "Viber Group" | "Whats App" | "Email Newsletter" | "School Website Portal",
-                  )
-                }
-                className="h-4 w-4 accent-maroon"
-                required={requiresAlumniPlatform}
-              />
-              <span>{option}</span>
-            </label>
-          ))}
+          <Select
+            value={alumniPlatform || undefined}
+            onValueChange={(value) =>
+              onAlumniPlatformChange(value as "Facebook Community" | "Viber Group" | "Whats App" | "Email Newsletter" | "School Website Portal")
+            }
+            disabled={!requiresAlumniPlatform}
+          >
+            <SelectTrigger className="w-full bg-white text-foreground border-maroon/20">
+              <SelectValue placeholder={requiresAlumniPlatform ? "Select platform" : "Select Yes above to choose platform"} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="Facebook Community">Facebook Community</SelectItem>
+              <SelectItem value="Viber Group">Viber Group</SelectItem>
+              <SelectItem value="Whats App">Whats App</SelectItem>
+              <SelectItem value="Email Newsletter">Email Newsletter</SelectItem>
+              <SelectItem value="School Website Portal">School Website Portal</SelectItem>
+            </SelectContent>
+          </Select>
 
           {alumniPlatformError && <p className="text-sm text-maroon font-medium">{alumniPlatformError}</p>}
         </div>

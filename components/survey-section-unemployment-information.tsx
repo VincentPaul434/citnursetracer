@@ -3,6 +3,13 @@ import type React from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 type UnemploymentReasonField =
   | "currentlyPursuingFurtherStudies"
@@ -40,6 +47,25 @@ export default function SurveySectionUnemploymentInformation({
   onBack,
   onSubmit,
 }: SurveySectionUnemploymentInformationProps) {
+  const unemploymentReasonOptions: Array<{ field: UnemploymentReasonField; label: string }> = [
+    { field: "currentlyPursuingFurtherStudies", label: "Currently pursuing further studies" },
+    { field: "lackOfWorkOpportunities", label: "Lack of work opportunities" },
+    { field: "familyResponsibility", label: "Family responsibility" },
+    { field: "healthReasons", label: "Health reasons" },
+    { field: "waitingForLicensureExam", label: "Waiting for licensure exam" },
+    { field: "other", label: "Other" },
+  ]
+
+  const selectedUnemploymentReason = unemploymentReasonOptions.find(({ field }) => unemploymentReasons[field])?.field
+
+  const handleUnemploymentReasonSelectChange = (value: string) => {
+    const selectedField = value as UnemploymentReasonField
+
+    unemploymentReasonOptions.forEach(({ field }) => {
+      onUnemploymentReasonChange(field, field === selectedField)
+    })
+  }
+
   return (
     <>
       <div className="mb-4 rounded-lg border border-maroon/20 p-5">
@@ -54,75 +80,34 @@ export default function SurveySectionUnemploymentInformation({
             Reason for Unemployment <span className="text-maroon">*</span>
           </p>
 
-          <label className="flex items-center gap-3 text-foreground cursor-pointer">
-            <input
-              type="checkbox"
-              checked={unemploymentReasons.currentlyPursuingFurtherStudies}
-              onChange={(e) => onUnemploymentReasonChange("currentlyPursuingFurtherStudies", e.target.checked)}
-              className="h-4 w-4 accent-maroon"
-            />
-            <span>Currently pursuing further studies</span>
-          </label>
+          <Select value={selectedUnemploymentReason} onValueChange={handleUnemploymentReasonSelectChange}>
+            <SelectTrigger className="w-full bg-white text-foreground border-maroon/20">
+              <SelectValue placeholder="Select reason for unemployment" />
+            </SelectTrigger>
+            <SelectContent>
+              {unemploymentReasonOptions.map((option) => (
+                <SelectItem key={option.field} value={option.field}>
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
 
-          <label className="flex items-center gap-3 text-foreground cursor-pointer">
-            <input
-              type="checkbox"
-              checked={unemploymentReasons.lackOfWorkOpportunities}
-              onChange={(e) => onUnemploymentReasonChange("lackOfWorkOpportunities", e.target.checked)}
-              className="h-4 w-4 accent-maroon"
-            />
-            <span>Lack of work opportunities</span>
-          </label>
-
-          <label className="flex items-center gap-3 text-foreground cursor-pointer">
-            <input
-              type="checkbox"
-              checked={unemploymentReasons.familyResponsibility}
-              onChange={(e) => onUnemploymentReasonChange("familyResponsibility", e.target.checked)}
-              className="h-4 w-4 accent-maroon"
-            />
-            <span>Family responsibility</span>
-          </label>
-
-          <label className="flex items-center gap-3 text-foreground cursor-pointer">
-            <input
-              type="checkbox"
-              checked={unemploymentReasons.healthReasons}
-              onChange={(e) => onUnemploymentReasonChange("healthReasons", e.target.checked)}
-              className="h-4 w-4 accent-maroon"
-            />
-            <span>Health reasons</span>
-          </label>
-
-          <label className="flex items-center gap-3 text-foreground cursor-pointer">
-            <input
-              type="checkbox"
-              checked={unemploymentReasons.waitingForLicensureExam}
-              onChange={(e) => onUnemploymentReasonChange("waitingForLicensureExam", e.target.checked)}
-              className="h-4 w-4 accent-maroon"
-            />
-            <span>Waiting for licensure exam</span>
-          </label>
-
-          <div className="flex items-center gap-3">
-            <input
-              type="checkbox"
-              checked={unemploymentReasons.other}
-              onChange={(e) => onUnemploymentReasonChange("other", e.target.checked)}
-              className="h-4 w-4 accent-maroon"
-            />
-            <Label htmlFor="unemploymentReasonOtherText" className="text-foreground text-sm">
-              Other:
-            </Label>
-            <Input
-              id="unemploymentReasonOtherText"
-              type="text"
-              value={unemploymentReasonOtherText}
-              onChange={onTextChange}
-              className="h-8 bg-transparent text-foreground border-0 border-b border-dotted border-maroon/30 rounded-none px-1 focus-visible:ring-0"
-              required={unemploymentReasons.other}
-            />
-          </div>
+          {unemploymentReasons.other && (
+            <div className="space-y-2">
+              <Label htmlFor="unemploymentReasonOtherText" className="text-foreground text-sm">
+                Please specify
+              </Label>
+              <Input
+                id="unemploymentReasonOtherText"
+                type="text"
+                value={unemploymentReasonOtherText}
+                onChange={onTextChange}
+                className="bg-white text-foreground border-maroon/20 placeholder:text-muted-foreground"
+                required
+              />
+            </div>
+          )}
 
           {unemploymentReasonError && <p className="text-sm text-maroon font-medium">{unemploymentReasonError}</p>}
         </div>

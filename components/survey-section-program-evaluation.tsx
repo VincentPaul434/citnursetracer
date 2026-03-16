@@ -1,6 +1,13 @@
 import type React from "react"
 
 import { Button } from "@/components/ui/button"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 
 type CareerPreparationLevel =
@@ -43,29 +50,25 @@ export default function SurveySectionProgramEvaluation({
             How well did CIT-U prepare you for your professional career? <span className="text-maroon">*</span>
           </p>
 
-          {[
-            "Very well prepared",
-            "Well prepared",
-            "Moderately prepared",
-            "Slightly prepared",
-            "Not prepared",
-          ].map((option) => (
-            <label key={option} className="flex items-center gap-3 text-foreground cursor-pointer">
-              <input
-                type="radio"
-                name="careerPreparationLevel"
-                checked={careerPreparationLevel === option}
-                onChange={() =>
-                  onCareerPreparationLevelChange(
-                    option as "Very well prepared" | "Well prepared" | "Moderately prepared" | "Slightly prepared" | "Not prepared",
-                  )
-                }
-                className="h-4 w-4 accent-maroon"
-                required
-              />
-              <span>{option}</span>
-            </label>
-          ))}
+          <Select
+            value={careerPreparationLevel || undefined}
+            onValueChange={(value) =>
+              onCareerPreparationLevelChange(
+                value as "Very well prepared" | "Well prepared" | "Moderately prepared" | "Slightly prepared" | "Not prepared",
+              )
+            }
+          >
+            <SelectTrigger className="w-full bg-white text-foreground border-maroon/20">
+              <SelectValue placeholder="Select preparation level" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="Very well prepared">Very well prepared</SelectItem>
+              <SelectItem value="Well prepared">Well prepared</SelectItem>
+              <SelectItem value="Moderately prepared">Moderately prepared</SelectItem>
+              <SelectItem value="Slightly prepared">Slightly prepared</SelectItem>
+              <SelectItem value="Not prepared">Not prepared</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="rounded-lg border border-maroon/20 p-5 space-y-4">

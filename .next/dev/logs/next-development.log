@@ -13,3 +13,17 @@
 [00:09:14.483] Server  LOG      ✓ Compiled in 244ms
 [00:13:24.749] Server  LOG      ✓ Compiled in 163ms
 [00:13:40.863] Server  LOG      ✓ Compiled in 155ms
+[00:15:58.224] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:15:58.432] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:15:58.432] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:15:58.432] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1773662569035} /_vercel/insights/view
+[00:18:18.676] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:18:18.898] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:18:18.898] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:18:18.898] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1773662709500} /_vercel/insights/view
+[00:24:06.600] Server  LOG      ✓ Compiled in 1022ms
+[00:25:09.150] Server  LOG      ✓ Compiled in 137ms
+[00:25:35.356] Server  LOG      ✓ Compiled in 228ms
+[00:25:57.828] Server  LOG      ✓ Compiled in 166ms
+[00:26:10.580] Server  LOG      ✓ Compiled in 115ms
+[00:26:50.141] Server  LOG      ✓ Compiled in 113ms

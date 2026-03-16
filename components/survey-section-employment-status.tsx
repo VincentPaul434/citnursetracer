@@ -1,6 +1,13 @@
 import type React from "react"
 
 import { Button } from "@/components/ui/button"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 interface SurveySectionEmploymentStatusProps {
   employmentStatus: string
@@ -29,53 +36,22 @@ export default function SurveySectionEmploymentStatus({
             Current employment status <span className="text-maroon">*</span>
           </p>
 
-          <label className="flex items-center gap-3 text-foreground cursor-pointer">
-            <input
-              type="radio"
-              name="employmentStatus"
-              checked={employmentStatus === "Employed"}
-              onChange={() => onEmploymentStatusChange("Employed")}
-              className="h-4 w-4 accent-maroon"
-              required
-            />
-            <span>Employed</span>
-          </label>
-
-          <label className="flex items-center gap-3 text-foreground cursor-pointer">
-            <input
-              type="radio"
-              name="employmentStatus"
-              checked={employmentStatus === "Self employed"}
-              onChange={() => onEmploymentStatusChange("Self employed")}
-              className="h-4 w-4 accent-maroon"
-              required
-            />
-            <span>Self employed</span>
-          </label>
-
-          <label className="flex items-center gap-3 text-foreground cursor-pointer">
-            <input
-              type="radio"
-              name="employmentStatus"
-              checked={employmentStatus === "Unemployed"}
-              onChange={() => onEmploymentStatusChange("Unemployed")}
-              className="h-4 w-4 accent-maroon"
-              required
-            />
-            <span>Unemployed</span>
-          </label>
-
-          <label className="flex items-center gap-3 text-foreground cursor-pointer">
-            <input
-              type="radio"
-              name="employmentStatus"
-              checked={employmentStatus === "Currently studying"}
-              onChange={() => onEmploymentStatusChange("Currently studying")}
-              className="h-4 w-4 accent-maroon"
-              required
-            />
-            <span>Currently studying</span>
-          </label>
+          <Select
+            value={employmentStatus || undefined}
+            onValueChange={(value) =>
+              onEmploymentStatusChange(value as "Employed" | "Self employed" | "Unemployed" | "Currently studying")
+            }
+          >
+            <SelectTrigger className="w-full bg-white text-foreground border-maroon/20">
+              <SelectValue placeholder="Select employment status" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="Employed">Employed</SelectItem>
+              <SelectItem value="Self employed">Self employed</SelectItem>
+              <SelectItem value="Unemployed">Unemployed</SelectItem>
+              <SelectItem value="Currently studying">Currently studying</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="flex gap-3 pt-2">
