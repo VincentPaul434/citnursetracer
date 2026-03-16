@@ -22,6 +22,11 @@ interface SurveyFormPageProps {
   onSurveyComplete?: () => void
 }
 
+interface SurveySubmissionResponse {
+  submissionId?: string | number
+  message?: string
+}
+
 const createInitialFormData = () => ({
   email: "",
   consent: "",
@@ -106,6 +111,143 @@ const createInitialFormData = () => ({
 
 const hasAtLeastOneChecked = (values: Record<string, boolean>) => Object.values(values).some(Boolean)
 
+const resolveSubmissionEndpoint = () =>
+  `${process.env.NEXT_PUBLIC_BACKEND_API_BASE_URL}/api/v1/submissions`
+
+type SurveyFormData = ReturnType<typeof createInitialFormData>
+
+const buildMasterSurveyRequest = (data: SurveyFormData) => {
+  const requiresEmploymentInformation = data.employmentStatus === "Employed" || data.employmentStatus === "Self employed"
+  const requiresUnemploymentReason = data.employmentStatus === "Unemployed" || data.employmentStatus === "Currently studying"
+
+  return {
+    email: data.email.trim(),
+    consent: data.consent,
+    personalInfo: {
+      fullName: data.fullName.trim(),
+      gender: data.gender,
+      genderOther: data.gender === "Other" ? data.genderOther.trim() : "",
+      civilStatus: data.civilStatus,
+      civilStatusOther: data.civilStatus === "Other" ? data.civilStatusOther.trim() : "",
+      birthday: data.birthday,
+      residence: data.residence.trim(),
+      contactInformation: data.contactInformation.trim(),
+    },
+    educationalBackground: {
+      degreeProgramCompleted: data.degreeProgramCompleted,
+      yearGraduated: data.yearGraduated,
+      yearGraduatedOther: data.yearGraduated === "Other" ? data.yearGraduatedOther.trim() : "",
+      academicHonors: data.academicHonors,
+      academicHonorsOtherText: data.academicHonors.other ? data.academicHonorsOtherText.trim() : "",
+      pursuedFurtherStudies: data.pursuedFurtherStudies,
+      furtherDegreeProgram: data.pursuedFurtherStudies === "Yes" ? data.furtherDegreeProgram.trim() : "",
+    },
+    licensureExamination: {
+      hasTakenPnle: data.hasTakenPnle,
+      licensureStatus: data.hasTakenPnle === "Yes" ? data.licensureStatus : "",
+      pnleYearPassed: data.hasTakenPnle === "Yes" ? data.pnleYearPassed : "",
+      pnleYearPassedOther: data.hasTakenPnle === "Yes" && data.pnleYearPassed === "Other" ? data.pnleYearPassedOther.trim() : "",
+      examTakeCount: data.hasTakenPnle === "Yes" ? data.examTakeCount : "",
+    },
+    employment: {
+      employmentStatus: data.employmentStatus,
+      jobRelatedToDegree: requiresEmploymentInformation ? data.jobRelatedToDegree : "",
+      employmentSector: requiresEmploymentInformation ? data.employmentSector : "",
+      employmentSectorOther:
+        requiresEmploymentInformation && data.employmentSector === "Other" ? data.employmentSectorOther.trim() : "",
+      positionDesignation: requiresEmploymentInformation ? data.positionDesignation : "",
+      positionDesignationOther:
+        requiresEmploymentInformation && data.positionDesignation === "Other" ? data.positionDesignationOther.trim() : "",
+      firstJobDuration: requiresEmploymentInformation ? data.firstJobDuration : "",
+      firstJobSources: data.firstJobSources,
+      firstJobSourceOtherText: data.firstJobSources.other ? data.firstJobSourceOtherText.trim() : "",
+      estimatedMonthlySalary: requiresEmploymentInformation ? data.estimatedMonthlySalary : "",
+      unemploymentReasons: data.unemploymentReasons,
+      unemploymentReasonOtherText:
+        requiresUnemploymentReason && data.unemploymentReasons.other ? data.unemploymentReasonOtherText.trim() : "",
+    },
+    programEvaluation: {
+      relevanceSkills: data.relevanceSkills,
+      careerPreparationLevel: data.careerPreparationLevel,
+      nursingProgramAspect: data.nursingProgramAspect.trim(),
+      nursingProgramSuggestion: data.nursingProgramSuggestion.trim(),
+    },
+    communicationPreference: {
+      invitationChannels: data.invitationChannels,
+      invitationChannelOtherText: data.invitationChannels.other ? data.invitationChannelOtherText.trim() : "",
+      updateFrequency: data.updateFrequency,
+      alumniGroupWillingness: data.alumniGroupWillingness,
+      alumniPlatform: data.alumniGroupWillingness === "Yes" ? data.alumniPlatform : "",
+    },
+  }
+}
+
+const parseResponseAsJson = (responseBody: string): Record<string, unknown> | null => {
+  if (!responseBody.trim()) {
+    return null
+  }
+
+  try {
+    const parsed = JSON.parse(responseBody) as unknown
+
+    if (parsed && typeof parsed === "object") {
+      return parsed as Record<string, unknown>
+    }
+
+    return null
+  } catch {
+    return null
+  }
+}
+
+const getBackendErrorMessage = (responseBody: string, status: number) => {
+  const parsed = parseResponseAsJson(responseBody)
+
+  if (parsed) {
+    const fieldErrors = parsed.fieldErrors
+    if (Array.isArray(fieldErrors)) {
+      const firstFieldError = fieldErrors.find(
+        (entry): entry is Record<string, unknown> => typeof entry === "object" && entry !== null,
+      )
+
+      if (firstFieldError) {
+        const fieldMessageCandidates = [firstFieldError.message, firstFieldError.defaultMessage]
+        const fieldMessage = fieldMessageCandidates.find(
+          (candidate): candidate is string => typeof candidate === "string" && candidate.trim().length > 0,
+        )
+
+        if (fieldMessage) {
+          return fieldMessage
+        }
+      }
+    }
+
+    const errors = parsed.errors
+    if (Array.isArray(errors)) {
+      const firstError = errors.find((entry): entry is string => typeof entry === "string" && entry.trim().length > 0)
+
+      if (firstError) {
+        return firstError
+      }
+    }
+
+    const backendMessageCandidates = [parsed.message, parsed.error, parsed.detail]
+    const backendMessage = backendMessageCandidates.find(
+      (candidate): candidate is string => typeof candidate === "string" && candidate.trim().length > 0,
+    )
+
+    if (backendMessage) {
+      return backendMessage
+    }
+  }
+
+  if (responseBody.trim()) {
+    return responseBody
+  }
+
+  return `Submission failed with status ${status}. Please try again.`
+}
+
 export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps) {
   const [formData, setFormData] = useState(createInitialFormData)
   const [consentDeclined, setConsentDeclined] = useState(false)
@@ -116,6 +258,8 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
   const [alumniPlatformError, setAlumniPlatformError] = useState("")
   const [formError, setFormError] = useState("")
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submissionId, setSubmissionId] = useState("")
   const [isConsentStepComplete, setIsConsentStepComplete] = useState(false)
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -440,7 +584,11 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
     }))
   }
 
-  const handleCombinedSubmit = () => {
+  const handleCombinedSubmit = async () => {
+    if (isSubmitting) {
+      return
+    }
+
     if (formData.consent === "no") {
       setConsentDeclined(true)
       setFormError("")
@@ -523,9 +671,43 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
       return
     }
 
+    setIsSubmitting(true)
     setFormError("")
-    setIsSubmitted(true)
-    onSurveyComplete?.()
+
+    try {
+      const response = await fetch(resolveSubmissionEndpoint(), {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(buildMasterSurveyRequest(formData)),
+      })
+
+      const responseBody = await response.text()
+
+      if (!response.ok) {
+        setFormError(getBackendErrorMessage(responseBody, response.status))
+        return
+      }
+
+      const parsed = parseResponseAsJson(responseBody) as SurveySubmissionResponse | null
+      const incomingSubmissionId = parsed?.submissionId
+
+      if (typeof incomingSubmissionId === "string" || typeof incomingSubmissionId === "number") {
+        setSubmissionId(String(incomingSubmissionId))
+      } else {
+        setSubmissionId("")
+      }
+
+      setIsSubmitted(true)
+      onSurveyComplete?.()
+    } catch (error) {
+      console.error("Failed to submit survey", error)
+      setFormError("Unable to connect to the survey server. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleStartNewSurvey = () => {
@@ -538,6 +720,8 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
     setAlumniPlatformError("")
     setFormError("")
     setIsSubmitted(false)
+    setIsSubmitting(false)
+    setSubmissionId("")
     setIsConsentStepComplete(false)
   }
 
@@ -562,6 +746,11 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
           <p className="text-foreground leading-relaxed">
             All submitted information will be handled with confidentiality and used for academic and institutional development purposes.
           </p>
+          {submissionId && (
+            <p className="text-foreground leading-relaxed">
+              Reference ID: <span className="font-semibold">{submissionId}</span>
+            </p>
+          )}
           <div className="pt-2">
             <Button type="button" onClick={handleStartNewSurvey} className="bg-gold text-maroon hover:bg-gold/90 font-semibold">
               Start New Survey
@@ -778,8 +967,13 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
 
             {formError && <p className="text-sm text-maroon font-medium">{formError}</p>}
 
-            <Button type="button" onClick={handleCombinedSubmit} className="bg-gold text-maroon hover:bg-gold/90 font-semibold px-8">
-              Submit Survey
+            <Button
+              type="button"
+              onClick={handleCombinedSubmit}
+              disabled={isSubmitting}
+              className="bg-gold text-maroon hover:bg-gold/90 font-semibold px-8"
+            >
+              {isSubmitting ? "Submitting..." : "Submit Survey"}
             </Button>
           </div>
         </div>
