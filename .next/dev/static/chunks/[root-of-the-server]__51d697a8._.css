@@ -148,12 +148,15 @@
     --color-red-300: #ffa3a3;
     --color-red-400: #ff6568;
     --color-red-600: #e40014;
+    --color-gray-500: #6a7282;
+    --color-gray-700: #364153;
     --color-black: #000;
     --color-white: #fff;
     --spacing: .25rem;
     --container-sm: 24rem;
     --container-md: 28rem;
     --container-lg: 32rem;
+    --container-2xl: 42rem;
     --container-5xl: 64rem;
     --text-xs: .75rem;
     --text-xs--line-height: calc(1 / .75);
@@ -200,6 +203,8 @@
       --color-red-300: lab(76.5514% 36.4219 15.5335);
       --color-red-400: lab(63.7053% 60.7449 31.3109);
       --color-red-600: lab(48.4493% 77.4328 61.5452);
+      --color-gray-500: lab(47.7841% -.393212 -10.0268);
+      --color-gray-700: lab(27.1134% -.956401 -12.3224);
     }
   }
 }
@@ -1112,6 +1117,10 @@
     max-width: var(--skeleton-width);
   }
 
+  .max-w-2xl {
+    max-width: var(--container-2xl);
+  }
+
   .max-w-5xl {
     max-width: var(--container-5xl);
   }
@@ -1122,6 +1131,10 @@
 
   .max-w-max {
     max-width: max-content;
+  }
+
+  .max-w-md {
+    max-width: var(--container-md);
   }
 
   .max-w-sm {
@@ -1290,10 +1303,6 @@
 
   .cursor-default {
     cursor: default;
-  }
-
-  .cursor-not-allowed {
-    cursor: not-allowed;
   }
 
   .cursor-pointer {
@@ -1506,6 +1515,10 @@
 
   .overflow-y-auto {
     overflow-y: auto;
+  }
+
+  .rounded {
+    border-radius: .25rem;
   }
 
   .rounded-\[2px\] {
@@ -1721,6 +1734,10 @@
 
   .bg-background {
     background-color: var(--background);
+  }
+
+  .bg-black {
+    background-color: var(--color-black);
   }
 
   .bg-black\/50 {
@@ -1993,6 +2010,10 @@
     padding-right: calc(var(--spacing) * 8);
   }
 
+  .pr-10 {
+    padding-right: calc(var(--spacing) * 10);
+  }
+
   .pb-3 {
     padding-bottom: calc(var(--spacing) * 3);
   }
@@ -2200,6 +2221,10 @@
     color: var(--gold);
   }
 
+  .text-gray-500 {
+    color: var(--color-gray-500);
+  }
+
   .text-maroon {
     color: var(--maroon);
   }
@@ -2278,10 +2303,6 @@
 
   .opacity-50 {
     opacity: .5;
-  }
-
-  .opacity-60 {
-    opacity: .6;
   }
 
   .opacity-70 {
@@ -2980,6 +3001,12 @@
   @media (hover: hover) {
     .hover\:text-foreground:hover {
       color: var(--foreground);
+    }
+  }
+
+  @media (hover: hover) {
+    .hover\:text-gray-700:hover {
+      color: var(--color-gray-700);
     }
   }
 
