@@ -224,6 +224,7 @@ export default function SurveySectionEducationalBackground({
                 value={furtherDegreeProgram}
                 onChange={onTextChange}
                 className="bg-white text-foreground border-maroon/20 placeholder:text-muted-foreground"
+                disabled={pursuedFurtherStudies === "No"}
                 required={pursuedFurtherStudies === "Yes"}
               />
             </div>
