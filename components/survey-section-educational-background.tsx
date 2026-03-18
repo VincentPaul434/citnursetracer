@@ -51,6 +51,8 @@ export default function SurveySectionEducationalBackground({
   onBack,
   onSubmit,
 }: SurveySectionEducationalBackgroundProps) {
+  const isFurtherDegreeProgramEnabled = pursuedFurtherStudies === "Yes"
+
   return (
     <>
       <div className="mb-4 rounded-lg border border-maroon/20 p-5">
@@ -214,18 +216,22 @@ export default function SurveySectionEducationalBackground({
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="furtherDegreeProgram" className="text-foreground text-sm font-medium">
+              <Label
+                htmlFor="furtherDegreeProgram"
+                className={`text-sm font-medium ${isFurtherDegreeProgramEnabled ? "text-foreground" : "text-muted-foreground"}`}
+              >
                 3.2 If yes, what degree or program? <span className="text-maroon">*</span>
               </Label>
               <Input
                 id="furtherDegreeProgram"
                 type="text"
                 placeholder="Short answer text"
-                value={furtherDegreeProgram}
+                value={isFurtherDegreeProgramEnabled ? furtherDegreeProgram : ""}
                 onChange={onTextChange}
-                className="bg-white text-foreground border-maroon/20 placeholder:text-muted-foreground"
-                disabled={pursuedFurtherStudies === "No"}
-                required={pursuedFurtherStudies === "Yes"}
+                className="bg-white text-foreground border-maroon/20 placeholder:text-muted-foreground disabled:bg-muted disabled:text-muted-foreground"
+                disabled={!isFurtherDegreeProgramEnabled}
+                readOnly={!isFurtherDegreeProgramEnabled}
+                required={isFurtherDegreeProgramEnabled}
               />
             </div>
           </div>
