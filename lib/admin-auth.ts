@@ -2,9 +2,14 @@ import { createHmac, timingSafeEqual } from "crypto"
 
 export const ADMIN_SESSION_COOKIE = "citnurse_admin_session"
 
-const DEFAULT_ADMIN_USERNAME = "admin"
-const DEFAULT_ADMIN_PASSWORD = "admin12345"
+const DEFAULT_ADMIN_API_BASE_URL = "http://localhost:8080"
+const DEFAULT_ADMIN_SESSION_SECRET = "citnurse-admin-session-secret"
 const SESSION_DURATION_SECONDS = 60 * 60 * 8
+
+export interface AdminSession {
+  authHeader: string
+  expiresAtUnixSeconds: number
+}
 
 const getConfiguredValue = (value: string | undefined, fallback: string) => {
   if (!value) {
@@ -15,11 +20,20 @@ const getConfiguredValue = (value: string | undefined, fallback: string) => {
   return trimmedValue.length > 0 ? trimmedValue : fallback
 }
 
-const getAdminUsername = () => getConfiguredValue(process.env.ADMIN_USERNAME, DEFAULT_ADMIN_USERNAME)
-const getAdminPassword = () => getConfiguredValue(process.env.ADMIN_PASSWORD, DEFAULT_ADMIN_PASSWORD)
-
 const getSessionSecret = () =>
-  getConfiguredValue(process.env.ADMIN_SESSION_SECRET, `${getAdminUsername()}-${getAdminPassword()}-session-secret`)
+  getConfiguredValue(process.env.ADMIN_SESSION_SECRET, DEFAULT_ADMIN_SESSION_SECRET)
+
+const trimTrailingSlash = (value: string) => (value.endsWith("/") ? value.slice(0, -1) : value)
+
+const toBase64Url = (value: string) => Buffer.from(value, "utf-8").toString("base64url")
+
+const fromBase64Url = (value: string) => {
+  try {
+    return Buffer.from(value, "base64url").toString("utf-8")
+  } catch {
+    return null
+  }
+}
 
 const safeEqual = (value: string, expectedValue: string) => {
   const valueBuffer = Buffer.from(value)
@@ -34,40 +48,75 @@ const safeEqual = (value: string, expectedValue: string) => {
 
 const createSessionSignature = (payload: string) => createHmac("sha256", getSessionSecret()).update(payload).digest("hex")
 
-export const verifyAdminCredentials = (username: string, password: string) => {
-  return safeEqual(username, getAdminUsername()) && safeEqual(password, getAdminPassword())
+export const getAdminApiBaseUrl = () =>
+  trimTrailingSlash(getConfiguredValue(process.env.ADMIN_API_BASE_URL, DEFAULT_ADMIN_API_BASE_URL))
+
+export const buildAdminApiUrl = (path: string) => {
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`
+  return `${getAdminApiBaseUrl()}${normalizedPath}`
 }
 
-export const createAdminSessionValue = (now = Date.now()) => {
+export const createTokenAuthHeader = (token: string, tokenType = "Bearer") => {
+  return `${tokenType.trim() || "Bearer"} ${token.trim()}`
+}
+
+export const createAdminSessionValue = (authHeader: string, now = Date.now()) => {
   const expiresAtUnixSeconds = Math.floor(now / 1000) + SESSION_DURATION_SECONDS
-  const payload = `${expiresAtUnixSeconds}`
+  const encodedAuthHeader = toBase64Url(authHeader)
+  const payload = `${expiresAtUnixSeconds}.${encodedAuthHeader}`
   const signature = createSessionSignature(payload)
 
   return `${payload}.${signature}`
 }
 
-export const isAdminSessionValid = (sessionValue: string | undefined, now = Date.now()) => {
+export const parseAdminSession = (sessionValue: string | undefined, now = Date.now()): AdminSession | null => {
   if (!sessionValue) {
-    return false
+    return null
   }
 
-  const [expiresAtUnixSeconds, providedSignature] = sessionValue.split(".")
+  const [expiresAtUnixSeconds, encodedAuthHeader, providedSignature] = sessionValue.split(".")
 
-  if (!expiresAtUnixSeconds || !providedSignature) {
-    return false
+  if (!expiresAtUnixSeconds || !encodedAuthHeader || !providedSignature) {
+    return null
   }
 
-  const expectedSignature = createSessionSignature(expiresAtUnixSeconds)
+  const payload = `${expiresAtUnixSeconds}.${encodedAuthHeader}`
+  const expectedSignature = createSessionSignature(payload)
   if (!safeEqual(providedSignature, expectedSignature)) {
-    return false
+    return null
   }
 
   const expiresAt = Number.parseInt(expiresAtUnixSeconds, 10)
   if (Number.isNaN(expiresAt)) {
-    return false
+    return null
   }
 
-  return expiresAt > Math.floor(now / 1000)
+  if (expiresAt <= Math.floor(now / 1000)) {
+    return null
+  }
+
+  const authHeader = fromBase64Url(encodedAuthHeader)
+  if (!authHeader) {
+    return null
+  }
+
+  const [authScheme, authValue] = authHeader.trim().split(/\s+/, 2)
+  if (!authScheme || !authValue) {
+    return null
+  }
+
+  if (!/^[A-Za-z][A-Za-z0-9-]*$/.test(authScheme)) {
+    return null
+  }
+
+  return {
+    authHeader,
+    expiresAtUnixSeconds: expiresAt,
+  }
+}
+
+export const isAdminSessionValid = (sessionValue: string | undefined, now = Date.now()) => {
+  return parseAdminSession(sessionValue, now) !== null
 }
 
 export const getAdminSessionCookieOptions = () => ({

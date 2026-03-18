@@ -201,20 +201,26 @@ module.exports = mod;
 __turbopack_context__.s([
     "ADMIN_SESSION_COOKIE",
     ()=>ADMIN_SESSION_COOKIE,
+    "buildAdminApiUrl",
+    ()=>buildAdminApiUrl,
     "createAdminSessionValue",
     ()=>createAdminSessionValue,
+    "createBasicAuthHeader",
+    ()=>createBasicAuthHeader,
+    "getAdminApiBaseUrl",
+    ()=>getAdminApiBaseUrl,
     "getAdminSessionCookieOptions",
     ()=>getAdminSessionCookieOptions,
     "isAdminSessionValid",
     ()=>isAdminSessionValid,
-    "verifyAdminCredentials",
-    ()=>verifyAdminCredentials
+    "parseAdminSession",
+    ()=>parseAdminSession
 ]);
 var __TURBOPACK__imported__module__$5b$externals$5d2f$crypto__$5b$external$5d$__$28$crypto$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/crypto [external] (crypto, cjs)");
 ;
 const ADMIN_SESSION_COOKIE = "citnurse_admin_session";
-const DEFAULT_ADMIN_USERNAME = "admin";
-const DEFAULT_ADMIN_PASSWORD = "admin12345";
+const DEFAULT_ADMIN_API_BASE_URL = "http://localhost:8080";
+const DEFAULT_ADMIN_SESSION_SECRET = "citnurse-admin-session-secret";
 const SESSION_DURATION_SECONDS = 60 * 60 * 8;
 const getConfiguredValue = (value, fallback)=>{
     if (!value) {
@@ -223,9 +229,16 @@ const getConfiguredValue = (value, fallback)=>{
     const trimmedValue = value.trim();
     return trimmedValue.length > 0 ? trimmedValue : fallback;
 };
-const getAdminUsername = ()=>getConfiguredValue(process.env.ADMIN_USERNAME, DEFAULT_ADMIN_USERNAME);
-const getAdminPassword = ()=>getConfiguredValue(process.env.ADMIN_PASSWORD, DEFAULT_ADMIN_PASSWORD);
-const getSessionSecret = ()=>getConfiguredValue(process.env.ADMIN_SESSION_SECRET, `${getAdminUsername()}-${getAdminPassword()}-session-secret`);
+const getSessionSecret = ()=>getConfiguredValue(process.env.ADMIN_SESSION_SECRET, DEFAULT_ADMIN_SESSION_SECRET);
+const trimTrailingSlash = (value)=>value.endsWith("/") ? value.slice(0, -1) : value;
+const toBase64Url = (value)=>Buffer.from(value, "utf-8").toString("base64url");
+const fromBase64Url = (value)=>{
+    try {
+        return Buffer.from(value, "base64url").toString("utf-8");
+    } catch  {
+        return null;
+    }
+};
 const safeEqual = (value, expectedValue)=>{
     const valueBuffer = Buffer.from(value);
     const expectedBuffer = Buffer.from(expectedValue);
@@ -235,32 +248,53 @@ const safeEqual = (value, expectedValue)=>{
     return (0, __TURBOPACK__imported__module__$5b$externals$5d2f$crypto__$5b$external$5d$__$28$crypto$2c$__cjs$29$__["timingSafeEqual"])(valueBuffer, expectedBuffer);
 };
 const createSessionSignature = (payload)=>(0, __TURBOPACK__imported__module__$5b$externals$5d2f$crypto__$5b$external$5d$__$28$crypto$2c$__cjs$29$__["createHmac"])("sha256", getSessionSecret()).update(payload).digest("hex");
-const verifyAdminCredentials = (username, password)=>{
-    return safeEqual(username, getAdminUsername()) && safeEqual(password, getAdminPassword());
+const getAdminApiBaseUrl = ()=>trimTrailingSlash(getConfiguredValue(process.env.ADMIN_API_BASE_URL, DEFAULT_ADMIN_API_BASE_URL));
+const buildAdminApiUrl = (path)=>{
+    const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+    return `${getAdminApiBaseUrl()}${normalizedPath}`;
 };
-const createAdminSessionValue = (now = Date.now())=>{
+const createBasicAuthHeader = (username, password)=>{
+    const credentials = Buffer.from(`${username}:${password}`).toString("base64");
+    return `Basic ${credentials}`;
+};
+const createAdminSessionValue = (authHeader, now = Date.now())=>{
     const expiresAtUnixSeconds = Math.floor(now / 1000) + SESSION_DURATION_SECONDS;
-    const payload = `${expiresAtUnixSeconds}`;
+    const encodedAuthHeader = toBase64Url(authHeader);
+    const payload = `${expiresAtUnixSeconds}.${encodedAuthHeader}`;
     const signature = createSessionSignature(payload);
     return `${payload}.${signature}`;
 };
-const isAdminSessionValid = (sessionValue, now = Date.now())=>{
+const parseAdminSession = (sessionValue, now = Date.now())=>{
     if (!sessionValue) {
-        return false;
+        return null;
     }
-    const [expiresAtUnixSeconds, providedSignature] = sessionValue.split(".");
-    if (!expiresAtUnixSeconds || !providedSignature) {
-        return false;
+    const [expiresAtUnixSeconds, encodedAuthHeader, providedSignature] = sessionValue.split(".");
+    if (!expiresAtUnixSeconds || !encodedAuthHeader || !providedSignature) {
+        return null;
     }
-    const expectedSignature = createSessionSignature(expiresAtUnixSeconds);
+    const payload = `${expiresAtUnixSeconds}.${encodedAuthHeader}`;
+    const expectedSignature = createSessionSignature(payload);
     if (!safeEqual(providedSignature, expectedSignature)) {
-        return false;
+        return null;
     }
     const expiresAt = Number.parseInt(expiresAtUnixSeconds, 10);
     if (Number.isNaN(expiresAt)) {
-        return false;
+        return null;
     }
-    return expiresAt > Math.floor(now / 1000);
+    if (expiresAt <= Math.floor(now / 1000)) {
+        return null;
+    }
+    const authHeader = fromBase64Url(encodedAuthHeader);
+    if (!authHeader || !authHeader.startsWith("Basic ")) {
+        return null;
+    }
+    return {
+        authHeader,
+        expiresAtUnixSeconds: expiresAt
+    };
+};
+const isAdminSessionValid = (sessionValue, now = Date.now())=>{
+    return parseAdminSession(sessionValue, now) !== null;
 };
 const getAdminSessionCookieOptions = ()=>({
         httpOnly: true,
@@ -290,10 +324,40 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$admin$2d$auth$2e$ts__
 ;
 ;
 ;
+const ADMIN_ME_ENDPOINT = "/api/v1/admin/me";
+const getAdminProfile = async (authHeader)=>{
+    try {
+        const response = await fetch((0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$admin$2d$auth$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["buildAdminApiUrl"])(ADMIN_ME_ENDPOINT), {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                Authorization: authHeader
+            },
+            cache: "no-store"
+        });
+        if (!response.ok) {
+            return null;
+        }
+        const payload = await response.json();
+        const username = typeof payload.username === "string" && payload.username.trim().length > 0 ? payload.username : "administrator";
+        const roles = Array.isArray(payload.roles) ? payload.roles.filter((role)=>typeof role === "string") : [];
+        return {
+            username,
+            roles
+        };
+    } catch  {
+        return null;
+    }
+};
 async function AdminDashboardPage() {
     const cookieStore = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$headers$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["cookies"])();
     const sessionValue = cookieStore.get(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$admin$2d$auth$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["ADMIN_SESSION_COOKIE"])?.value;
-    if (!(0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$admin$2d$auth$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["isAdminSessionValid"])(sessionValue)) {
+    const session = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$admin$2d$auth$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["parseAdminSession"])(sessionValue);
+    if (!session) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$client$2f$components$2f$navigation$2e$react$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["redirect"])("/admin/login");
+    }
+    const adminProfile = await getAdminProfile(session.authHeader);
+    if (!adminProfile) {
         (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$client$2f$components$2f$navigation$2e$react$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["redirect"])("/admin/login");
     }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -311,20 +375,24 @@ async function AdminDashboardPage() {
                                     children: "Admin Dashboard"
                                 }, void 0, false, {
                                     fileName: "[project]/app/admin/page.tsx",
-                                    lineNumber: 26,
+                                    lineNumber: 71,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardDescription"], {
-                                    children: "You are logged in as an administrator."
-                                }, void 0, false, {
+                                    children: [
+                                        "Signed in as ",
+                                        adminProfile.username,
+                                        "."
+                                    ]
+                                }, void 0, true, {
                                     fileName: "[project]/app/admin/page.tsx",
-                                    lineNumber: 27,
+                                    lineNumber: 72,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/admin/page.tsx",
-                            lineNumber: 25,
+                            lineNumber: 70,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -336,18 +404,18 @@ async function AdminDashboardPage() {
                                 children: "Log out"
                             }, void 0, false, {
                                 fileName: "[project]/app/admin/page.tsx",
-                                lineNumber: 31,
+                                lineNumber: 76,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/admin/page.tsx",
-                            lineNumber: 30,
+                            lineNumber: 75,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/admin/page.tsx",
-                    lineNumber: 24,
+                    lineNumber: 69,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -357,31 +425,34 @@ async function AdminDashboardPage() {
                             children: "Use this page as the starting point for admin-only tools and reports."
                         }, void 0, false, {
                             fileName: "[project]/app/admin/page.tsx",
-                            lineNumber: 38,
+                            lineNumber: 83,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                            children: "Only users with a valid admin session can access this route."
-                        }, void 0, false, {
+                            children: [
+                                "Roles: ",
+                                adminProfile.roles.length > 0 ? adminProfile.roles.join(", ") : "No roles returned by the backend."
+                            ]
+                        }, void 0, true, {
                             fileName: "[project]/app/admin/page.tsx",
-                            lineNumber: 39,
+                            lineNumber: 84,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/admin/page.tsx",
-                    lineNumber: 37,
+                    lineNumber: 82,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/admin/page.tsx",
-            lineNumber: 23,
+            lineNumber: 68,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/admin/page.tsx",
-        lineNumber: 22,
+        lineNumber: 67,
         columnNumber: 5
     }, this);
 }

@@ -764,6 +764,7 @@ const yearOptions = [
     "Other"
 ];
 function SurveySectionEducationalBackground({ degreeProgramCompleted, yearGraduated, yearGraduatedOther, academicHonors, academicHonorsOtherText, pursuedFurtherStudies, furtherDegreeProgram, honorsError, onDegreeProgramChange, onYearGraduatedChange, onHonorChange, onTextChange, onFurtherStudiesChange, onBack, onSubmit }) {
+    const isFurtherDegreeProgramEnabled = pursuedFurtherStudies === "Yes";
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -774,7 +775,7 @@ function SurveySectionEducationalBackground({ degreeProgramCompleted, yearGradua
                         children: "Section 4 of 12"
                     }, void 0, false, {
                         fileName: "[project]/components/survey-section-educational-background.tsx",
-                        lineNumber: 57,
+                        lineNumber: 59,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -782,13 +783,13 @@ function SurveySectionEducationalBackground({ degreeProgramCompleted, yearGradua
                         children: "Section II. Educational Background"
                     }, void 0, false, {
                         fileName: "[project]/components/survey-section-educational-background.tsx",
-                        lineNumber: 58,
+                        lineNumber: 60,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                lineNumber: 56,
+                lineNumber: 58,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -803,7 +804,7 @@ function SurveySectionEducationalBackground({ degreeProgramCompleted, yearGradua
                                 children: "1. Academic Record"
                             }, void 0, false, {
                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                lineNumber: 63,
+                                lineNumber: 65,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -822,13 +823,13 @@ function SurveySectionEducationalBackground({ degreeProgramCompleted, yearGradua
                                                         children: "*"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/survey-section-educational-background.tsx",
-                                                        lineNumber: 67,
+                                                        lineNumber: 69,
                                                         columnNumber: 46
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                                lineNumber: 66,
+                                                lineNumber: 68,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -844,7 +845,7 @@ function SurveySectionEducationalBackground({ degreeProgramCompleted, yearGradua
                                                         children: "Select program"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/survey-section-educational-background.tsx",
-                                                        lineNumber: 76,
+                                                        lineNumber: 78,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -852,19 +853,19 @@ function SurveySectionEducationalBackground({ degreeProgramCompleted, yearGradua
                                                         children: "Bachelor of Science in Nursing"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/survey-section-educational-background.tsx",
-                                                        lineNumber: 79,
+                                                        lineNumber: 81,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                                lineNumber: 69,
+                                                lineNumber: 71,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/survey-section-educational-background.tsx",
-                                        lineNumber: 65,
+                                        lineNumber: 67,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -880,13 +881,13 @@ function SurveySectionEducationalBackground({ degreeProgramCompleted, yearGradua
                                                         children: "*"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/survey-section-educational-background.tsx",
-                                                        lineNumber: 85,
+                                                        lineNumber: 87,
                                                         columnNumber: 47
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                                lineNumber: 84,
+                                                lineNumber: 86,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -902,7 +903,7 @@ function SurveySectionEducationalBackground({ degreeProgramCompleted, yearGradua
                                                         children: "Select year"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/survey-section-educational-background.tsx",
-                                                        lineNumber: 94,
+                                                        lineNumber: 96,
                                                         columnNumber: 17
                                                     }, this),
                                                     yearOptions.map((year)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -910,25 +911,25 @@ function SurveySectionEducationalBackground({ degreeProgramCompleted, yearGradua
                                                             children: year
                                                         }, year, false, {
                                                             fileName: "[project]/components/survey-section-educational-background.tsx",
-                                                            lineNumber: 98,
+                                                            lineNumber: 100,
                                                             columnNumber: 19
                                                         }, this))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                                lineNumber: 87,
+                                                lineNumber: 89,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/survey-section-educational-background.tsx",
-                                        lineNumber: 83,
+                                        lineNumber: 85,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                lineNumber: 64,
+                                lineNumber: 66,
                                 columnNumber: 11
                             }, this),
                             yearGraduated === "Other" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -944,13 +945,13 @@ function SurveySectionEducationalBackground({ degreeProgramCompleted, yearGradua
                                                 children: "*"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                                lineNumber: 109,
+                                                lineNumber: 111,
                                                 columnNumber: 34
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/survey-section-educational-background.tsx",
-                                        lineNumber: 108,
+                                        lineNumber: 110,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -962,19 +963,19 @@ function SurveySectionEducationalBackground({ degreeProgramCompleted, yearGradua
                                         required: true
                                     }, void 0, false, {
                                         fileName: "[project]/components/survey-section-educational-background.tsx",
-                                        lineNumber: 111,
+                                        lineNumber: 113,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                lineNumber: 107,
+                                lineNumber: 109,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/survey-section-educational-background.tsx",
-                        lineNumber: 62,
+                        lineNumber: 64,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -985,7 +986,7 @@ function SurveySectionEducationalBackground({ degreeProgramCompleted, yearGradua
                                 children: "2. Academic Honors"
                             }, void 0, false, {
                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                lineNumber: 124,
+                                lineNumber: 126,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -993,7 +994,7 @@ function SurveySectionEducationalBackground({ degreeProgramCompleted, yearGradua
                                 children: "You may select multiple options."
                             }, void 0, false, {
                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                lineNumber: 125,
+                                lineNumber: 127,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1009,20 +1010,20 @@ function SurveySectionEducationalBackground({ degreeProgramCompleted, yearGradua
                                                 className: "h-4 w-4 accent-maroon"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                                lineNumber: 129,
+                                                lineNumber: 131,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: "Cum Laude"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                                lineNumber: 135,
+                                                lineNumber: 137,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/survey-section-educational-background.tsx",
-                                        lineNumber: 128,
+                                        lineNumber: 130,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -1035,20 +1036,20 @@ function SurveySectionEducationalBackground({ degreeProgramCompleted, yearGradua
                                                 className: "h-4 w-4 accent-maroon"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                                lineNumber: 139,
+                                                lineNumber: 141,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: "Magna Cum Laude"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                                lineNumber: 145,
+                                                lineNumber: 147,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/survey-section-educational-background.tsx",
-                                        lineNumber: 138,
+                                        lineNumber: 140,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -1061,20 +1062,20 @@ function SurveySectionEducationalBackground({ degreeProgramCompleted, yearGradua
                                                 className: "h-4 w-4 accent-maroon"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                                lineNumber: 149,
+                                                lineNumber: 151,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: "Summa Cum Laude"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                                lineNumber: 155,
+                                                lineNumber: 157,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/survey-section-educational-background.tsx",
-                                        lineNumber: 148,
+                                        lineNumber: 150,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -1087,26 +1088,26 @@ function SurveySectionEducationalBackground({ degreeProgramCompleted, yearGradua
                                                 className: "h-4 w-4 accent-maroon"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                                lineNumber: 159,
+                                                lineNumber: 161,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: "None"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                                lineNumber: 165,
+                                                lineNumber: 167,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/survey-section-educational-background.tsx",
-                                        lineNumber: 158,
+                                        lineNumber: 160,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                lineNumber: 127,
+                                lineNumber: 129,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1122,20 +1123,20 @@ function SurveySectionEducationalBackground({ degreeProgramCompleted, yearGradua
                                                 className: "h-4 w-4 accent-maroon"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                                lineNumber: 171,
+                                                lineNumber: 173,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: "Other"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                                lineNumber: 177,
+                                                lineNumber: 179,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/survey-section-educational-background.tsx",
-                                        lineNumber: 170,
+                                        lineNumber: 172,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -1148,13 +1149,13 @@ function SurveySectionEducationalBackground({ degreeProgramCompleted, yearGradua
                                         required: academicHonors.other
                                     }, void 0, false, {
                                         fileName: "[project]/components/survey-section-educational-background.tsx",
-                                        lineNumber: 179,
+                                        lineNumber: 181,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                lineNumber: 169,
+                                lineNumber: 171,
                                 columnNumber: 11
                             }, this),
                             honorsError && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1162,13 +1163,13 @@ function SurveySectionEducationalBackground({ degreeProgramCompleted, yearGradua
                                 children: honorsError
                             }, void 0, false, {
                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                lineNumber: 190,
+                                lineNumber: 192,
                                 columnNumber: 27
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/survey-section-educational-background.tsx",
-                        lineNumber: 123,
+                        lineNumber: 125,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1179,7 +1180,7 @@ function SurveySectionEducationalBackground({ degreeProgramCompleted, yearGradua
                                 children: "3. Further Studies"
                             }, void 0, false, {
                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                lineNumber: 194,
+                                lineNumber: 196,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1198,13 +1199,13 @@ function SurveySectionEducationalBackground({ degreeProgramCompleted, yearGradua
                                                         children: "*"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/survey-section-educational-background.tsx",
-                                                        lineNumber: 199,
+                                                        lineNumber: 201,
                                                         columnNumber: 53
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                                lineNumber: 198,
+                                                lineNumber: 200,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -1220,7 +1221,7 @@ function SurveySectionEducationalBackground({ degreeProgramCompleted, yearGradua
                                                         children: "Select option"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/survey-section-educational-background.tsx",
-                                                        lineNumber: 208,
+                                                        lineNumber: 210,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -1228,7 +1229,7 @@ function SurveySectionEducationalBackground({ degreeProgramCompleted, yearGradua
                                                         children: "Yes"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/survey-section-educational-background.tsx",
-                                                        lineNumber: 211,
+                                                        lineNumber: 213,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -1236,19 +1237,19 @@ function SurveySectionEducationalBackground({ degreeProgramCompleted, yearGradua
                                                         children: "No"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/survey-section-educational-background.tsx",
-                                                        lineNumber: 212,
+                                                        lineNumber: 214,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                                lineNumber: 201,
+                                                lineNumber: 203,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/survey-section-educational-background.tsx",
-                                        lineNumber: 197,
+                                        lineNumber: 199,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1256,7 +1257,7 @@ function SurveySectionEducationalBackground({ degreeProgramCompleted, yearGradua
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
                                                 htmlFor: "furtherDegreeProgram",
-                                                className: "text-foreground text-sm font-medium",
+                                                className: `text-sm font-medium ${isFurtherDegreeProgramEnabled ? "text-foreground" : "text-muted-foreground"}`,
                                                 children: [
                                                     "3.2 If yes, what degree or program? ",
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1264,44 +1265,46 @@ function SurveySectionEducationalBackground({ degreeProgramCompleted, yearGradua
                                                         children: "*"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/survey-section-educational-background.tsx",
-                                                        lineNumber: 218,
+                                                        lineNumber: 223,
                                                         columnNumber: 53
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                                lineNumber: 217,
+                                                lineNumber: 219,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
                                                 id: "furtherDegreeProgram",
                                                 type: "text",
                                                 placeholder: "Short answer text",
-                                                value: furtherDegreeProgram,
+                                                value: isFurtherDegreeProgramEnabled ? furtherDegreeProgram : "",
                                                 onChange: onTextChange,
-                                                className: "bg-white text-foreground border-maroon/20 placeholder:text-muted-foreground",
-                                                required: pursuedFurtherStudies === "Yes"
+                                                className: "bg-white text-foreground border-maroon/20 placeholder:text-muted-foreground disabled:bg-muted disabled:text-muted-foreground",
+                                                disabled: !isFurtherDegreeProgramEnabled,
+                                                readOnly: !isFurtherDegreeProgramEnabled,
+                                                required: isFurtherDegreeProgramEnabled
                                             }, void 0, false, {
                                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                                lineNumber: 220,
+                                                lineNumber: 225,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/survey-section-educational-background.tsx",
-                                        lineNumber: 216,
+                                        lineNumber: 218,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                lineNumber: 196,
+                                lineNumber: 198,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/survey-section-educational-background.tsx",
-                        lineNumber: 193,
+                        lineNumber: 195,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1315,7 +1318,7 @@ function SurveySectionEducationalBackground({ degreeProgramCompleted, yearGradua
                                 children: "Back"
                             }, void 0, false, {
                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                lineNumber: 234,
+                                lineNumber: 241,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$10_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -1324,19 +1327,19 @@ function SurveySectionEducationalBackground({ degreeProgramCompleted, yearGradua
                                 children: "Continue"
                             }, void 0, false, {
                                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                                lineNumber: 237,
+                                lineNumber: 244,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/survey-section-educational-background.tsx",
-                        lineNumber: 233,
+                        lineNumber: 240,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/survey-section-educational-background.tsx",
-                lineNumber: 61,
+                lineNumber: 63,
                 columnNumber: 7
             }, this)
         ]

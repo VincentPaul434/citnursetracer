@@ -5,15 +5,14 @@
 An admin authentication flow is available with these routes:
 
 - `/admin/login` - Admin sign in page
-- `/admin` - Protected admin dashboard
+- `/admin/dashboard` - Protected admin dashboard
 - `/admin/logout` - Logout endpoint (POST)
 
-Set credentials in your environment:
+Configure the backend API URL and session signing secret:
 
 ```env
-ADMIN_USERNAME=your-admin-username
-ADMIN_PASSWORD=your-admin-password
+ADMIN_API_BASE_URL=http://localhost:8080
 ADMIN_SESSION_SECRET=your-long-random-secret
 ```
 
-If environment variables are not set, development fallback credentials are used.
+The admin login form validates credentials against the backend endpoint `/api/v1/auth/login` and stores the returned token in a signed HttpOnly session cookie for server-side admin requests.
