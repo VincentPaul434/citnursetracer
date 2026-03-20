@@ -46,6 +46,8 @@ const createInitialFormData = () => ({
   academicHonorsOtherText: "",
   pursuedFurtherStudies: "",
   furtherDegreeProgram: "",
+  furtherStudiesReason: "",
+  furtherStudiesReasonOther: "",
   hasTakenPnle: "",
   licensureStatus: "",
   pnleYearPassed: "",
@@ -221,6 +223,16 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
       ...prev,
       pursuedFurtherStudies: value,
       furtherDegreeProgram: value === "Yes" ? prev.furtherDegreeProgram : "",
+      furtherStudiesReason: value === "Yes" ? prev.furtherStudiesReason : "",
+      furtherStudiesReasonOther: value === "Yes" ? prev.furtherStudiesReasonOther : "",
+    }))
+  }
+
+  const handleFurtherStudiesReasonChange = (value: "For promotions" | "For professional development" | "Other") => {
+    setFormData((prev) => ({
+      ...prev,
+      furtherStudiesReason: value,
+      furtherStudiesReasonOther: value === "Other" ? prev.furtherStudiesReasonOther : "",
     }))
   }
 
@@ -459,6 +471,7 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
       formData.employmentStatus === "Employed" || formData.employmentStatus === "Self employed"
     const requiresUnemploymentReason =
       formData.employmentStatus === "Unemployed" || formData.employmentStatus === "Currently studying"
+    const requiresFurtherStudiesDetails = formData.pursuedFurtherStudies === "Yes"
 
     setConsentDeclined(false)
 
@@ -495,6 +508,15 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
       hasError = true
     } else {
       setAlumniPlatformError("")
+    }
+
+    if (
+      requiresFurtherStudiesDetails &&
+      (!formData.furtherDegreeProgram.trim() ||
+        !formData.furtherStudiesReason ||
+        (formData.furtherStudiesReason === "Other" && !formData.furtherStudiesReasonOther.trim()))
+    ) {
+      hasError = true
     }
 
     const requiredValues = [
@@ -656,12 +678,15 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
             academicHonorsOtherText={formData.academicHonorsOtherText}
             pursuedFurtherStudies={formData.pursuedFurtherStudies}
             furtherDegreeProgram={formData.furtherDegreeProgram}
+            furtherStudiesReason={formData.furtherStudiesReason}
+            furtherStudiesReasonOther={formData.furtherStudiesReasonOther}
             honorsError={honorsError}
             onDegreeProgramChange={handleDegreeProgramChange}
             onYearGraduatedChange={handleYearGraduatedChange}
             onHonorChange={handleAcademicHonorChange}
             onTextChange={handleTextChange}
             onFurtherStudiesChange={handleFurtherStudiesChange}
+            onFurtherStudiesReasonChange={handleFurtherStudiesReasonChange}
             onBack={noop}
             onSubmit={preventSectionSubmit}
           />

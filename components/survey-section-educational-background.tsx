@@ -22,12 +22,15 @@ interface SurveySectionEducationalBackgroundProps {
   academicHonorsOtherText: string
   pursuedFurtherStudies: string
   furtherDegreeProgram: string
+  furtherStudiesReason: string
+  furtherStudiesReasonOther: string
   honorsError: string
   onDegreeProgramChange: (value: string) => void
   onYearGraduatedChange: (value: string) => void
   onHonorChange: (field: HonorField, checked: boolean) => void
   onTextChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   onFurtherStudiesChange: (value: "Yes" | "No") => void
+  onFurtherStudiesReasonChange: (value: "For promotions" | "For professional development" | "Other") => void
   onBack: () => void
   onSubmit: (e: React.FormEvent) => void
 }
@@ -42,12 +45,15 @@ export default function SurveySectionEducationalBackground({
   academicHonorsOtherText,
   pursuedFurtherStudies,
   furtherDegreeProgram,
+  furtherStudiesReason,
+  furtherStudiesReasonOther,
   honorsError,
   onDegreeProgramChange,
   onYearGraduatedChange,
   onHonorChange,
   onTextChange,
   onFurtherStudiesChange,
+  onFurtherStudiesReasonChange,
   onBack,
   onSubmit,
 }: SurveySectionEducationalBackgroundProps) {
@@ -235,6 +241,60 @@ export default function SurveySectionEducationalBackground({
               />
             </div>
           </div>
+
+          {isFurtherDegreeProgramEnabled && (
+            <div className="space-y-3">
+              <p className="text-sm font-medium text-foreground">
+                3.3 What made you pursue advance studies? <span className="text-maroon">*</span>
+              </p>
+
+              <label className="flex items-center gap-3 text-foreground cursor-pointer">
+                <input
+                  type="radio"
+                  name="furtherStudiesReason"
+                  checked={furtherStudiesReason === "For promotions"}
+                  onChange={() => onFurtherStudiesReasonChange("For promotions")}
+                  className="h-4 w-4 accent-maroon"
+                  required={isFurtherDegreeProgramEnabled}
+                />
+                <span>For promotions</span>
+              </label>
+
+              <label className="flex items-center gap-3 text-foreground cursor-pointer">
+                <input
+                  type="radio"
+                  name="furtherStudiesReason"
+                  checked={furtherStudiesReason === "For professional development"}
+                  onChange={() => onFurtherStudiesReasonChange("For professional development")}
+                  className="h-4 w-4 accent-maroon"
+                  required={isFurtherDegreeProgramEnabled}
+                />
+                <span>For professional development</span>
+              </label>
+
+              <div className="flex items-center gap-3">
+                <input
+                  type="radio"
+                  name="furtherStudiesReason"
+                  checked={furtherStudiesReason === "Other"}
+                  onChange={() => onFurtherStudiesReasonChange("Other")}
+                  className="h-4 w-4 accent-maroon"
+                  required={isFurtherDegreeProgramEnabled}
+                />
+                <Label htmlFor="furtherStudiesReasonOther" className="text-foreground text-sm">
+                  Other:
+                </Label>
+                <Input
+                  id="furtherStudiesReasonOther"
+                  type="text"
+                  value={furtherStudiesReasonOther}
+                  onChange={onTextChange}
+                  className="bg-white text-foreground border-maroon/20 placeholder:text-muted-foreground"
+                  required={isFurtherDegreeProgramEnabled && furtherStudiesReason === "Other"}
+                />
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="flex gap-3 pt-2">
