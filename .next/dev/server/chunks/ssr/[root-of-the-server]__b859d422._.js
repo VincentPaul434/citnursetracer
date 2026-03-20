@@ -29,7 +29,7 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$externals$5d2f$crypto__$5b$external$5d$__$28$crypto$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/crypto [external] (crypto, cjs)");
 ;
 const ADMIN_SESSION_COOKIE = "citnurse_admin_session";
-const DEFAULT_ADMIN_API_BASE_URL = "http://localhost:8080";
+const DEFAULT_ADMIN_API_BASE_URL = "https://tracer-backend-mkls.onrender.com/";
 const DEFAULT_ADMIN_SESSION_SECRET = "citnurse-admin-session-secret";
 const SESSION_DURATION_SECONDS = 60 * 60 * 8;
 const getConfiguredValue = (value, fallback)=>{

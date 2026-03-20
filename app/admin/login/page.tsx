@@ -8,15 +8,31 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { ADMIN_SESSION_COOKIE, isAdminSessionValid } from "@/lib/admin-auth"
+import { ADMIN_SESSION_COOKIE, buildAdminApiUrl, parseAdminSession } from "@/lib/admin-auth"
 import AdminLoginForm from "./admin-login-form"
+
+const ADMIN_SESSION_VALIDATE_ENDPOINT = "/api/v1/admin/survey-responses?page=0&size=1"
 
 export default async function AdminLoginPage() {
   const cookieStore = await cookies()
   const existingSessionValue = cookieStore.get(ADMIN_SESSION_COOKIE)?.value
+  const session = parseAdminSession(existingSessionValue)
 
-  if (isAdminSessionValid(existingSessionValue)) {
-    redirect("/admin/dashboard")
+  if (session) {
+    try {
+      const sessionValidationResponse = await fetch(buildAdminApiUrl(ADMIN_SESSION_VALIDATE_ENDPOINT), {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          Authorization: session.authHeader,
+        },
+        cache: "no-store",
+      })
+
+      if (sessionValidationResponse.ok) {
+        redirect("/admin/dashboard")
+      }
+    } catch {}
   }
 
   return (

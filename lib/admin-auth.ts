@@ -2,7 +2,7 @@ import { createHmac, timingSafeEqual } from "crypto"
 
 export const ADMIN_SESSION_COOKIE = "citnurse_admin_session"
 
-const DEFAULT_ADMIN_API_BASE_URL = "http://localhost:8080"
+const DEFAULT_ADMIN_API_BASE_URL = "https://tracer-backend-mkls.onrender.com/"
 const DEFAULT_ADMIN_SESSION_SECRET = "citnurse-admin-session-secret"
 const SESSION_DURATION_SECONDS = 60 * 60 * 8
 

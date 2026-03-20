@@ -2,6 +2,6 @@
   "/_not-found/page": "app/_not-found/page.js",
   "/admin/dashboard/page": "app/admin/dashboard/page.js",
   "/admin/login/page": "app/admin/login/page.js",
-  "/api/survey-responses/route": "app/api/survey-responses/route.js",
+  "/admin/logout/route": "app/admin/logout/route.js",
   "/page": "app/page.js"
 }
