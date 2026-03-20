@@ -117,6 +117,7 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
   const [invitationChannelError, setInvitationChannelError] = useState("")
   const [alumniPlatformError, setAlumniPlatformError] = useState("")
   const [formError, setFormError] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isConsentStepComplete, setIsConsentStepComplete] = useState(false)
 
@@ -452,7 +453,11 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
     }))
   }
 
-  const handleCombinedSubmit = () => {
+  const handleCombinedSubmit = async () => {
+    if (isSubmitting) {
+      return
+    }
+
     if (formData.consent === "no") {
       setConsentDeclined(true)
       setFormError("")
@@ -546,8 +551,42 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
     }
 
     setFormError("")
-    setIsSubmitted(true)
-    onSurveyComplete?.()
+
+    try {
+      setIsSubmitting(true)
+
+      const response = await fetch("/api/survey-responses", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (!response.ok) {
+        let message = "Unable to submit survey right now. Please try again."
+
+        try {
+          const payload = (await response.json()) as { message?: unknown }
+          if (typeof payload.message === "string" && payload.message.trim()) {
+            message = payload.message
+          }
+        } catch {
+          message = "Unable to submit survey right now. Please try again."
+        }
+
+        setFormError(message)
+        return
+      }
+
+      setIsSubmitted(true)
+      onSurveyComplete?.()
+    } catch {
+      setFormError("Unable to reach the server. Please check your connection and try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleStartNewSurvey = () => {
@@ -559,6 +598,7 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
     setInvitationChannelError("")
     setAlumniPlatformError("")
     setFormError("")
+    setIsSubmitting(false)
     setIsSubmitted(false)
     setIsConsentStepComplete(false)
   }
@@ -803,8 +843,13 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
 
             {formError && <p className="text-sm text-maroon font-medium">{formError}</p>}
 
-            <Button type="button" onClick={handleCombinedSubmit} className="bg-gold text-maroon hover:bg-gold/90 font-semibold px-8">
-              Submit Survey
+            <Button
+              type="button"
+              onClick={handleCombinedSubmit}
+              className="bg-gold text-maroon hover:bg-gold/90 font-semibold px-8"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Submitting..." : "Submit Survey"}
             </Button>
           </div>
         </div>

@@ -16,3 +16,7 @@ ADMIN_SESSION_SECRET=your-long-random-secret
 ```
 
 The admin login form validates credentials against the backend endpoint `/api/v1/auth/login` and stores the returned token in a signed HttpOnly session cookie for server-side admin requests.
+
+## Survey Submission
+
+Public survey submissions now post to the Next.js route `/api/survey-responses`, which proxies to the backend endpoint `/api/v1/survey-responses` using `ADMIN_API_BASE_URL`.
