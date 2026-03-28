@@ -863,3 +863,5 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
     </SurveyShell>
   )
 }
+
+// This file combines all the individual survey sections into a single page and manages the overall form state, validation, and submission logic.
