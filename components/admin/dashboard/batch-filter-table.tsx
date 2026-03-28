@@ -40,7 +40,7 @@ export default function BatchFilterTable({ responses }: BatchFilterTableProps) {
       setLoading(true)
       try {
           // Use the Next.js proxy API route for authentication
-          const res = await fetch(`/api/v1/admin/survey-responses?yearGraduated=${encodeURIComponent(selectedBatch)}`)
+          const res = await fetch(`/api/admin/survey-responses?yearGraduated=${encodeURIComponent(selectedBatch)}`)
         if (!res.ok) throw new Error("Failed to fetch filtered responses")
         const data = await res.json()
         if (!ignore) setFilteredResponses(data.content || [])
