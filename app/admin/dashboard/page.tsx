@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import ResponsesTable from "@/components/admin/dashboard/responses-table"
+import BatchFilterTable from "@/components/admin/dashboard/batch-filter-table"
 import type { SurveyResponseRow } from "@/components/admin/dashboard/types"
 import {
   ADMIN_SESSION_COOKIE,
@@ -160,6 +161,7 @@ export default async function AdminDashboardPage() {
         : surveyResponses.length
   }
 
+
   const pnlePassingRate = toPnlePassingRate(surveyResponses)
   const employmentRate = toEmploymentRate(surveyResponses)
 
@@ -246,7 +248,6 @@ export default async function AdminDashboardPage() {
                   .
                 </CardDescription>
               </div>
-
               <form action="/admin/logout" method="post">
                 <Button type="submit" variant="outline">
                   Log out
@@ -255,7 +256,7 @@ export default async function AdminDashboardPage() {
             </CardHeader>
 
             <CardContent>
-              <ResponsesTable responses={surveyResponses} />
+              <BatchFilterTable responses={surveyResponses} />
             </CardContent>
           </Card>
         </div>

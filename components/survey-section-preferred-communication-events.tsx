@@ -3,11 +3,13 @@ import type React from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+
+import { Checkbox } from "@/components/ui/checkbox"
 import {
   Select,
+  SelectTrigger,
   SelectContent,
   SelectItem,
-  SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
 
@@ -84,14 +86,9 @@ export default function SurveySectionPreferredCommunicationEvents({
     { field: "other", label: "Other" },
   ]
 
-  const selectedInvitationChannel = invitationChannelOptions.find(({ field }) => invitationChannels[field])?.field
 
-  const handleInvitationChannelSelectChange = (value: string) => {
-    const selectedField = value as InvitationChannelField
-
-    invitationChannelOptions.forEach(({ field }) => {
-      onInvitationChannelChange(field, field === selectedField)
-    })
+  const handleCheckboxChange = (field: InvitationChannelField) => (checked: boolean) => {
+    onInvitationChannelChange(field, checked)
   }
 
   return (
@@ -109,18 +106,19 @@ export default function SurveySectionPreferredCommunicationEvents({
             <span className="text-maroon">*</span>
           </p>
 
-          <Select value={selectedInvitationChannel} onValueChange={handleInvitationChannelSelectChange}>
-            <SelectTrigger className="w-full bg-white text-foreground border-maroon/20">
-              <SelectValue placeholder="Select preferred invitation channel" />
-            </SelectTrigger>
-            <SelectContent>
-              {invitationChannelOptions.map((option) => (
-                <SelectItem key={option.field} value={option.field}>
-                  {option.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
+            {invitationChannelOptions.map((option) => (
+              <label key={option.field} htmlFor={`invitation-channel-${option.field}`} className="flex items-center gap-2 cursor-pointer">
+                <Checkbox
+                  checked={invitationChannels[option.field]}
+                  onCheckedChange={handleCheckboxChange(option.field)}
+                  id={`invitation-channel-${option.field}`}
+                />
+                {option.label}
+              </label>
+            ))}
+          </div>
 
           {invitationChannels.other && (
             <div className="space-y-2">

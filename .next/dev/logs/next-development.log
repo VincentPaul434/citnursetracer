@@ -1,289 +1,807 @@
-[00:00:02.366] Server  LOG      ✓ Ready in 1452ms
-[00:00:08.628] Server  LOG      ○ Compiling / ...
-[00:00:21.512] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:22.719] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:22.719] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
-[00:00:22.719] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774697129223} /_vercel/insights/view
-[00:00:26.584] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:26.716] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:26.716] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/ad","route":"/ad"}
-[00:00:26.716] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/ad color: rgb(120, 120, 120) color: inherit {"dp":"/ad","o":"http://localhost:3000/ad","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774697133801} /_vercel/insights/view
-[00:00:28.280] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:28.404] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:28.405] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
-[00:00:28.405] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774697135490} /_vercel/insights/view
-[00:00:30.514] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:30.748] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:30.748] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin/login","route":"/admin/login"}
-[00:00:30.748] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/login color: rgb(120, 120, 120) color: inherit {"dp":"/admin/login","o":"http://localhost:3000/admin/login","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774697137834} /_vercel/insights/view
-[00:00:40.133] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/admin/dashboard","o":"http://localhost:3000/admin/dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774697147214} /_vercel/insights/view
-[00:01:42.382] Server  ERROR   D:\Code\citnursetracer\.next\dev\server\chunks\ssr\[root-of-the-server]__ab13e98c._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:01:42.416] Server  ERROR    ⨯ ReferenceError: Button is not defined
-[00:01:42.870] Browser ERROR   uncaughtError: ReferenceError: Button is not defined
-[00:02:15.094] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:15.110] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
+[00:00:09.958] Server  LOG      ✓ Ready in 7.5s
+[00:00:12.987] Server  LOG      ○ Compiling / ...
+[00:00:24.094] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:24.345] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:00:24.345] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:00:24.345] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774703038766} /_vercel/insights/view
+[00:03:28.224] Server  LOG      ✓ Compiled in 482ms
+[00:05:00.095] Server  LOG      ✓ Compiled in 375ms
+[00:05:48.181] Server  LOG      ✓ Compiled in 113ms
+[00:07:21.987] Server  LOG      ✓ Compiled in 280ms
+[00:07:22.531] Browser ERROR   uncaughtError: ReferenceError: Select is not defined
+[00:08:00.822] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:08:01.265] Server  LOG      ✓ Compiled in 162ms
+[00:08:01.625] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:02.537] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:08:02.538] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:08:02.538] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774703496280} /_vercel/insights/view
+[00:08:21.256] Server  LOG      ✓ Compiled in 100ms
+[00:08:21.538] Browser ERROR   uncaughtError: ReferenceError: Select is not defined
+[00:08:22.777] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:08:22.791] Server  LOG      ✓ Compiled in 120ms
+[00:08:23.107] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774703517311} /_vercel/insights/view
+[00:08:23.310] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:23.476] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:08:23.476] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:08:23.476] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774703517898} /_vercel/insights/view
+[00:08:33.575] Server  LOG      ✓ Compiled in 83ms
+[00:08:54.734] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:54.954] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:08:54.954] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin/login","route":"/admin/login"}
+[00:08:54.954] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/login color: rgb(120, 120, 120) color: inherit {"dp":"/admin/login","o":"http://localhost:3000/admin/login","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774703549378} /_vercel/insights/view
+[00:09:01.951] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/admin/dashboard","o":"http://localhost:3000/admin/dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774703556373} /_vercel/insights/view
+[00:09:43.686] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:43.909] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:09:43.909] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:09:43.909] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774703598332} /_vercel/insights/view
+[00:14:55.522] Browser ERROR   ./app/admin/dashboard/page.tsx:37:12
+Parsing ecmascript source code failed
+  35 |     (value): value is Record<string, unknown> =>
+  36 |       typeof value === "object" && value !== null && !Array.isArray(value),
+> 37 |     import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@/components/ui/select"
+     |            ^
+  38 |   )
+  39 | }
+  40 |
+
+Unexpected token `{`. Expected `.` or `(`
+[00:14:55.534] Browser ERROR   ./app/admin/dashboard/page.tsx:37:12
+Parsing ecmascript source code failed
+  35 |     (value): value is Record<string, unknown> =>
+  36 |       typeof value === "object" && value !== null && !Array.isArray(value),
+> 37 |     import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@/components/ui/select"
+     |            ^
+  38 |   )
+  39 | }
+  40 |
+
+Unexpected token `{`. Expected `.` or `(`
+[00:15:35.559] Browser ERROR   ./app/admin/dashboard/page.tsx:37:12
+Parsing ecmascript source code failed
+  35 |     (value): value is Record<string, unknown> =>
+  36 |       typeof value === "object" && value !== null && !Array.isArray(value),
+> 37 |     import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@/components/ui/select"
+     |            ^
+  38 |   )
+  39 | }
+  40 |
+
+Unexpected token `{`. Expected `.` or `(`
+[00:15:35.580] Browser ERROR   ./app/admin/dashboard/page.tsx:37:12
+Parsing ecmascript source code failed
+  35 |     (value): value is Record<string, unknown> =>
+  36 |       typeof value === "object" && value !== null && !Array.isArray(value),
+> 37 |     import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@/components/ui/select"
+     |            ^
+  38 |   )
+  39 | }
+  40 |
+
+Unexpected token `{`. Expected `.` or `(`
+[00:16:02.756] Server  LOG      ✓ Compiled in 181ms
+[00:16:15.536] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:16:16.525] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:16:16.525] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin/dashboard","route":"/admin/dashboard"}
+[00:16:16.525] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/admin/dashboard","o":"http://localhost:3000/admin/dashboard","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774703990225} /_vercel/insights/view
+[00:16:18.522] Browser ERROR   ./app/admin/dashboard/page.tsx:37:12
+Parsing ecmascript source code failed
+  35 |     (value): value is Record<string, unknown> =>
+  36 |       typeof value === "object" && value !== null && !Array.isArray(value),
+> 37 |     import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@/components/ui/select"
+     |            ^
+  38 |   )
+  39 | }
+  40 |
+
+Unexpected token `{`. Expected `.` or `(`
+[00:16:18.523] Browser ERROR   ./app/admin/dashboard/page.tsx:37:12
+Parsing ecmascript source code failed
+  35 |     (value): value is Record<string, unknown> =>
+  36 |       typeof value === "object" && value !== null && !Array.isArray(value),
+> 37 |     import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@/components/ui/select"
+     |            ^
+  38 |   )
+  39 | }
+  40 |
+
+Unexpected token `{`. Expected `.` or `(`
+[00:17:17.453] Server  LOG      ✓ Compiled in 334ms
+[00:17:18.538] Browser ERROR   uncaughtError: Error: A <Select.Item /> must have a value prop that is not an empty string. This is because the Select value can be set to an empty string to clear the selection and show the placeholder.
+[00:18:30.121] Server  LOG     
+[00:18:30.122] Server  LOG     Could not open select.tsx in the editor.
+[00:18:30.122] Server  LOG     
+[00:18:30.122] Server  LOG     To set up the editor integration, add something like REACT_EDITOR=atom to the .env.local file in your project folder and restart the development server.
+[00:18:30.123] Server  LOG     
+[00:20:06.498] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:20:07.527] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:20:07.527] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin/dashboard","route":"/admin/dashboard"}
+[00:20:07.527] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/admin/dashboard","o":"http://localhost:3000/admin/dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774704221327} /_vercel/insights/view
+[00:22:48.162] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:22:48.416] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:22:48.416] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin/dashboard","route":"/admin/dashboard"}
+[00:22:48.416] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/admin/dashboard","o":"http://localhost:3000/admin/dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774704382839} /_vercel/insights/view
+[00:24:10.745] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:24:10.959] Browser LOG     Browsing Topics API removed from http://localhost:3000/admin/dashboard which is main frame
+[00:24:10.959] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:24:10.959] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin/dashboard","route":"/admin/dashboard"}
+[00:24:10.959] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/admin/dashboard","o":"http://localhost:3000/admin/dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774704465378} /_vercel/insights/view
+[00:26:43.524] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:26:43.524] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:26:46.530] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:26:46.535] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:27:28.536] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:27:28.537] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:27:30.525] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:27:30.525] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:27:58.526] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:27:58.526] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:28:00.537] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:28:00.537] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:28:03.522] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:28:03.522] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:28:17.277] Server  LOG      ✓ Compiled in 786ms
+[00:28:17.524] Browser ERROR   ./app/admin/dashboard/page.tsx:2:1
+Ecmascript file had an error
+  1 | "use client"
+> 2 | import { cookies } from "next/headers"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | import { redirect, useSearchParams } from "next/navigation"
+  4 | import Image from "next/image"
+  5 | import { Button } from "@/components/ui/button"
+
+You're importing a component that needs "next/headers". That only works in a Server Component but one of its parents is marked with "use client", so it's a Client Component.
+Learn more: https://nextjs.org/docs/app/building-your-application/rendering
+
+Import traces:
+  Client Component Browser:
+    ./app/admin/dashboard/page.tsx [Client Component Browser]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/admin/dashboard/page.tsx [Client Component SSR]
+    ./app/admin/dashboard/page.tsx [Server Component]
+[00:28:17.526] Browser ERROR   ./app/admin/dashboard/page.tsx:2:1
+Ecmascript file had an error
+  1 | "use client"
+> 2 | import { cookies } from "next/headers"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | import { redirect, useSearchParams } from "next/navigation"
+  4 | import Image from "next/image"
+  5 | import { Button } from "@/components/ui/button"
+
+You're importing a component that needs "next/headers". That only works in a Server Component but one of its parents is marked with "use client", so it's a Client Component.
+Learn more: https://nextjs.org/docs/app/building-your-application/rendering
+
+Import traces:
+  Client Component Browser:
+    ./app/admin/dashboard/page.tsx [Client Component Browser]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/admin/dashboard/page.tsx [Client Component SSR]
+    ./app/admin/dashboard/page.tsx [Server Component]
+[00:28:18.937] Server  LOG      ✓ Compiled in 98ms
+[00:28:19.338] Browser ERROR   ./app/admin/dashboard/page.tsx:3:1
+Ecmascript file had an error
+  1 | "use client"
+  2 |
+> 3 | import { cookies } from "next/headers"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { redirect, useSearchParams } from "next/navigation"
+  5 | import Image from "next/image"
+  6 | import { Button } from "@/components/ui/button"
+
+You're importing a component that needs "next/headers". That only works in a Server Component but one of its parents is marked with "use client", so it's a Client Component.
+Learn more: https://nextjs.org/docs/app/building-your-application/rendering
+
+Import traces:
+  Client Component Browser:
+    ./app/admin/dashboard/page.tsx [Client Component Browser]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/admin/dashboard/page.tsx [Client Component SSR]
+    ./app/admin/dashboard/page.tsx [Server Component]
+[00:28:19.522] Browser ERROR   ./app/admin/dashboard/page.tsx:3:1
+Ecmascript file had an error
+  1 | "use client"
+  2 |
+> 3 | import { cookies } from "next/headers"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { redirect, useSearchParams } from "next/navigation"
+  5 | import Image from "next/image"
+  6 | import { Button } from "@/components/ui/button"
+
+You're importing a component that needs "next/headers". That only works in a Server Component but one of its parents is marked with "use client", so it's a Client Component.
+Learn more: https://nextjs.org/docs/app/building-your-application/rendering
+
+Import traces:
+  Client Component Browser:
+    ./app/admin/dashboard/page.tsx [Client Component Browser]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/admin/dashboard/page.tsx [Client Component SSR]
+    ./app/admin/dashboard/page.tsx [Server Component]
+[00:29:14.514] Server  LOG      ✓ Compiled in 223ms
+[00:29:14.638] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:29:14.655] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:29:38.659] Server  LOG      ✓ Compiled in 105ms
+[00:29:39.065] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:29:39.088] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
+  <... name="batch" defaultValue="all" onValueChange={function onValueChange} children=...>
+                                                     ^^^^^^^^^^^^^^^^^^^^^^^^
 If you need interactivity, consider converting part of this to a Client Component.
-[00:02:15.123] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:15.125] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
+[00:29:39.542] Browser ERROR   uncaughtError: Error: Event handlers cannot be passed to Client Component props.
+  <... name="batch" defaultValue="all" onValueChange={function onValueChange} children=...>
+                                                     ^^^^^^^^^^^^^^^^^^^^^^^^
 If you need interactivity, consider converting part of this to a Client Component.
-[00:02:15.131] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:15.137] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:15.140] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:15.142] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:15.145] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:15.147] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:15.150] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:15.151] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:15.154] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:15.156] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:15.159] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:15.161] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:15.548] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:15.549] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:15.552] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:15.553] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:15.555] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:15.556] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:15.558] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:15.559] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:15.561] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:15.562] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:16.205] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:02:16.479] Browser ERROR   uncaughtError: Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:16.479] Browser LOG     Browsing Topics API removed from http://localhost:3000/admin/dashboard which is main frame
-[00:02:25.755] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:25.756] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:25.758] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:25.759] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:25.761] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:25.762] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:25.768] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:25.769] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:25.771] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:25.772] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:25.775] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:25.776] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:25.778] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:25.780] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:25.782] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:25.783] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:25.928] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:25.929] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:25.931] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:25.931] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:25.933] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:25.933] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:25.936] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:25.937] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:25.939] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:25.940] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:26.399] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:02:26.727] Browser ERROR   uncaughtError: Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:26.727] Browser LOG     Browsing Topics API removed from http://localhost:3000/admin/dashboard which is main frame
-[00:02:29.699] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:02:29.839] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:02:29.839] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
-[00:02:29.839] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774697256927} /_vercel/insights/view
-[00:02:30.292] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:02:30.430] Browser LOG     Browsing Topics API removed from http://localhost:3000/admin which is main frame
-[00:02:30.430] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:02:30.430] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
-[00:02:30.430] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774697257517} /_vercel/insights/view
-[00:02:32.768] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:02:32.995] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:02:32.995] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin/login","route":"/admin/login"}
-[00:02:32.995] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/login color: rgb(120, 120, 120) color: inherit {"dp":"/admin/login","o":"http://localhost:3000/admin/login","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774697260083} /_vercel/insights/view
-[00:02:39.385] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:39.385] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:39.387] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:39.388] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:39.390] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:39.392] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:39.399] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:39.400] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:39.402] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:39.403] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:39.406] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:39.407] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:39.409] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:39.410] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:39.413] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:39.414] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:39.529] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:39.530] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:39.532] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:39.533] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:39.538] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:39.539] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:39.541] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:39.542] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:39.544] Server  ERROR   D:\Code\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:02:39.546] Server  ERROR    ⨯ Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:02:39.945] Browser ERROR   uncaughtError: Error: Event handlers cannot be passed to Client Component props.
-  <button data-slot="button" data-variant=... data-size=... className=... type=... disabled=... onClick={function onClick} children=...>
-                                                                                                        ^^^^^^^^^^^^^^^^^^
-If you need interactivity, consider converting part of this to a Client Component.
-[00:03:58.709] Server  LOG      ✓ Compiled in 203ms
-[00:03:58.716] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[00:04:00.216] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:04:00.860] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:04:00.860] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin/dashboard","route":"/admin/dashboard"}
-[00:04:00.860] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/admin/dashboard","o":"http://localhost:3000/admin/dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774697347670} /_vercel/insights/view
-[00:24:58.976] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:24:59.303] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:24:59.303] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin/dashboard","route":"/admin/dashboard"}
-[00:24:59.303] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/admin/dashboard","o":"http://localhost:3000/admin/dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774698606390} /_vercel/insights/view
-[00:28:49.255] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:28:49.414] Browser LOG     Browsing Topics API removed from http://localhost:3000/admin/dashboard which is main frame
-[00:28:49.580] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:28:49.580] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin/dashboard","route":"/admin/dashboard"}
-[00:28:49.580] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/admin/dashboard","o":"http://localhost:3000/admin/dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774698836652} /_vercel/insights/view
-[00:29:04.464] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:29:04.717] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:29:04.717] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin/dashboard","route":"/admin/dashboard"}
-[00:29:04.717] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/admin/dashboard","o":"http://localhost:3000/admin/dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774698851804} /_vercel/insights/view
-[00:30:22.031] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:30:22.275] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:30:22.275] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin/dashboard","route":"/admin/dashboard"}
-[00:30:22.275] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/admin/dashboard","o":"http://localhost:3000/admin/dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774698929360} /_vercel/insights/view
-[00:30:22.275] Browser LOG     Browsing Topics API removed from http://localhost:3000/admin/dashboard which is main frame
-[00:31:33.591] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:31:33.770] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:31:33.770] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin/dashboard","route":"/admin/dashboard"}
-[00:31:33.770] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/admin/dashboard","o":"http://localhost:3000/admin/dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774699000858} /_vercel/insights/view
-[00:32:43.764] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:32:43.911] Browser LOG     Browsing Topics API removed from http://localhost:3000/admin/login which is main frame
-[00:32:43.911] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:32:43.911] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin/login","route":"/admin/login"}
-[00:32:43.911] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/login color: rgb(120, 120, 120) color: inherit {"dp":"/admin/login","o":"http://localhost:3000/admin/login","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774699070996} /_vercel/insights/view
-[00:32:46.001] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:32:46.220] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:32:46.220] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
-[00:32:46.220] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774699073309} /_vercel/insights/view
-[00:34:02.489] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:34:02.489] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:34:02.489] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin/login","route":"/admin/login"}
-[00:34:02.489] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/login color: rgb(120, 120, 120) color: inherit {"dp":"/admin/login","o":"http://localhost:3000/admin/login","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774699149428} /_vercel/insights/view
-[00:34:10.869] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/admin/dashboard","o":"http://localhost:3000/admin/dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774699157340} /_vercel/insights/view
-[00:37:18.572] Server  LOG      ✓ Compiled in 545ms
+[00:29:55.528] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:29:55.528] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:30:27.528] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:30:27.528] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:30:28.603] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:30:28.603] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:31:09.228] Server  LOG      ✓ Compiled in 156ms
+[00:31:09.531] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:31:09.531] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:31:20.528] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:31:20.528] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:31:21.522] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:31:21.522] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:31:40.582] Server  LOG      ✓ Compiled in 87ms
+[00:31:41.531] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:31:41.531] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:31:43.523] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:31:43.524] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:31:45.140] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:31:45.525] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:31:45.992] Server  ERROR    ⨯ ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+
+[00:31:46.109] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:31:46.531] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:31:47.932] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:31:48.159] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:31:48.534] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:31:48.534] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:31:50.292] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:31:50.547] Browser ERROR   uncaughtError: Error: ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+
+[00:31:50.553] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:31:51.523] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:31:51.524] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:31:51.524] Browser ERROR   ./app/admin/dashboard/page.tsx:2:20
+Ecmascript file had an error
+  1 | import { cookies } from "next/headers"
+> 2 | import { redirect, useSearchParams } from "next/navigation"
+    |                    ^^^^^^^^^^^^^^^
+  3 | import Image from "next/image"
+  4 | import { Button } from "@/components/ui/button"
+  5 | import {
+
+You're importing a component that needs `useSearchParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:31:51.524] Browser LOG     Browsing Topics API removed from http://localhost:3000/admin/dashboard which is main frame
+[00:32:12.531] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:32:12.676] Browser LOG     Browsing Topics API removed from http://localhost:3000/admin/dashboard which is main frame
+[00:32:12.784] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:32:12.784] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin/dashboard","route":"/admin/dashboard"}
+[00:32:12.784] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/admin/dashboard","o":"http://localhost:3000/admin/dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774704947207} /_vercel/insights/view
+[00:33:29.013] Server  LOG      ✓ Compiled in 98ms
+[00:34:19.598] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:34:19.845] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:34:19.845] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin/dashboard","route":"/admin/dashboard"}
+[00:34:19.845] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/admin/dashboard","o":"http://localhost:3000/admin/dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774705074269} /_vercel/insights/view

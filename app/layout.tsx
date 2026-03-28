@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description: "Track nursing graduate outcomes, employment status, and professional development",
   generator: "v0.app",
   icons: {
-    icon: "/download.png",
+    icon: "/cit2logo.png",
     apple: "/download.png",
   },
 }

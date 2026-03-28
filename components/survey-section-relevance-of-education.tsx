@@ -1,13 +1,8 @@
 import type React from "react"
 
 import { Button } from "@/components/ui/button"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
+
+import { Checkbox } from "@/components/ui/checkbox"
 
 type RelevanceSkillField =
   | "clinicalSkills"
@@ -51,14 +46,9 @@ export default function SurveySectionRelevanceOfEducation({
     { field: "problemSolving", label: "Problem-solving" },
   ]
 
-  const selectedRelevanceSkill = relevanceSkillOptions.find(({ field }) => relevanceSkills[field])?.field
 
-  const handleRelevanceSkillSelectChange = (value: string) => {
-    const selectedField = value as RelevanceSkillField
-
-    relevanceSkillOptions.forEach(({ field }) => {
-      onRelevanceSkillChange(field, field === selectedField)
-    })
+  const handleCheckboxChange = (field: RelevanceSkillField) => (checked: boolean) => {
+    onRelevanceSkillChange(field, checked)
   }
 
   return (
@@ -70,21 +60,21 @@ export default function SurveySectionRelevanceOfEducation({
       </div>
 
       <form onSubmit={onSubmit} className="space-y-3">
+
         <div className="rounded-lg border border-maroon/20 p-5 space-y-4">
           <p className="text-base font-medium text-foreground">Skills learned in college that helped you in employment</p>
-
-          <Select value={selectedRelevanceSkill} onValueChange={handleRelevanceSkillSelectChange}>
-            <SelectTrigger className="w-full bg-white text-foreground border-maroon/20">
-              <SelectValue placeholder="Select a skill" />
-            </SelectTrigger>
-            <SelectContent>
-              {relevanceSkillOptions.map((option) => (
-                <SelectItem key={option.field} value={option.field}>
-                  {option.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
+            {relevanceSkillOptions.map((option, idx) => (
+              <label key={option.field} htmlFor={`relevance-skill-${option.field}`} className="flex items-center gap-2 cursor-pointer">
+                <Checkbox
+                  checked={relevanceSkills[option.field]}
+                  onCheckedChange={handleCheckboxChange(option.field)}
+                  id={`relevance-skill-${option.field}`}
+                />
+                {option.label}
+              </label>
+            ))}
+          </div>
         </div>
 
         <div className="flex gap-3 pt-2">
