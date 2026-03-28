@@ -229,22 +229,7 @@ export const buildResponseSections = (details: Record<string, unknown>): Respons
     }
   }).filter((section) => section.rows.length > 0)
 
-  const extraRows = Object.entries(details)
-    .filter(([field]) => field !== "details" && !usedFields.has(field) && !["submittedAt", "createdAt", "updatedAt"].includes(field))
-    .map(([field, value]) => ({
-      key: field,
-      label: toResponseLabel(field),
-      value: formatResponseValue(field, value),
-    }))
-    .filter((row) => row.value !== "Not provided")
-
-  if (extraRows.length > 0) {
-    sections.push({
-      key: "other",
-      title: "Other Responses",
-      rows: extraRows,
-    })
-  }
+  // Removed logic for 'Other Responses' section
 
   return sections
 }
