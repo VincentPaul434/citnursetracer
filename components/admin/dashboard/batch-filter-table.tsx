@@ -1,13 +1,15 @@
 "use client"
 
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect } from "react"
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@/components/ui/select"
 import ResponsesTable from "@/components/admin/dashboard/responses-table"
 import type { SurveyResponseRow } from "@/components/admin/dashboard/types"
 import { Button } from "@/components/ui/button"
 
+
 interface BatchFilterTableProps {
   responses: SurveyResponseRow[]
+  fetchFilteredResponses?: (batch: string) => Promise<SurveyResponseRow[]>
 }
 
 export default function BatchFilterTable({ responses }: BatchFilterTableProps) {
@@ -25,11 +27,36 @@ export default function BatchFilterTable({ responses }: BatchFilterTableProps) {
   }, [responses])
 
   const [selectedBatch, setSelectedBatch] = useState<string>("all")
+  const [filteredResponses, setFilteredResponses] = useState<SurveyResponseRow[]>(responses)
+  const [loading, setLoading] = useState(false)
 
-  const filteredResponses = useMemo(() => {
-    if (selectedBatch === "all") return responses
-    return responses.filter(r => String(r.details?.year_graduated) === selectedBatch)
-  }, [responses, selectedBatch])
+  useEffect(() => {
+    let ignore = false
+    async function fetchData() {
+      if (selectedBatch === "all") {
+        setFilteredResponses(responses)
+        return
+      }
+      setLoading(true)
+      try {
+        // Fetch from API endpoint with batch/year_graduated filter
+        const res = await fetch(`/api/admin/survey-responses?yearGraduated=${encodeURIComponent(selectedBatch)}`)
+        if (!res.ok) throw new Error("Failed to fetch filtered responses")
+        const data = await res.json()
+        if (!ignore) setFilteredResponses(data.content || [])
+      } catch (e) {
+        if (!ignore) setFilteredResponses([])
+      } finally {
+        if (!ignore) setLoading(false)
+      }
+    }
+    if (selectedBatch === "all") {
+      setFilteredResponses(responses)
+    } else {
+      fetchData()
+    }
+    return () => { ignore = true }
+  }, [selectedBatch, responses])
 
   return (
     <>
@@ -47,7 +74,11 @@ export default function BatchFilterTable({ responses }: BatchFilterTableProps) {
           </SelectContent>
         </Select>
       </div>
-      <ResponsesTable responses={filteredResponses} />
+      {loading ? (
+        <div className="text-center py-8">Loading...</div>
+      ) : (
+        <ResponsesTable responses={filteredResponses} />
+      )}
     </>
   )
 }
