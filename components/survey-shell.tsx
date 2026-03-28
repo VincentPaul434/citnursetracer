@@ -11,7 +11,7 @@ export default function SurveyShell({ children }: SurveyShellProps) {
     <div className="min-h-screen bg-background flex flex-col">
       <div className="bg-maroon text-gold p-4 flex items-center gap-3">
         <div className="w-12 h-12 flex items-center justify-center shrink-0">
-          <Image src="/download.png" alt="CIT-U Logo" width={48} height={48} className="h-12 w-12 object-contain" priority />
+          <Image src="/cit2logo.png" alt="CIT-U Logo" width={48} height={48} className="h-12 w-12 object-contain" priority />
         </div>
         <div className="flex-1">
           <h1 className="text-lg font-bold leading-tight">CEBU INSTITUTE OF TECHNOLOGY</h1>
