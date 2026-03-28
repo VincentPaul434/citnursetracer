@@ -13,7 +13,8 @@ const getNestedObjectCandidates = (details: Record<string, unknown>) =>
       typeof value === "object" && value !== null && !Array.isArray(value),
   )
 
-const getFieldValue = (details: Record<string, unknown>, field: string) => {
+const getFieldValue = (details: Record<string, unknown> | undefined, field: string) => {
+  if (!details) return undefined;
   if (field in details) {
     return details[field]
   }
