@@ -168,7 +168,7 @@ export default async function AdminDashboardPage() {
       <div className="bg-maroon text-gold p-4 flex items-center gap-3">
         <div className="w-12 h-12 flex items-center justify-center shrink-0">
           <Image
-            src="/download.png"
+            src="/cit2logo.png"
             alt="CIT-U Logo"
             width={48}
             height={48}
