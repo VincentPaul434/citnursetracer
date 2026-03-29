@@ -27,36 +27,45 @@ export default function BatchFilterTable({ responses }: BatchFilterTableProps) {
   }, [responses])
 
   const [selectedBatch, setSelectedBatch] = useState<string>("all")
-  const [filteredResponses, setFilteredResponses] = useState<SurveyResponseRow[]>(responses)
+  const [filteredResponses, setFilteredResponses] = useState<SurveyResponseRow[]>([])
   const [loading, setLoading] = useState(false)
+  const [page, setPage] = useState(1)
+  const [totalCount, setTotalCount] = useState(0)
+  const pageSize = 20
 
   useEffect(() => {
-    let ignore = false
+    let ignore = false;
     async function fetchData() {
-      if (selectedBatch === "all") {
-        setFilteredResponses(responses)
-        return
-      }
-      setLoading(true)
+      setLoading(true);
       try {
-          // Use the Next.js proxy API route for authentication
-          const res = await fetch(`/api/admin/survey-responses?yearGraduated=${encodeURIComponent(selectedBatch)}`)
-        if (!res.ok) throw new Error("Failed to fetch filtered responses")
-        const data = await res.json()
-        if (!ignore) setFilteredResponses(data.content || [])
+        let url = `/api/admin/survey-responses?page=${page - 1}&size=${pageSize}`;
+        if (selectedBatch !== "all") {
+          url += `&yearGraduated=${encodeURIComponent(selectedBatch)}`;
+        }
+        const res = await fetch(url);
+        if (!res.ok) throw new Error("Failed to fetch filtered responses");
+        const data = await res.json();
+        if (!ignore) {
+          setFilteredResponses(data.content || []);
+          setTotalCount(data.totalElements || 0);
+        }
       } catch (e) {
-        if (!ignore) setFilteredResponses([])
+        if (!ignore) {
+          setFilteredResponses([]);
+          setTotalCount(0);
+        }
       } finally {
-        if (!ignore) setLoading(false)
+        if (!ignore) setLoading(false);
       }
     }
-    if (selectedBatch === "all") {
-      setFilteredResponses(responses)
-    } else {
-      fetchData()
-    }
-    return () => { ignore = true }
-  }, [selectedBatch, responses])
+    fetchData();
+    return () => { ignore = true };
+  }, [selectedBatch, page, pageSize]);
+
+  // Reset to first page when batch changes
+  useEffect(() => {
+    setPage(1);
+  }, [selectedBatch]);
 
   return (
     <>
@@ -77,7 +86,13 @@ export default function BatchFilterTable({ responses }: BatchFilterTableProps) {
       {loading ? (
         <div className="text-center py-8">Loading...</div>
       ) : (
-        <ResponsesTable responses={filteredResponses} />
+        <ResponsesTable
+          responses={filteredResponses}
+          page={page}
+          pageSize={pageSize}
+          onPageChange={setPage}
+          totalCount={totalCount}
+        />
       )}
     </>
   )

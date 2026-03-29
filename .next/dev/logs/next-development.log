@@ -20,3 +20,82 @@
 [00:07:39.438] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin/login","route":"/admin/login"}
 [00:07:39.438] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/login color: rgb(120, 120, 120) color: inherit {"dp":"/admin/login","o":"http://localhost:3000/admin/login","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774723345869} /_vercel/insights/view
 [00:07:46.238] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/admin/dashboard","o":"http://localhost:3000/admin/dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774723352617} /_vercel/insights/view
+[00:04:59.288] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:59.657] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:04:59.657] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin/dashboard","route":"/admin/dashboard"}
+[00:04:59.657] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/admin/dashboard","o":"http://localhost:3000/admin/dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774758664886} /_vercel/insights/view
+[00:05:23.509] Server  LOG      ✓ Compiled in 156ms
+[00:05:23.723] Browser ERROR   ./components/admin/dashboard/responses-table.tsx:99:1
+Parsing ecmascript source code failed
+   97 |   );
+   98 | }
+>  99 | }
+      | ^
+  100 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./components/admin/dashboard/responses-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/admin/dashboard/responses-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+[00:05:31.723] Browser ERROR   ./components/admin/dashboard/responses-table.tsx:99:1
+Parsing ecmascript source code failed
+   97 |   );
+   98 | }
+>  99 | }
+      | ^
+  100 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./components/admin/dashboard/responses-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/admin/dashboard/responses-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+[00:05:33.718] Browser ERROR   ./components/admin/dashboard/responses-table.tsx:99:1
+Parsing ecmascript source code failed
+   97 |   );
+   98 | }
+>  99 | }
+      | ^
+  100 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./components/admin/dashboard/responses-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/admin/dashboard/responses-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+[00:06:19.298] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:19.675] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:06:19.675] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin/dashboard","route":"/admin/dashboard"}
+[00:06:19.675] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/admin/dashboard","o":"http://localhost:3000/admin/dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774758744785} /_vercel/insights/view
+[00:07:20.271] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:20.461] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:07:20.461] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin/dashboard","route":"/admin/dashboard"}
+[00:07:20.461] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/admin/dashboard","o":"http://localhost:3000/admin/dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774758805686} /_vercel/insights/view
