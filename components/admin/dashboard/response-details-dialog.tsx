@@ -18,6 +18,23 @@ interface ResponseDetailsDialogProps {
 export default function ResponseDetailsDialog({ email, details }: ResponseDetailsDialogProps) {
   const sections = buildResponseSections(details)
 
+  // Helper to add spaces to camelCase or PascalCase
+  function humanize(str?: string) {
+    if (!str) return '';
+    return str.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/([A-Z])([A-Z][a-z])/g, '$1 $2');
+  }
+
+  // Format comma-separated or array answers with spaces and humanized words
+  function formatMultiAnswer(val: unknown) {
+    if (Array.isArray(val)) {
+      return val.map(v => humanize(String(v).trim())).join(', ');
+    }
+    if (typeof val === 'string' && val.includes(',')) {
+      return val.split(',').map(v => humanize(v.trim())).join(', ');
+    }
+    return humanize(String(val));
+  }
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -43,7 +60,7 @@ export default function ResponseDetailsDialog({ email, details }: ResponseDetail
                   {section.rows.map((row) => (
                     <div key={row.key} className="rounded-md border p-3 bg-card">
                       <p className="text-xs font-medium text-muted-foreground">{row.label}</p>
-                      <p className="mt-1 text-sm whitespace-pre-wrap wrap-break-word">{row.value}</p>
+                      <p className="mt-1 text-sm whitespace-pre-wrap wrap-break-word">{formatMultiAnswer(row.value)}</p>
                     </div>
                   ))}
                 </div>
