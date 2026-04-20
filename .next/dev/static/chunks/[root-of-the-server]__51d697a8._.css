@@ -1195,6 +1195,10 @@
     width: calc(var(--spacing) * 5);
   }
 
+  .w-7 {
+    width: calc(var(--spacing) * 7);
+  }
+
   .w-8 {
     width: calc(var(--spacing) * 8);
   }
@@ -4968,6 +4972,12 @@
   }
 
   @media (min-width: 40rem) {
+    .sm\:justify-between {
+      justify-content: space-between;
+    }
+  }
+
+  @media (min-width: 40rem) {
     .sm\:justify-end {
       justify-content: flex-end;
     }
@@ -4994,6 +5004,13 @@
   @media (min-width: 40rem) {
     .sm\:text-left {
       text-align: left;
+    }
+  }
+
+  @media (min-width: 40rem) {
+    .sm\:text-sm {
+      font-size: var(--text-sm);
+      line-height: var(--tw-leading, var(--text-sm--line-height));
     }
   }
 
