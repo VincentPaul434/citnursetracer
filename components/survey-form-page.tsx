@@ -613,6 +613,111 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
   const showUnemploymentInformation =
     formData.employmentStatus === "Unemployed" || formData.employmentStatus === "Currently studying"
 
+  const isGeneralInfoComplete =
+    Boolean(formData.email.trim()) &&
+    Boolean(formData.fullName.trim()) &&
+    Boolean(formData.birthday) &&
+    Boolean(formData.residence.trim()) &&
+    Boolean(formData.contactInformation.trim())
+
+  const isEducationalBackgroundComplete =
+    Boolean(formData.degreeProgramCompleted) && Boolean(formData.yearGraduated) && hasAtLeastOneChecked(formData.academicHonors)
+
+  const hasEmploymentDetailSelected =
+    (showEmploymentInformation && hasAtLeastOneChecked(formData.firstJobSources)) ||
+    (showUnemploymentInformation && hasAtLeastOneChecked(formData.unemploymentReasons)) ||
+    (!showEmploymentInformation && !showUnemploymentInformation)
+
+  const isEmploymentDataComplete = Boolean(formData.employmentStatus) && hasEmploymentDetailSelected
+
+  const isProgramFeedbackComplete =
+    Boolean(formData.careerPreparationLevel) &&
+    Boolean(formData.nursingProgramAspect.trim()) &&
+    Boolean(formData.nursingProgramSuggestion.trim())
+
+  const isCommunicationPreferenceComplete =
+    hasAtLeastOneChecked(formData.invitationChannels) &&
+    Boolean(formData.updateFrequency) &&
+    Boolean(formData.alumniGroupWillingness) &&
+    (formData.alumniGroupWillingness !== "Yes" || Boolean(formData.alumniPlatform))
+
+  const sectionProgress = [
+    {
+      id: "section-general-information",
+      shortLabel: "A",
+      title: "General Information",
+      description: "Basic graduate profile and contact details.",
+      complete: isGeneralInfoComplete,
+    },
+    {
+      id: "section-educational-background",
+      shortLabel: "B",
+      title: "Educational Background",
+      description: "Academic record and post-graduate learning details.",
+      complete: isEducationalBackgroundComplete,
+    },
+    {
+      id: "section-employment-data",
+      shortLabel: "C",
+      title: "Employment Data",
+      description: "Career status and transition-to-work experience.",
+      complete: isEmploymentDataComplete,
+    },
+    {
+      id: "section-program-feedback",
+      shortLabel: "D",
+      title: "Program Feedback",
+      description: "Reflection on preparedness and curriculum outcomes.",
+      complete: isProgramFeedbackComplete,
+    },
+    {
+      id: "section-preferred-communication-events",
+      shortLabel: "E",
+      title: "Preferred Communication Events",
+      description: "How alumni updates and invitations should reach you.",
+      complete: isCommunicationPreferenceComplete,
+    },
+  ] as const
+
+  const completedSections = sectionProgress.filter((section) => section.complete).length
+  const completionPercent = Math.round((completedSections / sectionProgress.length) * 100)
+
+  const SectionHeader = ({
+    sectionId,
+    shortLabel,
+    title,
+    description,
+    complete,
+  }: {
+    sectionId: string
+    shortLabel: string
+    title: string
+    description: string
+    complete: boolean
+  }) => (
+    <div id={sectionId} className="relative overflow-hidden rounded-xl border border-maroon/20 bg-white/80 p-4 md:p-5">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,oklch(0.85_0.12_75/.25),transparent_60%)]" />
+      <div className="relative flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+        <div className="flex items-start gap-3">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-maroon/30 bg-maroon text-sm font-bold text-gold">
+            {shortLabel}
+          </div>
+          <div className="space-y-1">
+            <h3 className="text-lg font-bold text-maroon">{title}</h3>
+            <p className="text-sm text-muted-foreground">{description}</p>
+          </div>
+        </div>
+        <p
+          className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide ${
+            complete ? "bg-emerald-50 text-emerald-700 border border-emerald-200" : "bg-maroon/10 text-maroon border border-maroon/20"
+          }`}
+        >
+          {complete ? "Section completed" : "In progress"}
+        </p>
+      </div>
+    </div>
+  )
+
   return (
     <SurveyShell>
       {isSubmitted ? (
@@ -643,12 +748,19 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
         </div>
       ) : !isConsentStepComplete ? (
         <div className="space-y-6">
-          <div className="rounded-lg border border-maroon/20 p-5 space-y-3">
+          <div className="relative overflow-hidden rounded-xl border border-maroon/20 bg-gradient-to-br from-white via-white to-gold/20 p-5 md:p-7 space-y-4">
+            <div className="pointer-events-none absolute -right-12 -top-12 h-36 w-36 rounded-full bg-maroon/10 blur-2xl" />
+            <div className="pointer-events-none absolute -bottom-16 left-8 h-28 w-28 rounded-full bg-gold/50 blur-xl" />
             <p className="text-sm font-semibold uppercase tracking-wide text-maroon">Alumni Tracer Survey</p>
             <h2 className="text-3xl font-bold text-maroon">Data Privacy and Informed Consent</h2>
-            <p className="text-foreground leading-relaxed">
+            <p className="max-w-3xl text-foreground leading-relaxed">
               Please review the consent statement below before proceeding to the survey form.
             </p>
+            <div className="flex flex-wrap gap-2 pt-1">
+              <span className="rounded-full border border-maroon/20 bg-white px-3 py-1 text-xs font-semibold text-maroon">Estimated Time: 8-10 minutes</span>
+              <span className="rounded-full border border-maroon/20 bg-white px-3 py-1 text-xs font-semibold text-maroon">Confidential Responses</span>
+              <span className="rounded-full border border-maroon/20 bg-white px-3 py-1 text-xs font-semibold text-maroon">Curriculum Improvement Use</span>
+            </div>
           </div>
 
           <SurveySectionConsent
@@ -662,18 +774,69 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
         </div>
       ) : (
         <div className="combined-survey space-y-6">
-          <div className="rounded-lg border border-maroon/20 p-5 space-y-3">
-            <p className="text-sm font-semibold uppercase tracking-wide text-maroon">Alumni Tracer Survey</p>
-            <h2 className="text-3xl font-bold text-maroon">Please take a few minutes to answer this survey</h2>
-            <p className="text-foreground leading-relaxed">
-              Your participation is voluntary, and all responses will be kept confidential. The information you provide will be used solely
-              for research and program improvement purposes.
-            </p>
+          <div className="relative overflow-hidden rounded-2xl border border-maroon/20 bg-gradient-to-br from-white via-gold/10 to-white p-5 md:p-7 shadow-[0_16px_40px_-24px_rgba(80,30,38,0.65)]">
+            <div className="pointer-events-none absolute -right-16 -top-12 h-52 w-52 rounded-full bg-maroon/10 blur-3xl" />
+            <div className="pointer-events-none absolute -left-10 bottom-0 h-40 w-40 rounded-full bg-gold/30 blur-2xl" />
+            <div className="relative grid gap-6 lg:grid-cols-[1.4fr_1fr]">
+              <div className="space-y-3">
+                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-maroon">CIT-U Alumni Tracer 2026</p>
+                <h2 className="text-3xl font-black leading-tight text-maroon md:text-4xl">Help Shape the Future of the Nursing Program</h2>
+                <p className="max-w-2xl text-foreground leading-relaxed">
+                  Your participation is voluntary, and all responses will remain confidential. Insights from this survey directly support
+                  curriculum planning, alumni engagement initiatives, and student career readiness.
+                </p>
+                <div className="flex flex-wrap gap-2 pt-1">
+                  <span className="rounded-full border border-maroon/20 bg-white px-3 py-1 text-xs font-semibold text-maroon">One-time survey</span>
+                  <span className="rounded-full border border-maroon/20 bg-white px-3 py-1 text-xs font-semibold text-maroon">Mobile-friendly</span>
+                  <span className="rounded-full border border-maroon/20 bg-white px-3 py-1 text-xs font-semibold text-maroon">Secure submission</span>
+                </div>
+              </div>
+
+              <div className="rounded-xl border border-maroon/20 bg-white/90 p-4 space-y-3">
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Survey progress</p>
+                <div className="flex items-end justify-between">
+                  <p className="text-3xl font-black text-maroon">{completionPercent}%</p>
+                  <p className="text-sm text-muted-foreground">
+                    {completedSections} of {sectionProgress.length} sections complete
+                  </p>
+                </div>
+                <div className="h-2 w-full overflow-hidden rounded-full bg-maroon/10">
+                  <div className="h-full rounded-full bg-maroon transition-all duration-500" style={{ width: `${completionPercent}%` }} />
+                </div>
+                <p className="text-xs text-muted-foreground">Complete each section below, then submit at the bottom of the page.</p>
+              </div>
+            </div>
           </div>
 
-          <div className="rounded-lg border border-maroon/20 bg-muted/20 px-4 py-3">
-            <h3 className="text-lg font-bold text-maroon">A. GENERAL INFORMATION</h3>
+          <div className="sticky top-2 z-10 rounded-xl border border-maroon/20 bg-white/95 p-3 backdrop-blur supports-[backdrop-filter]:bg-white/75">
+            <div className="flex flex-wrap gap-2">
+              {sectionProgress.map((section) => (
+                <a
+                  key={section.id}
+                  href={`#${section.id}`}
+                  className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors ${
+                    section.complete
+                      ? "border-emerald-300 bg-emerald-50 text-emerald-700"
+                      : "border-maroon/20 bg-white text-maroon hover:bg-maroon/5"
+                  }`}
+                >
+                  <span
+                    className={`h-2 w-2 rounded-full ${section.complete ? "bg-emerald-500" : "bg-maroon/35"}`}
+                    aria-hidden="true"
+                  />
+                  {section.shortLabel}. {section.title}
+                </a>
+              ))}
+            </div>
           </div>
+
+          <SectionHeader
+            sectionId="section-general-information"
+            shortLabel="A"
+            title="General Information"
+            description="Basic graduate profile and contact details."
+            complete={isGeneralInfoComplete}
+          />
 
           <div className="rounded-lg border border-maroon/20 p-5 space-y-2">
             <Label htmlFor="email" className="text-foreground text-base">
@@ -706,9 +869,13 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
             onSubmit={preventSectionSubmit}
           />
 
-          <div className="rounded-lg border border-maroon/20 bg-muted/20 px-4 py-3">
-            <h3 className="text-lg font-bold text-maroon">B. EDUCATIONAL BACKGROUND</h3>
-          </div>
+          <SectionHeader
+            sectionId="section-educational-background"
+            shortLabel="B"
+            title="Educational Background"
+            description="Academic record and post-graduate learning details."
+            complete={isEducationalBackgroundComplete}
+          />
 
           <SurveySectionEducationalBackground
             degreeProgramCompleted={formData.degreeProgramCompleted}
@@ -746,9 +913,13 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
             onSubmit={preventSectionSubmit}
           />
 
-          <div className="rounded-lg border border-maroon/20 bg-muted/20 px-4 py-3">
-            <h3 className="text-lg font-bold text-maroon">C. EMPLOYMENT DATA</h3>
-          </div>
+          <SectionHeader
+            sectionId="section-employment-data"
+            shortLabel="C"
+            title="Employment Data"
+            description="Career status and transition-to-work experience."
+            complete={isEmploymentDataComplete}
+          />
 
           <SurveySectionEmploymentStatus
             employmentStatus={formData.employmentStatus}
@@ -793,9 +964,13 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
             />
           )}
 
-          <div className="rounded-lg border border-maroon/20 bg-muted/20 px-4 py-3">
-            <h3 className="text-lg font-bold text-maroon">D. PROGRAM FEEDBACK</h3>
-          </div>
+          <SectionHeader
+            sectionId="section-program-feedback"
+            shortLabel="D"
+            title="Program Feedback"
+            description="Reflection on preparedness and curriculum outcomes."
+            complete={isProgramFeedbackComplete}
+          />
 
           <SurveySectionRelevanceOfEducation
             relevanceSkills={formData.relevanceSkills}
@@ -814,9 +989,13 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
             onSubmit={preventSectionSubmit}
           />
 
-          <div className="rounded-lg border border-maroon/20 bg-muted/20 px-4 py-3">
-            <h3 className="text-lg font-bold text-maroon">E. PREFERRED COMMUNICATION EVENTS</h3>
-          </div>
+          <SectionHeader
+            sectionId="section-preferred-communication-events"
+            shortLabel="E"
+            title="Preferred Communication Events"
+            description="How alumni updates and invitations should reach you."
+            complete={isCommunicationPreferenceComplete}
+          />
 
           <SurveySectionPreferredCommunicationEvents
             invitationChannels={formData.invitationChannels}
@@ -858,6 +1037,23 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
       <style jsx global>{`
         .combined-survey form > div.flex.gap-3.pt-2 {
           display: none;
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+          .combined-survey > div:first-child {
+            animation: hero-fade 550ms ease-out;
+          }
+
+          @keyframes hero-fade {
+            from {
+              opacity: 0;
+              transform: translateY(8px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
         }
       `}</style>
     </SurveyShell>

@@ -44,7 +44,6 @@ export default function SurveySectionPersonalInfo({
   return (
     <>
       <div className="mb-4 rounded-lg border border-maroon/20 p-5">
-        <div className="inline-flex rounded-md bg-gold px-3 py-1 text-sm font-semibold text-maroon mb-3">Section 3 of 12</div>
         <h2 className="text-2xl font-bold text-maroon">Section I. Personal Information</h2>
       </div>
 

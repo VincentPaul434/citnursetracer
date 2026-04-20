@@ -99,7 +99,6 @@ export default function SurveySectionEmploymentInformation({
   return (
     <>
       <div className="mb-4 rounded-lg border border-maroon/20 p-5">
-        <div className="inline-flex rounded-md bg-gold px-3 py-1 text-sm font-semibold text-maroon mb-3">Section 7 of 12</div>
         <h2 className="text-2xl font-bold text-maroon">Section V. Employment Information (For Employed Graduates)</h2>
         <p className="mt-2 text-sm text-muted-foreground">Description (optional)</p>
       </div>

@@ -1,6 +1,8 @@
 import type { ReactNode } from "react"
 import Image from "next/image"
+import Link from "next/link"
 import { Card } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 
 interface SurveyShellProps {
   children: ReactNode
@@ -16,6 +18,16 @@ export default function SurveyShell({ children }: SurveyShellProps) {
         <div className="flex-1">
           <h1 className="text-lg font-bold leading-tight">CEBU INSTITUTE OF TECHNOLOGY</h1>
           <p className="text-sm font-semibold">UNIVERSITY</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <Button asChild variant="secondary" className="bg-white/95 text-maroon hover:bg-white font-semibold">
+            <Link href="/about">About Us</Link>
+          </Button>
+          <Button asChild className="bg-gold text-maroon hover:bg-gold/90 font-semibold">
+            <a href="https://cit.edu/" target="_blank" rel="noopener noreferrer">
+              Main Site
+            </a>
+          </Button>
         </div>
       </div>
 

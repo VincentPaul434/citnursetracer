@@ -14,7 +14,6 @@ export default function SurveySectionIntro({ email, onEmailChange, onContinue }:
   return (
     <>
       <div className="mb-6">
-        <div className="inline-flex rounded-md bg-gold px-3 py-1 text-sm font-semibold text-maroon mb-4">Section 1 of 12</div>
         <h2 className="text-4xl font-bold text-maroon mb-4">Tracking Nursing Graduates Through Innovation</h2>
         <div className="space-y-4 text-base text-foreground leading-relaxed">
           <p>Greetings!</p>
