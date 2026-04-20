@@ -1,4 +1,5 @@
 import type React from "react"
+import Image from "next/image"
 
 import { Button } from "@/components/ui/button"
 
@@ -18,6 +19,29 @@ export default function SurveySectionConsent({
   return (
     <>
       <div className="mb-6">
+        <div className="relative mb-5 overflow-hidden rounded-2xl border border-maroon/20">
+          <div className="relative h-52 w-full md:h-64">
+            <Image
+              src="/welcome page.png"
+              alt="CIT-U welcome banner"
+              fill
+              priority
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-maroon/85 via-maroon/60 to-maroon/20" />
+          </div>
+
+          <div className="absolute inset-0 flex items-center">
+            <div className="max-w-2xl space-y-2 px-4 py-5 text-white md:px-8">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gold">CIT-U Nursing Alumni Tracer</p>
+              <h2 className="text-2xl font-black leading-tight md:text-4xl">Lead The Future Through Graduate Impact</h2>
+              <p className="text-sm text-white/90 md:text-base">
+                Your voice helps shape stronger nursing education, alumni services, and career pathways for future CIT-U graduates.
+              </p>
+            </div>
+          </div>
+        </div>
+
         <div className="inline-flex rounded-md bg-gold px-3 py-1 text-sm font-semibold text-maroon mb-4">Step 1: Consent</div>
         <div className="rounded-lg border border-maroon/20 p-5 space-y-5">
           <h2 className="text-3xl font-bold text-maroon">Data Privacy and Informed Consent Statement</h2>
