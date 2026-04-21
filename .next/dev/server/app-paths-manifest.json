@@ -1,4 +1,8 @@
 {
-  "/about/page": "app/about/page.js",
-  "/page": "app/page.js"
+  "/admin/dashboard/page": "app/admin/dashboard/page.js",
+  "/admin/login/page": "app/admin/login/page.js",
+  "/api/admin/notifications/recent/route": "app/api/admin/notifications/recent/route.js",
+  "/api/admin/notifications/stream/route": "app/api/admin/notifications/stream/route.js",
+  "/api/admin/notifications/unread/route": "app/api/admin/notifications/unread/route.js",
+  "/api/admin/survey-responses/route": "app/api/admin/survey-responses/route.js"
 }

@@ -1,7 +1,6 @@
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
@@ -11,6 +10,8 @@ import {
 } from "@/components/ui/card"
 import ResponsesTable from "@/components/admin/dashboard/responses-table"
 import BatchFilterTable from "@/components/admin/dashboard/batch-filter-table"
+import AdminNotificationCenter from "@/components/admin/dashboard/admin-notification-center"
+import AdminUserMenu from "@/components/admin/dashboard/admin-user-menu"
 import type { SurveyResponseRow } from "@/components/admin/dashboard/types"
 import {
   ADMIN_SESSION_COOKIE,
@@ -182,6 +183,10 @@ export default async function AdminDashboardPage() {
           <h1 className="text-lg font-bold leading-tight">CEBU INSTITUTE OF TECHNOLOGY</h1>
           <p className="text-sm font-semibold">UNIVERSITY</p>
         </div>
+        <div className="flex items-center gap-2">
+          <AdminNotificationCenter />
+          <AdminUserMenu username="Admin" />
+        </div>
       </div>
 
       <div className="flex-1 p-4 md:p-6">
@@ -248,11 +253,6 @@ export default async function AdminDashboardPage() {
                   .
                 </CardDescription>
               </div>
-              <form action="/admin/logout" method="post">
-                <Button type="submit" variant="outline">
-                  Log out
-                </Button>
-              </form>
             </CardHeader>
 
             <CardContent>

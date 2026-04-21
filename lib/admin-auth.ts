@@ -49,7 +49,12 @@ const safeEqual = (value: string, expectedValue: string) => {
 const createSessionSignature = (payload: string) => createHmac("sha256", getSessionSecret()).update(payload).digest("hex")
 
 export const getAdminApiBaseUrl = () =>
-  trimTrailingSlash(getConfiguredValue(process.env.ADMIN_API_BASE_URL, DEFAULT_ADMIN_API_BASE_URL))
+  trimTrailingSlash(
+    getConfiguredValue(
+      process.env.ADMIN_API_BASE_URL,
+      getConfiguredValue(process.env.NEXT_PUBLIC_API_URL, DEFAULT_ADMIN_API_BASE_URL),
+    ),
+  )
 
 export const buildAdminApiUrl = (path: string) => {
   const normalizedPath = path.startsWith("/") ? path : `/${path}`

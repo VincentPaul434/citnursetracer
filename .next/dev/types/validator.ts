@@ -92,6 +92,51 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../../app/api/admin/notifications/[notificationId]/read/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/admin/notifications/[notificationId]/read">> = Specific
+  const handler = {} as typeof import("../../../app/api/admin/notifications/[notificationId]/read/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/api/admin/notifications/read-all/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/admin/notifications/read-all">> = Specific
+  const handler = {} as typeof import("../../../app/api/admin/notifications/read-all/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/api/admin/notifications/recent/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/admin/notifications/recent">> = Specific
+  const handler = {} as typeof import("../../../app/api/admin/notifications/recent/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/api/admin/notifications/stream/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/admin/notifications/stream">> = Specific
+  const handler = {} as typeof import("../../../app/api/admin/notifications/stream/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/api/admin/notifications/unread/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/admin/notifications/unread">> = Specific
+  const handler = {} as typeof import("../../../app/api/admin/notifications/unread/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../../app/api/admin/survey-responses/route.ts
 {
   type __IsExpected<Specific extends RouteHandlerConfig<"/api/admin/survey-responses">> = Specific
