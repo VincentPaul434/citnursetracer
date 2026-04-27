@@ -34,6 +34,7 @@ export default function SurveySectionLicensureExamination({
   onSubmit,
 }: SurveySectionLicensureExaminationProps) {
   const requiresLicensureDetails = hasTakenPnle === "Yes"
+  const shouldShowPnleYearPassed = requiresLicensureDetails && licensureStatus === "Passed"
 
   return (
     <>
@@ -117,47 +118,49 @@ export default function SurveySectionLicensureExamination({
               </label>
             </div>
 
-            <div className="rounded-lg border border-maroon/20 p-5 space-y-4">
-              <p className="text-base font-medium text-foreground">
-                Year you passed the Philippines Nursing Licensure Exam (PNLE) <span className="text-maroon">*</span>
-              </p>
+            {shouldShowPnleYearPassed && (
+              <div className="rounded-lg border border-maroon/20 p-5 space-y-4">
+                <p className="text-base font-medium text-foreground">
+                  Year you passed the Philippines Nursing Licensure Exam (PNLE) <span className="text-maroon">*</span>
+                </p>
 
-              {["2020", "2021", "2022", "2023", "2024", "2025"].map((year) => (
-                <label key={year} className="flex items-center gap-3 text-foreground cursor-pointer">
+                {["2020", "2021", "2022", "2023", "2024", "2025"].map((year) => (
+                  <label key={year} className="flex items-center gap-3 text-foreground cursor-pointer">
+                    <input
+                      type="radio"
+                      name="pnleYearPassed"
+                      checked={pnleYearPassed === year}
+                      onChange={() => onPnleYearPassedChange(year)}
+                      className="h-4 w-4 accent-maroon"
+                      required={shouldShowPnleYearPassed}
+                    />
+                    <span>{year}</span>
+                  </label>
+                ))}
+
+                <div className="flex items-center gap-3">
                   <input
                     type="radio"
                     name="pnleYearPassed"
-                    checked={pnleYearPassed === year}
-                    onChange={() => onPnleYearPassedChange(year)}
+                    checked={pnleYearPassed === "Other"}
+                    onChange={() => onPnleYearPassedChange("Other")}
                     className="h-4 w-4 accent-maroon"
-                    required={requiresLicensureDetails}
+                    required={shouldShowPnleYearPassed}
                   />
-                  <span>{year}</span>
-                </label>
-              ))}
-
-              <div className="flex items-center gap-3">
-                <input
-                  type="radio"
-                  name="pnleYearPassed"
-                  checked={pnleYearPassed === "Other"}
-                  onChange={() => onPnleYearPassedChange("Other")}
-                  className="h-4 w-4 accent-maroon"
-                  required={requiresLicensureDetails}
-                />
-                <Label htmlFor="pnleYearPassedOther" className="text-foreground text-sm">
-                  Other:
-                </Label>
-                <Input
-                  id="pnleYearPassedOther"
-                  type="text"
-                  value={pnleYearPassedOther}
-                  onChange={onTextChange}
-                  className="bg-white text-foreground border-maroon/20 placeholder:text-muted-foreground"
-                  required={requiresLicensureDetails && pnleYearPassed === "Other"}
-                />
+                  <Label htmlFor="pnleYearPassedOther" className="text-foreground text-sm">
+                    Other:
+                  </Label>
+                  <Input
+                    id="pnleYearPassedOther"
+                    type="text"
+                    value={pnleYearPassedOther}
+                    onChange={onTextChange}
+                    className="bg-white text-foreground border-maroon/20 placeholder:text-muted-foreground"
+                    required={shouldShowPnleYearPassed && pnleYearPassed === "Other"}
+                  />
+                </div>
               </div>
-            </div>
+            )}
 
             <div className="rounded-lg border border-maroon/20 p-5 space-y-4">
               <p className="text-base font-medium text-foreground">

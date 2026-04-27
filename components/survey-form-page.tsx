@@ -252,6 +252,8 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
     setFormData((prev) => ({
       ...prev,
       licensureStatus: value,
+      pnleYearPassed: value === "Passed" ? prev.pnleYearPassed : "",
+      pnleYearPassedOther: value === "Passed" ? prev.pnleYearPassedOther : "",
     }))
   }
 
