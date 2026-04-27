@@ -58,7 +58,7 @@ const safeEqual = (value, expectedValue)=>{
     return (0, __TURBOPACK__imported__module__$5b$externals$5d2f$crypto__$5b$external$5d$__$28$crypto$2c$__cjs$29$__["timingSafeEqual"])(valueBuffer, expectedBuffer);
 };
 const createSessionSignature = (payload)=>(0, __TURBOPACK__imported__module__$5b$externals$5d2f$crypto__$5b$external$5d$__$28$crypto$2c$__cjs$29$__["createHmac"])("sha256", getSessionSecret()).update(payload).digest("hex");
-const getAdminApiBaseUrl = ()=>trimTrailingSlash(getConfiguredValue(process.env.ADMIN_API_BASE_URL, DEFAULT_ADMIN_API_BASE_URL));
+const getAdminApiBaseUrl = ()=>trimTrailingSlash(getConfiguredValue(process.env.ADMIN_API_BASE_URL, getConfiguredValue(("TURBOPACK compile-time value", "http://localhost:8080"), DEFAULT_ADMIN_API_BASE_URL)));
 const buildAdminApiUrl = (path)=>{
     const normalizedPath = path.startsWith("/") ? path : `/${path}`;
     return `${getAdminApiBaseUrl()}${normalizedPath}`;

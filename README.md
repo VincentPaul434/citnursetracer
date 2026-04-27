@@ -12,8 +12,11 @@ Configure the backend API URL and session signing secret:
 
 ```env
 ADMIN_API_BASE_URL=https://tracer-backend-mkls.onrender.com
+NEXT_PUBLIC_API_URL=https://tracer-backend-mkls.onrender.com
 ADMIN_SESSION_SECRET=your-long-random-secret
 ```
+
+`ADMIN_API_BASE_URL` is preferred for server-side routes. If it is not set, the app falls back to `NEXT_PUBLIC_API_URL`.
 
 The admin login form validates credentials against the backend endpoint `/api/v1/auth/login` and stores the returned token in a signed HttpOnly session cookie for server-side admin requests.
 
