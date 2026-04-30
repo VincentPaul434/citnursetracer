@@ -24,6 +24,7 @@ interface SurveyFormPageProps {
 
 const createInitialFormData = () => ({
   email: "",
+  idUploadUrl: "",
   consent: "",
   fullName: "",
   gender: "",
@@ -110,6 +111,10 @@ const hasAtLeastOneChecked = (values: Record<string, boolean>) => Object.values(
 
 export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps) {
   const [formData, setFormData] = useState(createInitialFormData)
+  const [idFile, setIdFile] = useState<File | null>(null)
+  const [idUploadError, setIdUploadError] = useState("")
+  const [idUploadStatus, setIdUploadStatus] = useState("")
+  const [isUploadingId, setIsUploadingId] = useState(false)
   const [consentDeclined, setConsentDeclined] = useState(false)
   const [honorsError, setHonorsError] = useState("")
   const [firstJobSourceError, setFirstJobSourceError] = useState("")
@@ -455,9 +460,119 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
     }))
   }
 
+  const getUploadMessage = (payload: unknown) => {
+    if (!payload || typeof payload !== "object") {
+      return null
+    }
+
+    const message = (payload as { message?: unknown }).message
+    if (typeof message !== "string") {
+      return null
+    }
+
+    const trimmed = message.trim()
+    return trimmed.length > 0 ? trimmed : null
+  }
+
+  const getUploadUrl = (payload: unknown) => {
+    if (!payload || typeof payload !== "object") {
+      return null
+    }
+
+    const candidateKeys = ["url", "idUrl", "fileUrl", "downloadUrl", "location", "path"] as const
+    const payloadRecord = payload as Record<string, unknown>
+
+    for (const key of candidateKeys) {
+      const value = payloadRecord[key]
+      if (typeof value === "string" && value.trim().length > 0) {
+        return value.trim()
+      }
+    }
+
+    return null
+  }
+
+  const handleIdFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] ?? null
+    setIdFile(file)
+    setIdUploadError("")
+    setIdUploadStatus("")
+
+    if (!file) {
+      setFormData((prev) => ({
+        ...prev,
+        idUploadUrl: "",
+      }))
+    }
+  }
+
+  const uploadSelectedId = async () => {
+    if (!idFile) {
+      setIdUploadError("Please choose a file to upload.")
+      return false
+    }
+
+    try {
+      setIsUploadingId(true)
+      setIdUploadError("")
+      setIdUploadStatus("")
+
+      const uploadFormData = new FormData()
+      uploadFormData.append("file", idFile)
+
+      const response = await fetch("/api/id-upload", {
+        method: "POST",
+        body: uploadFormData,
+      })
+
+      const payload = (await response.json().catch(() => null)) as unknown
+
+      if (!response.ok) {
+        setIdUploadError(getUploadMessage(payload) ?? "Unable to upload ID right now. Please try again.")
+        return false
+      }
+
+      const uploadedUrl = getUploadUrl(payload)
+
+      setFormData((prev) => ({
+        ...prev,
+        idUploadUrl: uploadedUrl ?? prev.idUploadUrl,
+      }))
+
+      if (uploadedUrl) {
+        setIdUploadStatus("ID uploaded successfully.")
+      } else {
+        setIdUploadStatus("ID uploaded successfully. URL was not provided by the server.")
+      }
+
+      return true
+    } catch {
+      setIdUploadError("Unable to reach the upload service. Please check your connection and try again.")
+      return false
+    } finally {
+      setIsUploadingId(false)
+    }
+  }
+
+  const handleIdUpload = async () => {
+    await uploadSelectedId()
+  }
+
   const handleCombinedSubmit = async () => {
-    if (isSubmitting) {
+    if (isSubmitting || isUploadingId) {
+      if (isUploadingId) {
+        setFormError("Please wait for the ID upload to finish before submitting.")
+      }
       return
+    }
+
+    if (idFile && !formData.idUploadUrl) {
+      const hasUploaded = await uploadSelectedId()
+
+      if (!hasUploaded) {
+        setFormError("Please resolve the ID upload issue or remove the selected file before submitting.")
+        return
+      }
     }
 
     if (formData.consent === "no") {
@@ -593,6 +708,10 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
 
   const handleStartNewSurvey = () => {
     setFormData(createInitialFormData())
+    setIdFile(null)
+    setIdUploadError("")
+    setIdUploadStatus("")
+    setIsUploadingId(false)
     setConsentDeclined(false)
     setHonorsError("")
     setFirstJobSourceError("")
@@ -855,6 +974,38 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
             />
           </div>
 
+          <div className="rounded-lg border border-maroon/20 p-5 space-y-3">
+            <Label htmlFor="idUpload" className="text-foreground text-base">
+              Alumni ID Upload <span className="text-muted-foreground font-normal">(optional)</span>
+            </Label>
+            <p className="text-sm text-muted-foreground">
+              Upload a photo or PDF copy of your alumni ID for verification. This does not affect your ability to submit the survey.
+            </p>
+            <Input
+              id="idUpload"
+              type="file"
+              accept="image/*,.pdf"
+              onChange={handleIdFileChange}
+              className="bg-white text-foreground border-maroon/20 file:text-maroon file:font-semibold"
+            />
+            <div className="flex flex-wrap items-center gap-3">
+              <Button
+                type="button"
+                variant="secondary"
+                onClick={handleIdUpload}
+                disabled={!idFile || isUploadingId || isSubmitting}
+                className="bg-white text-maroon border border-maroon/20 hover:bg-maroon/5"
+              >
+                {isUploadingId ? "Uploading Alumni ID..." : "Upload Alumni ID"}
+              </Button>
+              {formData.idUploadUrl && (
+                <p className="text-xs text-emerald-700 break-all">Uploaded URL: {formData.idUploadUrl}</p>
+              )}
+            </div>
+            {idUploadStatus && <p className="text-sm text-emerald-700 font-medium">{idUploadStatus}</p>}
+            {idUploadError && <p className="text-sm text-maroon font-medium">{idUploadError}</p>}
+          </div>
+
           <SurveySectionPersonalInfo
             fullName={formData.fullName}
             gender={formData.gender}
@@ -1028,9 +1179,9 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
               type="button"
               onClick={handleCombinedSubmit}
               className="bg-gold text-maroon hover:bg-gold/90 font-semibold px-8"
-              disabled={isSubmitting}
+              disabled={isSubmitting || isUploadingId}
             >
-              {isSubmitting ? "Submitting..." : "Submit Survey"}
+              {isSubmitting ? "Submitting..." : isUploadingId ? "Uploading Alumni ID..." : "Submit Survey"}
             </Button>
           </div>
         </div>

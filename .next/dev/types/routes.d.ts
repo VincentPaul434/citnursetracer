@@ -22,6 +22,7 @@ interface ParamMap {
   "/api/admin/notifications/stream": {}
   "/api/admin/notifications/unread": {}
   "/api/admin/survey-responses": {}
+  "/api/id-upload": {}
   "/api/survey-responses": {}
 }
 
