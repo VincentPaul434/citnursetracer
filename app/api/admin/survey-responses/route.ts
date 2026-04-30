@@ -66,9 +66,7 @@ export async function GET(request: Request) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
   }
 
-  // Use your deployed API base URL
-  const API_BASE_URL = process.env.ADMIN_API_BASE_URL!;
-  const url = `${API_BASE_URL}/api/v1/admin/survey-responses${search}`;
+  const url = `${buildAdminApiUrl("/api/v1/admin/survey-responses")}${search}`;
 
   const backendResponse = await fetch(url, {
     method: "GET",
