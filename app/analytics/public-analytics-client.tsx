@@ -22,6 +22,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts"
+import { Briefcase, CheckCircle2, FileText, ClipboardList, Users } from "lucide-react"
 
 const DEFAULT_API_BASE_URL = "https://tracer-backend-mkls.onrender.com"
 
@@ -412,6 +413,32 @@ const buildSummaryMetrics = (payload: unknown, trendSeries: ChartPoint[]) => {
   return metrics
 }
 
+const getMetricIcon = (label: string) => {
+  const normalized = label.toLowerCase()
+
+  if (normalized.includes("total")) {
+    return Users
+  }
+
+  if (normalized.includes("finalized")) {
+    return CheckCircle2
+  }
+
+  if (normalized.includes("draft")) {
+    return ClipboardList
+  }
+
+  if (normalized.includes("employment")) {
+    return Briefcase
+  }
+
+  if (normalized.includes("pnle") || normalized.includes("pass")) {
+    return FileText
+  }
+
+  return Users
+}
+
 
 export default function PublicAnalyticsClient() {
   const searchParams = useSearchParams()
@@ -611,10 +638,20 @@ export default function PublicAnalyticsClient() {
                   ? summaryMetrics.map((metric) => (
                       <Card key={metric.label} className="border-maroon/10 shadow-sm">
                         <CardHeader className="pb-2">
-                          <CardDescription>{metric.label}</CardDescription>
-                          <CardTitle className="text-2xl text-maroon">
-                            {metric.value}
-                          </CardTitle>
+                          <div className="flex items-start justify-between gap-3">
+                            <div>
+                              <CardDescription>{metric.label}</CardDescription>
+                              <CardTitle className="text-2xl text-maroon">
+                                {metric.value}
+                              </CardTitle>
+                            </div>
+                            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-maroon/10">
+                              {(() => {
+                                const Icon = getMetricIcon(metric.label)
+                                return <Icon className="h-4 w-4 text-maroon" />
+                              })()}
+                            </div>
+                          </div>
                         </CardHeader>
                         {(metric.helper || metric.sparkline) && (
                           <CardContent className="pt-0">
