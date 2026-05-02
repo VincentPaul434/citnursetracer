@@ -99,7 +99,11 @@ const toKey = (value: string) => value.toLowerCase().replace(/\s+/g, "").replace
 const sumCountMap = (map: CountMap) =>
   Object.values(map).reduce((total, value) => total + value, 0)
 
-const extractCountMap = (payload: unknown, key: string) => {
+const extractCountMap = (
+  payload: unknown,
+  key: string,
+  options?: { maxLabelLength?: number },
+) => {
   if (!isRecord(payload)) {
     return null
   }
@@ -114,9 +118,11 @@ const extractCountMap = (payload: unknown, key: string) => {
     return null
   }
 
+  const maxLabelLength = options?.maxLabelLength ?? Infinity
   const entries = Object.entries(source)
     .map(([label, value]) => ({ label, value: toNumber(value) }))
     .filter((entry): entry is { label: string; value: number } => entry.value !== null)
+    .filter((entry) => entry.label.length <= maxLabelLength)
 
   if (entries.length === 0) {
     return null
@@ -464,8 +470,8 @@ export default function PublicAnalyticsClient() {
     }
 
     const yearlyMap =
-      extractCountMap(state.data, "yearGraduated") ??
-      extractCountMap(state.data, "pnleYearPassed")
+      extractCountMap(state.data, "yearGraduated", { maxLabelLength: MAX_VALUE_LENGTH }) ??
+      extractCountMap(state.data, "pnleYearPassed", { maxLabelLength: MAX_VALUE_LENGTH })
 
     return yearlyMap ? filterYearSeries(toSortedSeries(yearlyMap)) : []
   }, [state.status, state.data])
@@ -486,7 +492,7 @@ export default function PublicAnalyticsClient() {
       return [] as PiePoint[]
     }
 
-    const map = extractCountMap(state.data, "employmentStatus")
+    const map = extractCountMap(state.data, "employmentStatus", { maxLabelLength: MAX_VALUE_LENGTH })
     if (!map) {
       return [] as PiePoint[]
     }
