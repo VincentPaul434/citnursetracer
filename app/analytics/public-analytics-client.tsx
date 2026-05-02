@@ -18,11 +18,6 @@ type SummaryMetric = {
   helper?: string
 }
 
-type BreakdownSection = {
-  title: string
-  entries: Array<{ label: string; value: number }>
-}
-
 const getApiBaseUrl = () => {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL ?? DEFAULT_API_BASE_URL
   return baseUrl.endsWith("/") ? baseUrl.slice(0, -1) : baseUrl
@@ -63,23 +58,6 @@ const toNumber = (value: unknown) => {
   return null
 }
 
-const extractNumericRecord = (value: unknown): Array<{ label: string; value: number }> => {
-  if (!isRecord(value)) {
-    return []
-  }
-
-  const entries = Object.entries(value)
-    .map(([key, entryValue]) => {
-      const numberValue = toNumber(entryValue)
-      if (numberValue === null) {
-        return null
-      }
-      return { label: toTitleCase(key), value: numberValue }
-    })
-    .filter((entry): entry is { label: string; value: number } => !!entry)
-
-  return entries.length > 0 ? entries : []
-}
 
 const extractTotalResponses = (payload: unknown) => {
   if (Array.isArray(payload)) {
@@ -235,35 +213,64 @@ export default function PublicAnalyticsClient() {
   )
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-background">
       <div className="flex-1 p-4 md:p-6">
-        <div className="mx-auto w-full max-w-4xl space-y-6">
-          <div className="rounded-lg border border-maroon/20 p-5 space-y-3">
-            <p className="text-sm font-semibold uppercase tracking-wide text-maroon">Alumni Tracer Survey</p>
-            <h1 className="text-3xl font-bold text-maroon">Public Analytics</h1>
-            <p className="text-foreground leading-relaxed">
-              This view is powered by the public analytics API. If you received this link from an admin, the data is already filtered.
-            </p>
+        <div className="mx-auto w-full max-w-6xl space-y-6">
+          <div className="rounded-lg border border-maroon/20 bg-white/60 p-5 backdrop-blur">
+            <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-wide text-maroon">Alumni Tracer Survey</p>
+                <h1 className="text-3xl font-bold text-maroon">Public Analytics Dashboard</h1>
+                <p className="text-sm text-muted-foreground">
+                  Summary snapshots from the public analytics API.
+                </p>
+              </div>
+              <div className="rounded-full border border-maroon/20 bg-maroon/5 px-4 py-2 text-xs font-semibold text-maroon">
+                Updated on load
+              </div>
+            </div>
           </div>
 
-          <Card className="border-maroon/20">
-            <CardHeader>
-              <CardTitle>Summary</CardTitle>
-              <CardDescription>
-                Quick response counts from the public analytics endpoint.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              {state.status === "loading" && (
-                <p className="text-sm text-muted-foreground">Loading analytics...</p>
-              )}
-              {state.status === "error" && (
-                <p className="text-sm text-maroon">{state.error}</p>
-              )}
-              {state.status === "success" && summaryMetrics.length > 0 && (
-                <div className="space-y-4">
-                  <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                    {summaryMetrics.map((metric) => (
+          <div className="grid gap-4 lg:grid-cols-[240px,1fr]">
+            <Card className="border-maroon/15">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-base text-maroon">Filters</CardTitle>
+                <CardDescription>Auto-applied by the shared link.</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4 text-sm">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Year</p>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {"2024,2023,2022".split(",").map((year) => (
+                      <span
+                        key={year}
+                        className="rounded-full border border-muted/70 bg-muted/40 px-3 py-1 text-xs"
+                      >
+                        {year}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Program</p>
+                  <div className="mt-2 space-y-2">
+                    {["BS Nursing", "BS Midwifery", "BS Public Health"].map((program) => (
+                      <div key={program} className="rounded-md border border-muted/70 px-3 py-2 text-xs">
+                        {program}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="text-xs text-muted-foreground">
+                  Filters are pre-selected by admins for each shared link.
+                </div>
+              </CardContent>
+            </Card>
+
+            <div className="space-y-4">
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                {state.status === "success" && summaryMetrics.length > 0
+                  ? summaryMetrics.map((metric) => (
                       <Card key={metric.label} className="border-maroon/10 shadow-sm">
                         <CardHeader className="pb-2">
                           <CardDescription>{metric.label}</CardDescription>
@@ -277,17 +284,49 @@ export default function PublicAnalyticsClient() {
                           </CardContent>
                         ) : null}
                       </Card>
+                    ))
+                  : Array.from({ length: 4 }).map((_, index) => (
+                      <Card key={`placeholder-${index}`} className="border-dashed border-muted/60">
+                        <CardHeader className="pb-2">
+                          <CardDescription>
+                            {state.status === "loading" ? "Loading" : "Metric"}
+                          </CardDescription>
+                          <CardTitle className="text-2xl text-muted-foreground">
+                            {state.status === "loading" ? "..." : "--"}
+                          </CardTitle>
+                        </CardHeader>
+                      </Card>
                     ))}
-                  </div>
-                </div>
-              )}
-              {state.status === "success" && summaryMetrics.length === 0 && (
-                <p className="text-sm text-muted-foreground">
-                  Analytics loaded. No summary fields were detected in the payload.
-                </p>
-              )}
-            </CardContent>
-          </Card>
+              </div>
+
+              <Card className="border-maroon/15">
+                <CardHeader>
+                  <CardTitle className="text-base text-maroon">Summary Notes</CardTitle>
+                  <CardDescription>
+                    Counts represent the latest response totals available in the public analytics API.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  {state.status === "loading" && (
+                    <p className="text-sm text-muted-foreground">Loading analytics...</p>
+                  )}
+                  {state.status === "error" && (
+                    <p className="text-sm text-maroon">{state.error}</p>
+                  )}
+                  {state.status === "success" && summaryMetrics.length === 0 && (
+                    <p className="text-sm text-muted-foreground">
+                      Analytics loaded. No summary fields were detected in the payload.
+                    </p>
+                  )}
+                  {state.status === "success" && summaryMetrics.length > 0 && (
+                    <p className="text-sm text-muted-foreground">
+                      Use the shared link filters to focus on specific cohorts.
+                    </p>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
+          </div>
         </div>
       </div>
     </div>
