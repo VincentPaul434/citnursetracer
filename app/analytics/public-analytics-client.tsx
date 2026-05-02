@@ -707,9 +707,12 @@ export default function PublicAnalyticsClient() {
                           <Line
                             dataKey="value"
                             type="monotone"
-                            stroke="var(--color-value)"
-                            strokeWidth={2.5}
-                            dot={false}
+                            stroke="hsl(var(--chart-2))"
+                            strokeWidth={3}
+                            strokeOpacity={1}
+                            connectNulls
+                            dot={{ r: 3, fill: "hsl(var(--chart-2))" }}
+                            activeDot={{ r: 5 }}
                           />
                         </LineChart>
                       </ChartContainer>
