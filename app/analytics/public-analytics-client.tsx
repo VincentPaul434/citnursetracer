@@ -177,26 +177,6 @@ const buildSummaryMetrics = (payload: unknown) => {
   return metrics
 }
 
-const buildBreakdownSections = (payload: unknown) => {
-  if (!isRecord(payload)) {
-    return [] as BreakdownSection[]
-  }
-
-  const sections: BreakdownSection[] = []
-  const sources: Array<[string, unknown]> = Object.entries(payload)
-  if (isRecord(payload.data)) {
-    sources.push(...Object.entries(payload.data))
-  }
-
-  for (const [key, value] of sources) {
-    const numericEntries = extractNumericRecord(value)
-    if (numericEntries.length > 0) {
-      sections.push({ title: toTitleCase(key), entries: numericEntries })
-    }
-  }
-
-  return sections
-}
 
 export default function PublicAnalyticsClient() {
   const searchParams = useSearchParams()
@@ -254,11 +234,6 @@ export default function PublicAnalyticsClient() {
     [state.status, state.data],
   )
 
-  const breakdownSections = useMemo(
-    () => (state.status === "success" ? buildBreakdownSections(state.data) : []),
-    [state.status, state.data],
-  )
-
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <div className="flex-1 p-4 md:p-6">
@@ -273,9 +248,9 @@ export default function PublicAnalyticsClient() {
 
           <Card className="border-maroon/20">
             <CardHeader>
-              <CardTitle>Analytics data</CardTitle>
+              <CardTitle>Summary</CardTitle>
               <CardDescription>
-                JSON payload returned by the public analytics endpoint.
+                Quick response counts from the public analytics endpoint.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -310,32 +285,6 @@ export default function PublicAnalyticsClient() {
                 <p className="text-sm text-muted-foreground">
                   Analytics loaded. No summary fields were detected in the payload.
                 </p>
-              )}
-              {state.status === "success" && breakdownSections.length > 0 && (
-                <div className="space-y-4">
-                  {breakdownSections.map((section) => (
-                    <Card key={section.title} className="border-maroon/10">
-                      <CardHeader className="pb-3">
-                        <CardTitle className="text-base text-maroon">
-                          {section.title}
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="grid gap-2 sm:grid-cols-2">
-                          {section.entries.map((entry) => (
-                            <div
-                              key={entry.label}
-                              className="flex items-center justify-between rounded-md border border-muted/70 bg-muted/50 px-3 py-2 text-sm"
-                            >
-                              <span className="font-medium text-foreground">{entry.label}</span>
-                              <span className="text-maroon font-semibold">{entry.value}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
               )}
             </CardContent>
           </Card>
