@@ -3,6 +3,24 @@
 import { useEffect, useMemo, useState } from "react"
 import { useSearchParams } from "next/navigation"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  ChartContainer,
+  ChartLegend,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart"
+import {
+  Area,
+  AreaChart,
+  CartesianGrid,
+  Cell,
+  Line,
+  LineChart,
+  Pie,
+  PieChart,
+  XAxis,
+  YAxis,
+} from "recharts"
 
 const DEFAULT_API_BASE_URL = "https://tracer-backend-mkls.onrender.com"
 
@@ -16,11 +34,23 @@ type SummaryMetric = {
   label: string
   value: number | string
   helper?: string
+  sparkline?: Array<{ label: string; value: number }>
 }
 
 type BreakdownSection = {
   title: string
   entries: Array<{ label: string; value: number }>
+}
+
+type CountMap = Record<string, number>
+
+type ChartPoint = {
+  label: string
+  value: number
+}
+
+type PiePoint = ChartPoint & {
+  fill: string
 }
 
 const getApiBaseUrl = () => {
@@ -61,6 +91,77 @@ const toNumber = (value: unknown) => {
   }
 
   return null
+}
+
+const toKey = (value: string) => value.toLowerCase().replace(/\s+/g, "").replace(/[^a-z0-9]/g, "")
+
+const sumCountMap = (map: CountMap) =>
+  Object.values(map).reduce((total, value) => total + value, 0)
+
+const extractCountMap = (payload: unknown, key: string) => {
+  if (!isRecord(payload)) {
+    return null
+  }
+
+  const source = isRecord(payload[key])
+    ? payload[key]
+    : isRecord(payload.data) && isRecord(payload.data[key])
+      ? payload.data[key]
+      : null
+
+  if (!source) {
+    return null
+  }
+
+  const entries = Object.entries(source)
+    .map(([label, value]) => ({ label, value: toNumber(value) }))
+    .filter((entry): entry is { label: string; value: number } => entry.value !== null)
+
+  if (entries.length === 0) {
+    return null
+  }
+
+  return entries.reduce((acc, entry) => {
+    acc[entry.label] = entry.value
+    return acc
+  }, {} as CountMap)
+}
+
+const toSortedSeries = (map: CountMap) => {
+  const entries = Object.entries(map).map(([label, value]) => ({ label, value }))
+  const numeric: ChartPoint[] = []
+  const nonNumeric: ChartPoint[] = []
+
+  entries.forEach((entry) => {
+    if (/^\d{4}$/.test(entry.label)) {
+      numeric.push(entry)
+    } else {
+      nonNumeric.push(entry)
+    }
+  })
+
+  numeric.sort((a, b) => Number(a.label) - Number(b.label))
+  nonNumeric.sort((a, b) => a.label.localeCompare(b.label))
+
+  return [...numeric, ...nonNumeric]
+}
+
+const findCount = (map: CountMap | null, keys: string[]) => {
+  if (!map) {
+    return null
+  }
+  const normalizedKeys = keys.map((key) => toKey(key))
+  for (const [label, value] of Object.entries(map)) {
+    if (normalizedKeys.includes(toKey(label))) {
+      return value
+    }
+  }
+  return null
+}
+
+const formatPercent = (value: number) => {
+  const rounded = Number.isInteger(value) ? value.toFixed(0) : value.toFixed(1)
+  return `${rounded}%`
 }
 
 const isPlainObjectArray = (value: unknown): value is Array<Record<string, unknown>> =>
@@ -236,35 +337,55 @@ const extractTotalResponses = (payload: unknown) => {
   return null
 }
 
-const buildSummaryMetrics = (payload: unknown) => {
+const buildSummaryMetrics = (payload: unknown, trendSeries: ChartPoint[]) => {
   const metrics: SummaryMetric[] = []
-  const seen = new Set<string>()
-
-  const addMetric = (metric: SummaryMetric) => {
-    if (!metric.label || seen.has(metric.label)) {
-      return
-    }
-    seen.add(metric.label)
-    metrics.push(metric)
-  }
-
   const totalResponses = extractTotalResponses(payload)
+
   if (totalResponses !== null) {
-    addMetric({ label: "Total responses", value: totalResponses })
+    metrics.push({
+      label: "Total responses",
+      value: totalResponses,
+      sparkline: trendSeries.length > 0 ? trendSeries : undefined,
+    })
   }
 
   if (!isRecord(payload)) {
     return metrics
   }
 
-  const sources: Array<[string, unknown]> = Object.entries(payload)
-  if (isRecord(payload.data)) {
-    sources.push(...Object.entries(payload.data))
+  const finalizedResponses = toNumber(payload.finalizedResponses)
+  if (finalizedResponses !== null) {
+    metrics.push({ label: "Finalized responses", value: finalizedResponses })
   }
 
-  for (const [key, value] of sources) {
-    if (Array.isArray(value)) {
-      addMetric({ label: `Total ${toTitleCase(key)}`, value: value.length })
+  const draftResponses = toNumber(payload.draftResponses)
+  if (draftResponses !== null) {
+    metrics.push({ label: "Draft responses", value: draftResponses })
+  }
+
+  const employmentStatus = extractCountMap(payload, "employmentStatus")
+  const employedCount = (findCount(employmentStatus, ["Employed"]) ?? 0) +
+    (findCount(employmentStatus, ["Self employed", "Self-employed"]) ?? 0)
+
+  if (employmentStatus && totalResponses) {
+    const rate = (employedCount / totalResponses) * 100
+    metrics.push({
+      label: "Employment rate",
+      value: formatPercent(rate),
+      helper: `${employedCount.toLocaleString()} currently working`,
+    })
+  }
+
+  const licensureStatus = extractCountMap(payload, "licensureStatus")
+  if (licensureStatus) {
+    const passed = findCount(licensureStatus, ["Passed"]) ?? 0
+    const total = sumCountMap(licensureStatus)
+    if (total > 0) {
+      metrics.push({
+        label: "PNLE pass rate",
+        value: formatPercent((passed / total) * 100),
+        helper: `${passed.toLocaleString()} passed`,
+      })
     }
   }
 
@@ -323,14 +444,91 @@ export default function PublicAnalyticsClient() {
     void run()
   }, [analyticsQuery, token])
 
+  const trendSeries = useMemo(() => {
+    if (state.status !== "success") {
+      return [] as ChartPoint[]
+    }
+
+    const yearlyMap =
+      extractCountMap(state.data, "yearGraduated") ??
+      extractCountMap(state.data, "pnleYearPassed")
+
+    return yearlyMap ? toSortedSeries(yearlyMap) : []
+  }, [state.status, state.data])
+
+  const cumulativeSeries = useMemo(() => {
+    if (trendSeries.length === 0) {
+      return [] as ChartPoint[]
+    }
+    let running = 0
+    return trendSeries.map((entry) => {
+      running += entry.value
+      return { label: entry.label, value: running }
+    })
+  }, [trendSeries])
+
+  const employmentSeries = useMemo(() => {
+    if (state.status !== "success") {
+      return [] as PiePoint[]
+    }
+
+    const map = extractCountMap(state.data, "employmentStatus")
+    if (!map) {
+      return [] as PiePoint[]
+    }
+
+    const colors = [
+      "hsl(var(--chart-1))",
+      "hsl(var(--chart-2))",
+      "hsl(var(--chart-3))",
+      "hsl(var(--chart-4))",
+      "hsl(var(--chart-5))",
+    ]
+
+    return toSortedSeries(map).map((entry, index) => ({
+      ...entry,
+      fill: colors[index % colors.length],
+    }))
+  }, [state.status, state.data])
+
   const summaryMetrics = useMemo(
-    () => (state.status === "success" ? buildSummaryMetrics(state.data) : []),
-    [state.status, state.data],
+    () => (state.status === "success" ? buildSummaryMetrics(state.data, trendSeries) : []),
+    [state.status, state.data, trendSeries],
   )
 
   const categoricalBreakdowns = useMemo(
     () => (state.status === "success" ? collectCategoricalBreakdowns(state.data) : []),
     [state.status, state.data],
+  )
+
+  const trendChartConfig = useMemo(
+    () => ({
+      value: {
+        label: "Responses",
+        color: "hsl(var(--chart-2))",
+      },
+    }),
+    [],
+  )
+
+  const cumulativeChartConfig = useMemo(
+    () => ({
+      value: {
+        label: "Cumulative",
+        color: "hsl(var(--chart-1))",
+      },
+    }),
+    [],
+  )
+
+  const employmentChartConfig = useMemo(
+    () => ({
+      value: {
+        label: "Responses",
+        color: "hsl(var(--chart-2))",
+      },
+    }),
+    [],
   )
 
   return (
@@ -399,11 +597,35 @@ export default function PublicAnalyticsClient() {
                             {metric.value}
                           </CardTitle>
                         </CardHeader>
-                        {metric.helper ? (
-                          <CardContent className="pt-0 text-xs text-muted-foreground">
-                            {metric.helper}
+                        {(metric.helper || metric.sparkline) && (
+                          <CardContent className="pt-0">
+                            {metric.helper ? (
+                              <p className="text-xs text-muted-foreground">{metric.helper}</p>
+                            ) : null}
+                            {metric.sparkline && metric.sparkline.length > 1 ? (
+                              <div className="mt-2">
+                                <ChartContainer
+                                  className="aspect-auto h-16 w-full"
+                                  config={{
+                                    value: {
+                                      label: metric.label,
+                                      color: "hsl(var(--chart-3))",
+                                    },
+                                  }}
+                                >
+                                  <LineChart data={metric.sparkline} margin={{ top: 6, left: 0, right: 0 }}>
+                                    <Line
+                                      dataKey="value"
+                                      stroke="var(--color-value)"
+                                      strokeWidth={2}
+                                      dot={false}
+                                    />
+                                  </LineChart>
+                                </ChartContainer>
+                              </div>
+                            ) : null}
                           </CardContent>
-                        ) : null}
+                        )}
                       </Card>
                     ))
                   : Array.from({ length: 4 }).map((_, index) => (
@@ -443,6 +665,97 @@ export default function PublicAnalyticsClient() {
                     <p className="text-sm text-muted-foreground">
                       Use the shared link filters to focus on specific cohorts.
                     </p>
+                  )}
+                </CardContent>
+              </Card>
+
+              <div className="grid gap-4 lg:grid-cols-3">
+                <Card className="border-maroon/15 lg:col-span-2">
+                  <CardHeader>
+                    <CardTitle className="text-base text-maroon">Responses over time</CardTitle>
+                    <CardDescription>Yearly trend based on reported graduation or PNLE year.</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    {trendSeries.length === 0 ? (
+                      <p className="text-sm text-muted-foreground">No trend data available.</p>
+                    ) : (
+                      <ChartContainer config={trendChartConfig}>
+                        <LineChart data={trendSeries} margin={{ left: 8, right: 16, top: 12 }}>
+                          <CartesianGrid vertical={false} />
+                          <XAxis dataKey="label" tickLine={false} axisLine={false} />
+                          <YAxis tickLine={false} axisLine={false} width={32} />
+                          <ChartTooltip content={<ChartTooltipContent />} />
+                          <Line
+                            dataKey="value"
+                            type="monotone"
+                            stroke="var(--color-value)"
+                            strokeWidth={2.5}
+                            dot={false}
+                          />
+                        </LineChart>
+                      </ChartContainer>
+                    )}
+                  </CardContent>
+                </Card>
+
+                <Card className="border-maroon/15">
+                  <CardHeader>
+                    <CardTitle className="text-base text-maroon">Employment status</CardTitle>
+                    <CardDescription>Share of respondents by current status.</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    {employmentSeries.length === 0 ? (
+                      <p className="text-sm text-muted-foreground">No employment data available.</p>
+                    ) : (
+                      <ChartContainer config={employmentChartConfig}>
+                        <PieChart>
+                          <ChartTooltip content={<ChartTooltipContent nameKey="label" />} />
+                          <Pie
+                            data={employmentSeries}
+                            dataKey="value"
+                            nameKey="label"
+                            innerRadius={60}
+                            outerRadius={90}
+                          >
+                            {employmentSeries.map((entry) => (
+                              <Cell
+                                key={`employment-${entry.label}`}
+                                fill={entry.fill}
+                              />
+                            ))}
+                          </Pie>
+                          <ChartLegend verticalAlign="bottom" />
+                        </PieChart>
+                      </ChartContainer>
+                    )}
+                  </CardContent>
+                </Card>
+              </div>
+
+              <Card className="border-maroon/15">
+                <CardHeader>
+                  <CardTitle className="text-base text-maroon">Cumulative responses</CardTitle>
+                  <CardDescription>Running total over the same yearly window.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  {cumulativeSeries.length === 0 ? (
+                    <p className="text-sm text-muted-foreground">No cumulative data available.</p>
+                  ) : (
+                    <ChartContainer config={cumulativeChartConfig}>
+                      <AreaChart data={cumulativeSeries} margin={{ left: 8, right: 16, top: 12 }}>
+                        <CartesianGrid vertical={false} />
+                        <XAxis dataKey="label" tickLine={false} axisLine={false} />
+                        <YAxis tickLine={false} axisLine={false} width={32} />
+                        <ChartTooltip content={<ChartTooltipContent />} />
+                        <Area
+                          dataKey="value"
+                          type="monotone"
+                          stroke="var(--color-value)"
+                          fill="var(--color-value)"
+                          fillOpacity={0.2}
+                        />
+                      </AreaChart>
+                    </ChartContainer>
                   )}
                 </CardContent>
               </Card>
