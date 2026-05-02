@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import {
   ChartContainer,
   ChartLegend,
+  ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
@@ -163,6 +164,19 @@ const formatPercent = (value: number) => {
   const rounded = Number.isInteger(value) ? value.toFixed(0) : value.toFixed(1)
   return `${rounded}%`
 }
+
+const isYearLabel = (label: string) => /^\d{4}$/.test(label)
+
+const filterYearSeries = (series: ChartPoint[]) => {
+  const numeric = series.filter((entry) => isYearLabel(entry.label))
+  return numeric.length > 0 ? numeric : series
+}
+
+const buildColorPalette = (count: number) =>
+  Array.from({ length: count }, (_, index) => {
+    const hue = (200 + index * 45) % 360
+    return `hsl(${hue} 70% 52%)`
+  })
 
 const isPlainObjectArray = (value: unknown): value is Array<Record<string, unknown>> =>
   Array.isArray(value) && value.every((entry) => isRecord(entry))
@@ -453,7 +467,7 @@ export default function PublicAnalyticsClient() {
       extractCountMap(state.data, "yearGraduated") ??
       extractCountMap(state.data, "pnleYearPassed")
 
-    return yearlyMap ? toSortedSeries(yearlyMap) : []
+    return yearlyMap ? filterYearSeries(toSortedSeries(yearlyMap)) : []
   }, [state.status, state.data])
 
   const cumulativeSeries = useMemo(() => {
@@ -477,15 +491,10 @@ export default function PublicAnalyticsClient() {
       return [] as PiePoint[]
     }
 
-    const colors = [
-      "hsl(var(--chart-1))",
-      "hsl(var(--chart-2))",
-      "hsl(var(--chart-3))",
-      "hsl(var(--chart-4))",
-      "hsl(var(--chart-5))",
-    ]
+    const entries = toSortedSeries(map)
+    const colors = buildColorPalette(entries.length)
 
-    return toSortedSeries(map).map((entry, index) => ({
+    return entries.map((entry, index) => ({
       ...entry,
       fill: colors[index % colors.length],
     }))
@@ -521,15 +530,19 @@ export default function PublicAnalyticsClient() {
     [],
   )
 
-  const employmentChartConfig = useMemo(
-    () => ({
-      value: {
-        label: "Responses",
-        color: "hsl(var(--chart-2))",
-      },
-    }),
-    [],
-  )
+  const employmentChartConfig = useMemo(() => {
+    if (employmentSeries.length === 0) {
+      return {}
+    }
+
+    return employmentSeries.reduce((acc, entry) => {
+      acc[entry.label] = {
+        label: entry.label,
+        color: entry.fill,
+      }
+      return acc
+    }, {} as Record<string, { label: string; color: string }>)
+  }, [employmentSeries])
 
   return (
     <div className="min-h-screen bg-background">
@@ -679,10 +692,16 @@ export default function PublicAnalyticsClient() {
                     {trendSeries.length === 0 ? (
                       <p className="text-sm text-muted-foreground">No trend data available.</p>
                     ) : (
-                      <ChartContainer config={trendChartConfig}>
-                        <LineChart data={trendSeries} margin={{ left: 8, right: 16, top: 12 }}>
+                      <ChartContainer className="aspect-auto h-64 w-full" config={trendChartConfig}>
+                        <LineChart data={trendSeries} margin={{ left: 8, right: 16, top: 12, bottom: 8 }}>
                           <CartesianGrid vertical={false} />
-                          <XAxis dataKey="label" tickLine={false} axisLine={false} />
+                          <XAxis
+                            dataKey="label"
+                            tickLine={false}
+                            axisLine={false}
+                            interval="preserveStartEnd"
+                            tickMargin={8}
+                          />
                           <YAxis tickLine={false} axisLine={false} width={32} />
                           <ChartTooltip content={<ChartTooltipContent />} />
                           <Line
@@ -707,7 +726,7 @@ export default function PublicAnalyticsClient() {
                     {employmentSeries.length === 0 ? (
                       <p className="text-sm text-muted-foreground">No employment data available.</p>
                     ) : (
-                      <ChartContainer config={employmentChartConfig}>
+                      <ChartContainer className="aspect-auto h-64 w-full" config={employmentChartConfig}>
                         <PieChart>
                           <ChartTooltip content={<ChartTooltipContent nameKey="label" />} />
                           <Pie
@@ -724,7 +743,10 @@ export default function PublicAnalyticsClient() {
                               />
                             ))}
                           </Pie>
-                          <ChartLegend verticalAlign="bottom" />
+                          <ChartLegend
+                            verticalAlign="bottom"
+                            content={<ChartLegendContent nameKey="label" />}
+                          />
                         </PieChart>
                       </ChartContainer>
                     )}
