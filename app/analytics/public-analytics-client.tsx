@@ -13,6 +13,8 @@ import {
 import {
   Area,
   AreaChart,
+  Bar,
+  BarChart,
   CartesianGrid,
   Cell,
   Line,
@@ -533,6 +535,19 @@ export default function PublicAnalyticsClient() {
     }))
   }, [state.status, state.data])
 
+  const invitationSeries = useMemo(() => {
+    if (state.status !== "success") {
+      return [] as ChartPoint[]
+    }
+
+    const map = extractCountMap(state.data, "invitationChannels", { maxLabelLength: MAX_VALUE_LENGTH })
+    if (!map) {
+      return [] as ChartPoint[]
+    }
+
+    return toSortedSeries(map).sort((a, b) => b.value - a.value)
+  }, [state.status, state.data])
+
   const summaryMetrics = useMemo(
     () => (state.status === "success" ? buildSummaryMetrics(state.data, trendSeries) : []),
     [state.status, state.data, trendSeries],
@@ -576,6 +591,16 @@ export default function PublicAnalyticsClient() {
       return acc
     }, {} as Record<string, { label: string; color: string }>)
   }, [employmentSeries])
+
+  const invitationChartConfig = useMemo(
+    () => ({
+      value: {
+        label: "Responses",
+        color: "hsl(var(--chart-1))",
+      },
+    }),
+    [],
+  )
 
   return (
     <div className="min-h-screen bg-background">
@@ -799,6 +824,42 @@ export default function PublicAnalyticsClient() {
                   </CardContent>
                 </Card>
               </div>
+
+              <Card className="border-maroon/15">
+                <CardHeader>
+                  <CardTitle className="text-base text-maroon">Communication preferences</CardTitle>
+                  <CardDescription>Preferred channels for alumni announcements.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  {invitationSeries.length === 0 ? (
+                    <p className="text-sm text-muted-foreground">No channel data available.</p>
+                  ) : (
+                    <ChartContainer className="aspect-auto h-72 w-full" config={invitationChartConfig}>
+                      <BarChart
+                        data={invitationSeries}
+                        layout="vertical"
+                        margin={{ left: 16, right: 24, top: 8, bottom: 8 }}
+                      >
+                        <CartesianGrid horizontal={false} />
+                        <XAxis type="number" tickLine={false} axisLine={false} />
+                        <YAxis
+                          type="category"
+                          dataKey="label"
+                          tickLine={false}
+                          axisLine={false}
+                          width={140}
+                        />
+                        <ChartTooltip content={<ChartTooltipContent />} />
+                        <Bar
+                          dataKey="value"
+                          radius={[0, 6, 6, 0]}
+                          fill="var(--color-value)"
+                        />
+                      </BarChart>
+                    </ChartContainer>
+                  )}
+                </CardContent>
+              </Card>
 
               <Card className="border-maroon/15">
                 <CardHeader>
