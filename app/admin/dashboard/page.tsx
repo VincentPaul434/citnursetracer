@@ -1,6 +1,7 @@
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import Image from "next/image"
+import Link from "next/link"
 import {
   Card,
   CardContent,
@@ -8,6 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 import ResponsesTable from "@/components/admin/dashboard/responses-table"
 import BatchFilterTable from "@/components/admin/dashboard/batch-filter-table"
 import AdminNotificationCenter from "@/components/admin/dashboard/admin-notification-center"
@@ -199,6 +201,11 @@ export default async function AdminDashboardPage() {
             <p className="text-foreground leading-relaxed">
               Review alumni responses with clean sections for faster reading.
             </p>
+            <div className="flex flex-wrap gap-3">
+              <Button asChild variant="outline" className="bg-white text-maroon hover:bg-maroon/5">
+                <Link href="/admin/analytics">Share Analytics</Link>
+              </Button>
+            </div>
           </div>
 
           <div className="grid gap-4 md:grid-cols-3">

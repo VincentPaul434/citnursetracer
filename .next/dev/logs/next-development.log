@@ -4,3 +4,512 @@
 [00:00:17.386] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
 [00:00:17.386] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
 [00:00:17.386] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1777307836346} /_vercel/insights/view
+[00:10:29.747] Server  ERROR    ⨯ ./components/admin/dashboard/responses-table.tsx:10:1
+Module not found: Can't resolve './response-details-dialog'
+   8 |   TableRow,
+   9 | } from "@/components/ui/table"
+> 10 | import ResponseDetailsDialog from "./response-details-dialog"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import type { SurveyResponseRow } from "./types"
+  12 |
+  13 | interface ResponsesTableProps {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./components/admin/dashboard/responses-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/admin/dashboard/responses-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:29.751] Server  ERROR    ⨯ ./components/admin/dashboard/responses-table.tsx:10:1
+Module not found: Can't resolve './response-details-dialog'
+   8 |   TableRow,
+   9 | } from "@/components/ui/table"
+> 10 | import ResponseDetailsDialog from "./response-details-dialog"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import type { SurveyResponseRow } from "./types"
+  12 |
+  13 | interface ResponsesTableProps {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./components/admin/dashboard/responses-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/admin/dashboard/responses-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:29.753] Server  ERROR    ⨯ ./components/admin/dashboard/responses-table.tsx:10:1
+Module not found: Can't resolve './response-details-dialog'
+   8 |   TableRow,
+   9 | } from "@/components/ui/table"
+> 10 | import ResponseDetailsDialog from "./response-details-dialog"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import type { SurveyResponseRow } from "./types"
+  12 |
+  13 | interface ResponsesTableProps {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./components/admin/dashboard/responses-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/admin/dashboard/responses-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:29.755] Server  ERROR    ⨯ ./components/admin/dashboard/responses-table.tsx:10:1
+Module not found: Can't resolve './response-details-dialog'
+   8 |   TableRow,
+   9 | } from "@/components/ui/table"
+> 10 | import ResponseDetailsDialog from "./response-details-dialog"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import type { SurveyResponseRow } from "./types"
+  12 |
+  13 | interface ResponsesTableProps {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./components/admin/dashboard/responses-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/admin/dashboard/responses-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:29.760] Server  ERROR    ⨯ ./components/admin/dashboard/responses-table.tsx:10:1
+Module not found: Can't resolve './response-details-dialog'
+   8 |   TableRow,
+   9 | } from "@/components/ui/table"
+> 10 | import ResponseDetailsDialog from "./response-details-dialog"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import type { SurveyResponseRow } from "./types"
+  12 |
+  13 | interface ResponsesTableProps {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./components/admin/dashboard/responses-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/admin/dashboard/responses-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:29.761] Server  ERROR    ⨯ ./components/admin/dashboard/responses-table.tsx:10:1
+Module not found: Can't resolve './response-details-dialog'
+   8 |   TableRow,
+   9 | } from "@/components/ui/table"
+> 10 | import ResponseDetailsDialog from "./response-details-dialog"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import type { SurveyResponseRow } from "./types"
+  12 |
+  13 | interface ResponsesTableProps {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./components/admin/dashboard/responses-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/admin/dashboard/responses-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:29.763] Server  ERROR    ⨯ ./components/admin/dashboard/responses-table.tsx:10:1
+Module not found: Can't resolve './response-details-dialog'
+   8 |   TableRow,
+   9 | } from "@/components/ui/table"
+> 10 | import ResponseDetailsDialog from "./response-details-dialog"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import type { SurveyResponseRow } from "./types"
+  12 |
+  13 | interface ResponsesTableProps {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./components/admin/dashboard/responses-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/admin/dashboard/responses-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:29.765] Server  ERROR    ⨯ ./components/admin/dashboard/responses-table.tsx:10:1
+Module not found: Can't resolve './response-details-dialog'
+   8 |   TableRow,
+   9 | } from "@/components/ui/table"
+> 10 | import ResponseDetailsDialog from "./response-details-dialog"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import type { SurveyResponseRow } from "./types"
+  12 |
+  13 | interface ResponsesTableProps {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./components/admin/dashboard/responses-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/admin/dashboard/responses-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:29.767] Server  ERROR    ⨯ ./components/admin/dashboard/responses-table.tsx:10:1
+Module not found: Can't resolve './response-details-dialog'
+   8 |   TableRow,
+   9 | } from "@/components/ui/table"
+> 10 | import ResponseDetailsDialog from "./response-details-dialog"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import type { SurveyResponseRow } from "./types"
+  12 |
+  13 | interface ResponsesTableProps {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./components/admin/dashboard/responses-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/admin/dashboard/responses-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:29.772] Server  ERROR    ⨯ ./components/admin/dashboard/responses-table.tsx:10:1
+Module not found: Can't resolve './response-details-dialog'
+   8 |   TableRow,
+   9 | } from "@/components/ui/table"
+> 10 | import ResponseDetailsDialog from "./response-details-dialog"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import type { SurveyResponseRow } from "./types"
+  12 |
+  13 | interface ResponsesTableProps {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./components/admin/dashboard/responses-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/admin/dashboard/responses-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:29.774] Server  ERROR    ⨯ ./components/admin/dashboard/responses-table.tsx:10:1
+Module not found: Can't resolve './response-details-dialog'
+   8 |   TableRow,
+   9 | } from "@/components/ui/table"
+> 10 | import ResponseDetailsDialog from "./response-details-dialog"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import type { SurveyResponseRow } from "./types"
+  12 |
+  13 | interface ResponsesTableProps {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./components/admin/dashboard/responses-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/admin/dashboard/responses-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:29.775] Server  ERROR    ⨯ ./components/admin/dashboard/responses-table.tsx:10:1
+Module not found: Can't resolve './response-details-dialog'
+   8 |   TableRow,
+   9 | } from "@/components/ui/table"
+> 10 | import ResponseDetailsDialog from "./response-details-dialog"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import type { SurveyResponseRow } from "./types"
+  12 |
+  13 | interface ResponsesTableProps {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./components/admin/dashboard/responses-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/admin/dashboard/responses-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:29.788] Server  LOG      ✓ Compiled in 128ms
+[00:10:29.906] Browser ERROR   ./components/admin/dashboard/responses-table.tsx:10:1
+Module not found: Can't resolve './response-details-dialog'
+   8 |   TableRow,
+   9 | } from "@/components/ui/table"
+> 10 | import ResponseDetailsDialog from "./response-details-dialog"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import type { SurveyResponseRow } from "./types"
+  12 |
+  13 | interface ResponsesTableProps {
+
+Import traces:
+  Client Component Browser:
+    ./components/admin/dashboard/responses-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/admin/dashboard/responses-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:10:30.048] Browser ERROR   ./components/admin/dashboard/responses-table.tsx:10:1
+Module not found: Can't resolve './response-details-dialog'
+   8 |   TableRow,
+   9 | } from "@/components/ui/table"
+> 10 | import ResponseDetailsDialog from "./response-details-dialog"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import type { SurveyResponseRow } from "./types"
+  12 |
+  13 | interface ResponsesTableProps {
+
+Import traces:
+  Client Component Browser:
+    ./components/admin/dashboard/responses-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/admin/dashboard/responses-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:10:31.908] Browser ERROR   ./components/admin/dashboard/responses-table.tsx:10:1
+Module not found: Can't resolve './response-details-dialog'
+   8 |   TableRow,
+   9 | } from "@/components/ui/table"
+> 10 | import ResponseDetailsDialog from "./response-details-dialog"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import type { SurveyResponseRow } from "./types"
+  12 |
+  13 | interface ResponsesTableProps {
+
+Import traces:
+  Client Component Browser:
+    ./components/admin/dashboard/responses-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/admin/dashboard/responses-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:10:31.909] Browser ERROR   ./components/admin/dashboard/responses-table.tsx:10:1
+Module not found: Can't resolve './response-details-dialog'
+   8 |   TableRow,
+   9 | } from "@/components/ui/table"
+> 10 | import ResponseDetailsDialog from "./response-details-dialog"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import type { SurveyResponseRow } from "./types"
+  12 |
+  13 | interface ResponsesTableProps {
+
+Import traces:
+  Client Component Browser:
+    ./components/admin/dashboard/responses-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component Browser]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/admin/dashboard/responses-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Client Component SSR]
+    ./components/admin/dashboard/batch-filter-table.tsx [Server Component]
+    ./app/admin/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:10:33.178] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:10:33.485] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:10:33.485] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin/dashboard","route":"/admin/dashboard"}
+[00:10:33.485] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/admin/dashboard","o":"http://localhost:3000/admin/dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1777735920251} /_vercel/insights/view
+[00:14:36.352] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:14:36.590] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:14:36.590] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin/login","route":"/admin/login"}
+[00:14:36.590] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/login color: rgb(120, 120, 120) color: inherit {"dp":"/admin/login","o":"http://localhost:3000/admin/login","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1777736163367} /_vercel/insights/view
+[00:14:47.510] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/admin/dashboard","o":"http://localhost:3000/admin/dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1777736174164} /_vercel/insights/view
+[00:14:49.478] Server  LOG      ✓ Compiled in 197ms
+[00:14:51.132] Server  LOG      ✓ Compiled in 469ms
+[00:15:17.063] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/analytics color: rgb(120, 120, 120) color: inherit {"dp":"/admin/analytics","o":"http://localhost:3000/admin/analytics","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1777736203761} /_vercel/insights/view
+[00:15:25.977] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/admin/dashboard","o":"http://localhost:3000/admin/dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1777736212718} /_vercel/insights/view
+[00:15:39.035] Server  ERROR   C:\Users\Vincent Paul\Documents\dev\citnursetracer\.next\dev\server\chunks\1dff6_next_c0cb96aa._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:15:39.055] Server  ERROR   C:\Users\Vincent Paul\Documents\dev\citnursetracer\.next\dev\server\chunks\1dff6_next_77945b3c._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:15:39.056] Server  ERROR   C:\Users\Vincent Paul\Documents\dev\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:15:39.057] Server  ERROR   C:\Users\Vincent Paul\Documents\dev\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:15:39.058] Server  ERROR   C:\Users\Vincent Paul\Documents\dev\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:15:39.058] Server  ERROR   C:\Users\Vincent Paul\Documents\dev\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:15:39.059] Server  ERROR   C:\Users\Vincent Paul\Documents\dev\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:15:39.059] Server  ERROR   C:\Users\Vincent Paul\Documents\dev\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:15:39.060] Server  ERROR   C:\Users\Vincent Paul\Documents\dev\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:15:39.064] Server  ERROR   Error: failed to pipe response
+[00:15:49.924] Server  LOG        Reload env: .env
+[00:15:50.735] Server  LOG      ✓ Compiled in 566ms
+[00:16:39.689] Server  LOG        Reload env: .env
+[00:16:39.997] Server  LOG      ✓ Compiled in 0ms
+[00:17:52.778] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/analytics color: rgb(120, 120, 120) color: inherit {"dp":"/admin/analytics","o":"http://localhost:3000/admin/analytics","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1777736359494} /_vercel/insights/view
+[00:17:56.014] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:17:56.171] Browser LOG     Browsing Topics API removed from http://localhost:3000/analytics?token=c481888d-ddcb-42e2-93a1-73f16e323bae which is main frame
+[00:17:56.171] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:17:56.171] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/analytics","route":"/analytics"}
+[00:17:56.171] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/analytics?token=c481888d-ddcb-42e2-93a1-73f16e323bae color: rgb(120, 120, 120) color: inherit {"dp":"/analytics","o":"http://localhost:3000/analytics?token=c481888d-ddcb-42e2-93a1-73f16e323bae","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1777736362947} /_vercel/insights/view
+[00:22:56.703] Server  ERROR   C:\Users\Vincent Paul\Documents\dev\citnursetracer\.next\dev\server\chunks\1dff6_next_c0cb96aa._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:22:56.714] Server  ERROR   C:\Users\Vincent Paul\Documents\dev\citnursetracer\.next\dev\server\chunks\1dff6_next_77945b3c._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:22:56.716] Server  ERROR   C:\Users\Vincent Paul\Documents\dev\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:22:56.717] Server  ERROR   C:\Users\Vincent Paul\Documents\dev\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:22:56.717] Server  ERROR   C:\Users\Vincent Paul\Documents\dev\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:22:56.718] Server  ERROR   C:\Users\Vincent Paul\Documents\dev\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:22:56.718] Server  ERROR   C:\Users\Vincent Paul\Documents\dev\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:22:56.719] Server  ERROR   C:\Users\Vincent Paul\Documents\dev\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:22:56.719] Server  ERROR   C:\Users\Vincent Paul\Documents\dev\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:22:56.726] Server  ERROR   Error: failed to pipe response
+[00:36:15.131] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/admin/dashboard","o":"http://localhost:3000/admin/dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1777737461876} /_vercel/insights/view
+[00:36:16.251] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/analytics color: rgb(120, 120, 120) color: inherit {"dp":"/admin/analytics","o":"http://localhost:3000/admin/analytics","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1777737463020} /_vercel/insights/view
+[00:36:18.833] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:36:19.061] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:36:19.061] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/analytics","route":"/analytics"}
+[00:36:19.061] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/analytics?token=c481888d-ddcb-42e2-93a1-73f16e323bae color: rgb(120, 120, 120) color: inherit {"dp":"/analytics","o":"http://localhost:3000/analytics?token=c481888d-ddcb-42e2-93a1-73f16e323bae","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1777737465839} /_vercel/insights/view
+[00:42:17.903] Browser ERROR   unhandledRejection: Error: Failed to fetch notifications
+[00:42:18.277] Browser ERROR   unhandledRejection: Error: Failed to fetch notifications
+[00:42:25.857] Server  LOG      ✓ Compiled in 356ms
+[00:42:51.676] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:42:51.906] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:42:51.906] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin/analytics","route":"/admin/analytics"}
+[00:42:51.906] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/analytics color: rgb(120, 120, 120) color: inherit {"dp":"/admin/analytics","o":"http://localhost:3000/admin/analytics","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1777737858678} /_vercel/insights/view
+[00:42:54.140] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:42:54.296] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:42:54.296] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin/login","route":"/admin/login"}
+[00:42:54.296] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/login color: rgb(120, 120, 120) color: inherit {"dp":"/admin/login","o":"http://localhost:3000/admin/login","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1777737861072} /_vercel/insights/view
+[00:43:15.575] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/admin/dashboard","o":"http://localhost:3000/admin/dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1777737882283} /_vercel/insights/view
+[00:43:19.424] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/analytics color: rgb(120, 120, 120) color: inherit {"dp":"/admin/analytics","o":"http://localhost:3000/admin/analytics","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1777737886191} /_vercel/insights/view
+[00:43:26.688] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:43:26.896] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:43:26.896] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/analytics","route":"/analytics"}
+[00:43:26.896] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/analytics?token=eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJwdWJsaWMtYW5hbHl0aWNzIiwicHVycG9zZSI6InB1YmxpYy1hbmFseXRpY3MiLCJpYXQiOjE3Nzc3Mzc4ODcsImV4cCI6MTc3ODM0MjY4N30.cs57ijzrNyjy5pnaWSNRkC3ilgzR14nLBvSzvwia5yvlUPpeHPorDNfHClxDyK4HxA_AEPs8-y5ErkUdxMNMUbBiVrc-3F6UBOwh5RRBh1XylcK2WCTjp5a08Mhmq7gnKY0xwwMWed7Oe4r_e8-GG97Dg-UgMpXaA6oFIPIj943-sx5XGRLyhDfUaS6on4st8aSJXPr-Gt1QKVFTSB0zVOAgLTJMk7G04xzeLC1dnoznc1aQoL5JduNqDd098tAx5BxwQj3EvpYzN-GNQnrhONr0zp9gbFXYWTNOPFpTQV7a-lO7x9mwJYldvrTM5N36SakmIKQjOt0E9vhkHlJqvg color: rgb(120, 120, 120) color: inherit {"dp":"/analytics","o":"http://localhost:3000/analytics?token=eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJwdWJsaWMtYW5hbHl0aWNzIiwicHVycG9zZSI6InB1YmxpYy1hbmFseXRpY3MiLCJpYXQiOjE3Nzc3Mzc4ODcsImV4cCI6MTc3ODM0MjY4N30.cs57ijzrNyjy5pnaWSNRkC3ilgzR14nLBvSzvwia5yvlUPpeHPorDNfHClxDyK4HxA_AEPs8-y5ErkUdxMNMUbBiVrc-3F6UBOwh5RRBh1XylcK2WCTjp5a08Mhmq7gnKY0xwwMWed7Oe4r_e8-GG97Dg-UgMpXaA6oFIPIj943-sx5XGRLyhDfUaS6on4st8aSJXPr-Gt1QKVFTSB0zVOAgLTJMk7G04xzeLC1dnoznc1aQoL5JduNqDd098tAx5BxwQj3EvpYzN-GNQnrhONr0zp9gbFXYWTNOPFpTQV7a-lO7x9mwJYldvrTM5N36SakmIKQjOt0E9vhkHlJqvg","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1777737893672} /_vercel/insights/view
+[00:48:24.580] Server  ERROR   C:\Users\Vincent Paul\Documents\dev\citnursetracer\.next\dev\server\chunks\1dff6_next_3e0a4c02._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:48:24.601] Server  ERROR   C:\Users\Vincent Paul\Documents\dev\citnursetracer\.next\dev\server\chunks\1dff6_next_77945b3c._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:48:24.602] Server  ERROR   C:\Users\Vincent Paul\Documents\dev\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:48:24.603] Server  ERROR   C:\Users\Vincent Paul\Documents\dev\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:48:24.603] Server  ERROR   C:\Users\Vincent Paul\Documents\dev\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:48:24.604] Server  ERROR   C:\Users\Vincent Paul\Documents\dev\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:48:24.605] Server  ERROR   C:\Users\Vincent Paul\Documents\dev\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:48:24.605] Server  ERROR   C:\Users\Vincent Paul\Documents\dev\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:48:24.605] Server  ERROR   C:\Users\Vincent Paul\Documents\dev\citnursetracer\node_modules\.pnpm\next@16.0.10_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:48:24.611] Server  ERROR   Error: failed to pipe response
