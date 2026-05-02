@@ -1898,6 +1898,16 @@
     border-color: var(--input);
   }
 
+  .border-maroon\/10 {
+    border-color: var(--maroon);
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .border-maroon\/10 {
+      border-color: color-mix(in oklab, var(--maroon) 10%, transparent);
+    }
+  }
+
   .border-maroon\/15 {
     border-color: var(--maroon);
   }
@@ -1935,6 +1945,16 @@
   @supports (color: color-mix(in lab, red, red)) {
     .border-maroon\/30 {
       border-color: color-mix(in oklab, var(--maroon) 30%, transparent);
+    }
+  }
+
+  .border-muted\/70 {
+    border-color: var(--muted);
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .border-muted\/70 {
+      border-color: color-mix(in oklab, var(--muted) 70%, transparent);
     }
   }
 
@@ -2568,6 +2588,10 @@
 
   .pr-8 {
     padding-right: calc(var(--spacing) * 8);
+  }
+
+  .pb-2 {
+    padding-bottom: calc(var(--spacing) * 2);
   }
 
   .pb-3 {
@@ -5330,6 +5354,12 @@
     .md\:after\:hidden:after {
       content: var(--tw-content);
       display: none;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .lg\:grid-cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 
