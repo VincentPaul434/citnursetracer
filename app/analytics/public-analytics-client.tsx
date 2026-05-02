@@ -18,6 +18,11 @@ type SummaryMetric = {
   helper?: string
 }
 
+type BreakdownSection = {
+  title: string
+  entries: Array<{ label: string; value: number }>
+}
+
 const getApiBaseUrl = () => {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL ?? DEFAULT_API_BASE_URL
   return baseUrl.endsWith("/") ? baseUrl.slice(0, -1) : baseUrl
@@ -56,6 +61,117 @@ const toNumber = (value: unknown) => {
   }
 
   return null
+}
+
+const isPlainObjectArray = (value: unknown): value is Array<Record<string, unknown>> =>
+  Array.isArray(value) && value.every((entry) => isRecord(entry))
+
+const extractResponseArray = (payload: unknown) => {
+  if (isPlainObjectArray(payload)) {
+    return payload
+  }
+
+  if (!isRecord(payload)) {
+    return null
+  }
+
+  const candidateKeys = ["responses", "submissions", "items", "data", "rows"]
+  for (const key of candidateKeys) {
+    if (isPlainObjectArray(payload[key])) {
+      return payload[key]
+    }
+  }
+
+  if (isRecord(payload.data)) {
+    for (const key of candidateKeys) {
+      if (isPlainObjectArray(payload.data[key])) {
+        return payload.data[key]
+      }
+    }
+  }
+
+  return null
+}
+
+const MAX_VALUE_LENGTH = 40
+
+const normalizeValue = (value: unknown) => {
+  if (typeof value === "string") {
+    const trimmed = value.trim()
+    if (!trimmed || trimmed.length > MAX_VALUE_LENGTH) {
+      return null
+    }
+    return trimmed
+  }
+
+  if (typeof value === "number" && Number.isFinite(value)) {
+    return String(value)
+  }
+
+  if (typeof value === "boolean") {
+    return value ? "Yes" : "No"
+  }
+
+  return null
+}
+
+const collectCategoricalBreakdowns = (payload: unknown) => {
+  const responses = extractResponseArray(payload)
+  if (!responses || responses.length === 0) {
+    return [] as BreakdownSection[]
+  }
+
+  const counters = new Map<string, Map<string, number>>()
+
+  responses.forEach((response) => {
+    Object.entries(response).forEach(([rawKey, rawValue]) => {
+      if (rawValue === null || rawValue === undefined) {
+        return
+      }
+
+      const values: string[] = []
+
+      if (Array.isArray(rawValue)) {
+        rawValue.forEach((item) => {
+          const normalized = normalizeValue(item)
+          if (normalized) {
+            values.push(normalized)
+          }
+        })
+      } else {
+        const normalized = normalizeValue(rawValue)
+        if (normalized) {
+          values.push(normalized)
+        }
+      }
+
+      if (values.length === 0) {
+        return
+      }
+
+      const key = toTitleCase(rawKey)
+      if (!counters.has(key)) {
+        counters.set(key, new Map())
+      }
+      const bucket = counters.get(key)!
+      values.forEach((value) => {
+        bucket.set(value, (bucket.get(value) ?? 0) + 1)
+      })
+    })
+  })
+
+  const sections: BreakdownSection[] = []
+  counters.forEach((valueMap, title) => {
+    const entries = Array.from(valueMap.entries())
+      .map(([label, count]) => ({ label, value: count }))
+      .sort((a, b) => b.value - a.value)
+
+    if (entries.length > 0) {
+      sections.push({ title, entries })
+    }
+  })
+
+  return sections.sort((a, b) => a.title.localeCompare(b.title))
 }
 
 
@@ -212,6 +328,11 @@ export default function PublicAnalyticsClient() {
     [state.status, state.data],
   )
 
+  const categoricalBreakdowns = useMemo(
+    () => (state.status === "success" ? collectCategoricalBreakdowns(state.data) : []),
+    [state.status, state.data],
+  )
+
   return (
     <div className="min-h-screen bg-background">
       <div className="flex-1 p-4 md:p-6">
@@ -322,6 +443,48 @@ export default function PublicAnalyticsClient() {
                     <p className="text-sm text-muted-foreground">
                       Use the shared link filters to focus on specific cohorts.
                     </p>
+                  )}
+                </CardContent>
+              </Card>
+
+              <Card className="border-maroon/15">
+                <CardHeader>
+                  <CardTitle className="text-base text-maroon">Categorical Breakdown</CardTitle>
+                  <CardDescription>
+                    Short-form answers only (radio, dropdown, checkbox). Long text responses are hidden.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  {state.status === "loading" && (
+                    <p className="text-sm text-muted-foreground">Loading breakdowns...</p>
+                  )}
+                  {state.status === "error" && (
+                    <p className="text-sm text-maroon">{state.error}</p>
+                  )}
+                  {state.status === "success" && categoricalBreakdowns.length === 0 && (
+                    <p className="text-sm text-muted-foreground">
+                      No short-form fields were detected in the payload.
+                    </p>
+                  )}
+                  {state.status === "success" && categoricalBreakdowns.length > 0 && (
+                    <div className="grid gap-4 lg:grid-cols-2">
+                      {categoricalBreakdowns.map((section) => (
+                        <div key={section.title} className="rounded-md border border-muted/60 p-3">
+                          <p className="text-sm font-semibold text-foreground">{section.title}</p>
+                          <div className="mt-2 space-y-2">
+                            {section.entries.map((entry) => (
+                              <div
+                                key={`${section.title}-${entry.label}`}
+                                className="flex items-center justify-between rounded-md bg-muted/40 px-3 py-2 text-xs"
+                              >
+                                <span className="font-medium text-foreground">{entry.label}</span>
+                                <span className="text-maroon font-semibold">{entry.value}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   )}
                 </CardContent>
               </Card>
