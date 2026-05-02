@@ -1,6 +1,8 @@
-[00:00:02.800] Server  LOG      ✓ Ready in 2s
-[00:00:06.381] Server  LOG      ○ Compiling / ...
-[00:00:17.190] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:17.386] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:17.386] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
-[00:00:17.386] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1777307836346} /_vercel/insights/view
+[00:00:01.129] Server  LOG      ✓ Ready in 771ms
+[00:00:04.388] Server  ERROR    ⨯ TypeError: fetch failed
+[00:00:04.724] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:04.725] Browser ERROR   uncaughtError: TypeError: fetch failed
+[00:00:05.220] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:06.316] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:00:06.316] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin/login","route":"/admin/login"}
+[00:00:06.316] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/login color: rgb(120, 120, 120) color: inherit {"dp":"/admin/login","o":"http://localhost:3000/admin/login","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1777739122823} /_vercel/insights/view
