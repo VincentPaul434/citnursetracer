@@ -2,7 +2,8 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useSearchParams } from "next/navigation"
 import SurveyShell from "@/components/survey-shell"
 import SurveySectionConsent from "@/components/survey-section-consent"
 import SurveySectionEducationalBackground from "@/components/survey-section-educational-background"
@@ -17,100 +18,23 @@ import SurveySectionUnemploymentInformation from "@/components/survey-section-un
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import {
+  createFormDataFromPayload,
+  createInitialFormData,
+  EDIT_TOKEN_PARAM,
+  extractEditToken,
+  hasAtLeastOneChecked,
+  type SurveyFormData,
+} from "@/lib/survey-mapping"
+import { fetchSurveyResponseByEditToken, submitSurveyResponse } from "@/lib/survey-api"
 
 interface SurveyFormPageProps {
   onSurveyComplete?: () => void
 }
 
-const createInitialFormData = () => ({
-  email: "",
-  idUploadUrl: "",
-  consent: "",
-  fullName: "",
-  gender: "",
-  genderOther: "",
-  civilStatus: "",
-  civilStatusOther: "",
-  birthday: "",
-  residence: "",
-  contactInformation: "",
-  degreeProgramCompleted: "",
-  yearGraduated: "",
-  yearGraduatedOther: "",
-  academicHonors: {
-    cumLaude: false,
-    magnaCumLaude: false,
-    summaCumLaude: false,
-    none: false,
-    other: false,
-  },
-  academicHonorsOtherText: "",
-  pursuedFurtherStudies: "",
-  furtherDegreeProgram: "",
-  furtherStudiesReason: "",
-  furtherStudiesReasonOther: "",
-  hasTakenPnle: "",
-  licensureStatus: "",
-  pnleYearPassed: "",
-  pnleYearPassedOther: "",
-  examTakeCount: "",
-  employmentStatus: "",
-  jobRelatedToDegree: "",
-  employmentSector: "",
-  employmentSectorOther: "",
-  positionDesignation: "",
-  positionDesignationOther: "",
-  firstJobDuration: "",
-  firstJobSources: {
-    jobFairs: false,
-    schoolPlacementOffice: false,
-    onlineJobPortal: false,
-    recommendationFromFriendsRelatives: false,
-    walkInApplication: false,
-    other: false,
-  },
-  firstJobSourceOtherText: "",
-  estimatedMonthlySalary: "",
-  unemploymentReasons: {
-    currentlyPursuingFurtherStudies: false,
-    lackOfWorkOpportunities: false,
-    familyResponsibility: false,
-    healthReasons: false,
-    waitingForLicensureExam: false,
-    other: false,
-  },
-  unemploymentReasonOtherText: "",
-  relevanceSkills: {
-    clinicalSkills: false,
-    criticalThinking: false,
-    communicationSkills: false,
-    leadership: false,
-    patientCare: false,
-    teamwork: false,
-    problemSolving: false,
-  },
-  careerPreparationLevel: "",
-  nursingProgramAspect: "",
-  nursingProgramSuggestion: "",
-  invitationChannels: {
-    email: false,
-    facebookPageGroup: false,
-    messenger: false,
-    smsTextMessage: false,
-    officialSchoolWebsite: false,
-    phoneCall: false,
-    other: false,
-  },
-  invitationChannelOtherText: "",
-  updateFrequency: "",
-  alumniGroupWillingness: "",
-  alumniPlatform: "",
-})
-
-const hasAtLeastOneChecked = (values: Record<string, boolean>) => Object.values(values).some(Boolean)
-
 export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps) {
-  const [formData, setFormData] = useState(createInitialFormData)
+  const searchParams = useSearchParams()
+  const [formData, setFormData] = useState<SurveyFormData>(createInitialFormData)
   const [idFile, setIdFile] = useState<File | null>(null)
   const [idUploadError, setIdUploadError] = useState("")
   const [idUploadStatus, setIdUploadStatus] = useState("")
@@ -122,9 +46,64 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
   const [invitationChannelError, setInvitationChannelError] = useState("")
   const [alumniPlatformError, setAlumniPlatformError] = useState("")
   const [formError, setFormError] = useState("")
+  const [editLoadError, setEditLoadError] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState("")
+  const [editToken, setEditToken] = useState<string | null>(null)
+  const [editLink, setEditLink] = useState("")
+  const [isLoadingEdit, setIsLoadingEdit] = useState(false)
   const [isConsentStepComplete, setIsConsentStepComplete] = useState(false)
+
+  useEffect(() => {
+    const token = searchParams.get(EDIT_TOKEN_PARAM)
+
+    if (!token) {
+      setEditToken(null)
+      setEditLink("")
+      setEditLoadError("")
+      return
+    }
+
+    setEditToken(token)
+    setIsLoadingEdit(true)
+    setEditLoadError("")
+    setFormError("")
+    setSubmitMessage("")
+
+    const fetchExistingResponse = async () => {
+      try {
+        const result = await fetchSurveyResponseByEditToken(token)
+        if (!result.ok) {
+          setEditLoadError(result.message)
+          return
+        }
+
+        const hydrated = createFormDataFromPayload(result.payload)
+        setFormData(hydrated)
+        setIsSubmitted(false)
+        setConsentDeclined(hydrated.consent === "no")
+        setIsConsentStepComplete(hydrated.consent === "yes")
+      } catch {
+        setEditLoadError("Unable to reach the survey service. Please try again.")
+      } finally {
+        setIsLoadingEdit(false)
+      }
+    }
+
+    fetchExistingResponse()
+  }, [searchParams])
+
+  useEffect(() => {
+    if (!editToken || typeof window === "undefined") {
+      setEditLink("")
+      return
+    }
+
+    const url = new URL(window.location.href)
+    url.searchParams.set(EDIT_TOKEN_PARAM, editToken)
+    setEditLink(url.toString())
+  }, [editToken])
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prev) => ({
@@ -668,36 +647,25 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
     }
 
     setFormError("")
+    setSubmitMessage("")
 
     try {
       setIsSubmitting(true)
 
-      const response = await fetch("/api/survey-responses", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(formData),
-      })
-
-      if (!response.ok) {
-        let message = "Unable to submit survey right now. Please try again."
-
-        try {
-          const payload = (await response.json()) as { message?: unknown }
-          if (typeof payload.message === "string" && payload.message.trim()) {
-            message = payload.message
-          }
-        } catch {
-          message = "Unable to submit survey right now. Please try again."
-        }
-
-        setFormError(message)
+      const result = await submitSurveyResponse(formData, editToken)
+      if (!result.ok) {
+        setFormError(result.message)
         return
       }
 
+      const responseEditToken = extractEditToken(result.payload)
+
+      if (responseEditToken) {
+        setEditToken(responseEditToken)
+      }
+
       setIsSubmitted(true)
+      setSubmitMessage(editToken ? "Your changes have been saved." : "Your response has been submitted.")
       onSurveyComplete?.()
     } catch {
       setFormError("Unable to reach the server. Please check your connection and try again.")
@@ -722,6 +690,16 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
     setIsSubmitting(false)
     setIsSubmitted(false)
     setIsConsentStepComplete(false)
+    setSubmitMessage("")
+    setEditToken(null)
+    setEditLink("")
+    setEditLoadError("")
+
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href)
+      url.searchParams.delete(EDIT_TOKEN_PARAM)
+      window.history.replaceState({}, "", url.toString())
+    }
   }
 
   const preventSectionSubmit = (e: React.FormEvent) => {
@@ -802,6 +780,7 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
 
   const completedSections = sectionProgress.filter((section) => section.complete).length
   const completionPercent = Math.round((completedSections / sectionProgress.length) * 100)
+  const isLoadingResponse = isLoadingEdit && !editLoadError
 
   const SectionHeader = ({
     sectionId,
@@ -841,7 +820,16 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
 
   return (
     <SurveyShell>
-      {isSubmitted ? (
+      {editLoadError && (
+        <div className="rounded-lg border border-maroon/20 bg-white/80 p-4 text-sm text-maroon">
+          {editLoadError}
+        </div>
+      )}
+      {isLoadingResponse ? (
+        <div className="rounded-lg border border-maroon/20 bg-white/80 p-4 text-sm text-muted-foreground">
+          Loading your saved response...
+        </div>
+      ) : isSubmitted ? (
         <div className="rounded-lg border border-maroon/20 p-5 space-y-4">
           <h2 className="text-2xl font-bold text-maroon">Thank You for Completing the Alumni Tracer Survey!</h2>
           <p className="text-foreground leading-relaxed">
@@ -850,6 +838,13 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
           <p className="text-foreground leading-relaxed">
             All submitted information will be handled with confidentiality and used for academic and institutional development purposes.
           </p>
+          {submitMessage && <p className="text-sm font-semibold text-emerald-700">{submitMessage}</p>}
+          {editLink && (
+            <div className="space-y-2">
+              <p className="text-sm text-foreground">Save this private link to edit your response later:</p>
+              <Input readOnly value={editLink} className="bg-white text-foreground border-maroon/20" />
+            </div>
+          )}
           <div className="pt-2">
             <Button type="button" onClick={handleStartNewSurvey} className="bg-gold text-maroon hover:bg-gold/90 font-semibold">
               Start New Survey
