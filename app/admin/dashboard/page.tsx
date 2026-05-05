@@ -176,22 +176,24 @@ export default async function AdminDashboardPage() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <div className="bg-maroon text-gold p-4 flex items-center gap-3">
-        <div className="w-12 h-12 flex items-center justify-center shrink-0">
+      <div className="bg-maroon text-gold p-4 flex flex-col gap-3 md:flex-row md:items-center">
+        <div className="flex items-center gap-3">
+          <div className="h-10 w-10 shrink-0 md:h-12 md:w-12 flex items-center justify-center">
           <Image
             src="/cit2logo.png"
             alt="CIT-U Logo"
             width={48}
             height={48}
-            className="h-12 w-12 object-contain"
+            className="h-10 w-10 md:h-12 md:w-12 object-contain"
             priority
           />
+          </div>
+          <div>
+            <h1 className="text-base font-bold leading-tight md:text-lg">CEBU INSTITUTE OF TECHNOLOGY</h1>
+            <p className="text-xs font-semibold md:text-sm">UNIVERSITY</p>
+          </div>
         </div>
-        <div className="flex-1">
-          <h1 className="text-lg font-bold leading-tight">CEBU INSTITUTE OF TECHNOLOGY</h1>
-          <p className="text-sm font-semibold">UNIVERSITY</p>
-        </div>
-        <div className="flex items-center gap-2">
+        <div className="flex w-full items-center gap-2 md:ml-auto md:w-auto md:justify-end">
           <AdminNotificationCenter />
           <AdminUserMenu username="Admin" />
         </div>

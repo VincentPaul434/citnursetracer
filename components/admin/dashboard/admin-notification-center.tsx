@@ -230,7 +230,7 @@ export default function AdminNotificationCenter() {
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent align="end" className="w-96">
+      <DropdownMenuContent align="end" className="w-[min(24rem,90vw)]">
         <DropdownMenuLabel className="flex items-center justify-between gap-2">
           <span>Notifications</span>
           <Button

@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.next/dev/server/app-paths-manifest.json
+.next/dev/server/app-paths-manifest.json
+.next/dev/server/app/admin/login/page_client-reference-manifest.js
+.next/dev/server/app-paths-manifest.json

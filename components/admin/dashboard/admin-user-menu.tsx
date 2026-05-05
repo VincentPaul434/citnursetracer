@@ -19,10 +19,14 @@ export default function AdminUserMenu({ username = "Admin" }: AdminUserMenuProps
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button type="button" variant="outline" className="gap-2 bg-white text-maroon hover:bg-gold/20">
+        <Button
+          type="button"
+          variant="outline"
+          className="gap-2 bg-white px-2 text-maroon hover:bg-gold/20 sm:px-3"
+        >
           <UserRound className="h-4 w-4" />
-          <span>{username}</span>
-          <ChevronDown className="h-4 w-4" />
+          <span className="hidden sm:inline">{username}</span>
+          <ChevronDown className="hidden h-4 w-4 sm:inline" />
         </Button>
       </DropdownMenuTrigger>
 
