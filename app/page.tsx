@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { Suspense } from "react"
 import SurveyFormPage from "@/components/survey-form-page"
 
 export const metadata: Metadata = {
@@ -8,5 +9,9 @@ export const metadata: Metadata = {
 }
 
 export default function Home() {
-  return <SurveyFormPage />
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-background" />}>
+      <SurveyFormPage />
+    </Suspense>
+  )
 }
