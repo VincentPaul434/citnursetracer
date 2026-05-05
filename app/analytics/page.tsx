@@ -1,6 +1,13 @@
+import type { Metadata } from "next"
 import { Suspense } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import PublicAnalyticsClient from "./public-analytics-client"
+
+export const metadata: Metadata = {
+  title: "Public Analytics - CIT Nursing Graduate Tracer",
+  description:
+    "View public analytics for the CIT University nursing graduate tracer survey.",
+}
 
 function AnalyticsFallback() {
   return (

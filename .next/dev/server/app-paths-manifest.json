@@ -1,5 +1,4 @@
 {
-  "/api/survey-responses/edit/[editToken]/route": "app/api/survey-responses/edit/[editToken]/route.js",
-  "/api/survey-responses/route": "app/api/survey-responses/route.js",
+  "/admin/login/page": "app/admin/login/page.js",
   "/page": "app/page.js"
 }

@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import Image from "next/image"
@@ -8,6 +9,11 @@ import AdminNotificationCenter from "@/components/admin/dashboard/admin-notifica
 import AdminUserMenu from "@/components/admin/dashboard/admin-user-menu"
 import ShareLinkCard from "@/components/admin/analytics/share-link-card"
 import { ADMIN_SESSION_COOKIE, parseAdminSession } from "@/lib/admin-auth"
+
+export const metadata: Metadata = {
+  title: "Admin Analytics - CIT Nursing Graduate Tracer",
+  description: "Generate and share public analytics links for stakeholders.",
+}
 
 export default async function AdminAnalyticsPage() {
   const cookieStore = await cookies()

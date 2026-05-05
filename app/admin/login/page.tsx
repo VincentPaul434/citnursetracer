@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import Image from "next/image"
@@ -10,6 +11,11 @@ import {
 } from "@/components/ui/card"
 import { ADMIN_SESSION_COOKIE, buildAdminApiUrl, parseAdminSession } from "@/lib/admin-auth"
 import AdminLoginForm from "./admin-login-form"
+
+export const metadata: Metadata = {
+  title: "Admin Login - CIT Nursing Graduate Tracer",
+  description: "Sign in to access the CIT nursing tracer admin dashboard.",
+}
 
 const ADMIN_SESSION_VALIDATE_ENDPOINT = "/api/v1/admin/survey-responses?page=0&size=1"
 

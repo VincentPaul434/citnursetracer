@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import Image from "next/image"
@@ -21,6 +22,11 @@ import {
   parseAdminSession,
 } from "@/lib/admin-auth"
 import { CheckCircle2, TrendingUp, Users } from "lucide-react"
+
+export const metadata: Metadata = {
+  title: "Admin Dashboard - CIT Nursing Graduate Tracer",
+  description: "Review nursing graduate survey responses and analytics.",
+}
 
 const SURVEY_RESPONSES_ENDPOINT =
   "/api/v1/admin/survey-responses?page=0&size=100&sort=submittedAt,desc"
