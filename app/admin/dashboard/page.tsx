@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
-import Image from "next/image"
 import Link from "next/link"
 import {
   Card,
@@ -11,17 +10,15 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import ResponsesTable from "@/components/admin/dashboard/responses-table"
 import BatchFilterTable from "@/components/admin/dashboard/batch-filter-table"
-import AdminNotificationCenter from "@/components/admin/dashboard/admin-notification-center"
-import AdminUserMenu from "@/components/admin/dashboard/admin-user-menu"
+import AdminShellHeader from "@/components/admin/dashboard/admin-shell-header"
 import type { SurveyResponseRow } from "@/components/admin/dashboard/types"
 import {
   ADMIN_SESSION_COOKIE,
   buildAdminApiUrl,
   parseAdminSession,
 } from "@/lib/admin-auth"
-import { CheckCircle2, TrendingUp, Users } from "lucide-react"
+import { ArrowUpRight, CheckCircle2, TrendingUp, Users } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Admin Dashboard - CIT Nursing Graduate Tracer",
@@ -174,103 +171,101 @@ export default async function AdminDashboardPage() {
   const pnlePassingRate = toPnlePassingRate(surveyResponses)
   const employmentRate = toEmploymentRate(surveyResponses)
 
-  return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <div className="bg-maroon text-gold p-4 flex flex-col gap-3 md:flex-row md:items-center">
-        <div className="flex items-center gap-3">
-          <div className="h-10 w-10 shrink-0 md:h-12 md:w-12 flex items-center justify-center">
-          <Image
-            src="/cit2logo.png"
-            alt="CIT-U Logo"
-            width={48}
-            height={48}
-            className="h-10 w-10 md:h-12 md:w-12 object-contain"
-            priority
-          />
-          </div>
-          <div>
-            <h1 className="text-base font-bold leading-tight md:text-lg">CEBU INSTITUTE OF TECHNOLOGY</h1>
-            <p className="text-xs font-semibold md:text-sm">UNIVERSITY</p>
-          </div>
-        </div>
-        <div className="flex w-full items-center gap-2 md:ml-auto md:w-auto md:justify-end">
-          <AdminNotificationCenter />
-          <AdminUserMenu username="Admin" />
-        </div>
-      </div>
+  const stats = [
+    {
+      label: "Total Responses",
+      value: String(totalResponses),
+      caption: totalResponses === 1 ? "alumni response" : "alumni responses",
+      icon: Users,
+    },
+    {
+      label: "PNLE Passing Rate",
+      value: pnlePassingRate,
+      caption: "based on submitted licensure data",
+      icon: CheckCircle2,
+    },
+    {
+      label: "Employment Rate",
+      value: employmentRate.rate,
+      caption: employmentRate.detail,
+      icon: TrendingUp,
+    },
+  ] as const
 
-      <div className="flex-1 p-4 md:p-6">
-        <div className="mx-auto w-full max-w-6xl space-y-6">
-          <div className="rounded-lg border border-maroon/20 p-5 space-y-3">
-            <p className="text-sm font-semibold uppercase tracking-wide text-maroon">
-              Alumni Tracer Survey
-            </p>
-            <h2 className="text-3xl font-bold text-maroon">Admin Dashboard</h2>
-            <p className="text-foreground leading-relaxed">
-              Review alumni responses with clean sections for faster reading.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Button asChild variant="outline" className="bg-white text-maroon hover:bg-maroon/5">
-                <Link href="/admin/analytics">Share Analytics</Link>
-              </Button>
+  return (
+    <div className="relative flex min-h-screen flex-col bg-background">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(60%_60%_at_50%_0%,color-mix(in_oklch,var(--gold)_18%,transparent),transparent_70%)]"
+      />
+
+      <AdminShellHeader username="Admin" />
+
+      <div className="flex-1 px-4 py-6 md:px-6 md:py-8">
+        <div className="mx-auto w-full max-w-7xl space-y-6 animate-fade-up">
+          <div className="relative overflow-hidden rounded-2xl border border-maroon/15 bg-gradient-to-br from-white via-gold/10 to-white p-6 shadow-sm md:p-7">
+            <div className="pointer-events-none absolute -right-12 -top-12 h-44 w-44 rounded-full bg-maroon/10 blur-2xl" />
+            <div className="relative flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <div className="space-y-2">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-maroon">Alumni Tracer Survey</p>
+                <h2 className="text-3xl font-bold tracking-tight text-maroon md:text-4xl text-balance">Admin Dashboard</h2>
+                <p className="max-w-2xl text-sm text-muted-foreground leading-relaxed">
+                  Review alumni responses with clean sections for faster reading and share analytics with stakeholders in one click.
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <Button asChild className="bg-maroon text-gold hover:bg-maroon/90 font-semibold">
+                  <Link href="/admin/analytics">
+                    Share Analytics
+                    <ArrowUpRight className="h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
             </div>
           </div>
 
           <div className="grid gap-4 md:grid-cols-3">
-            <Card className="border-maroon/20">
-              <CardHeader className="space-y-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-muted">
-                  <Users className="h-5 w-5 text-maroon" />
-                </div>
-                <div className="space-y-1">
-                  <CardDescription>Total Responses</CardDescription>
-                  <CardTitle className="text-3xl leading-none">{totalResponses}</CardTitle>
-                </div>
-              </CardHeader>
-            </Card>
-            <Card className="border-maroon/20">
-              <CardHeader className="space-y-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-muted">
-                  <CheckCircle2 className="h-5 w-5 text-maroon" />
-                </div>
-                <div className="space-y-1">
-                  <CardDescription>PNLE Passing Rate</CardDescription>
-                  <CardTitle className="text-3xl leading-none">{pnlePassingRate}</CardTitle>
-                </div>
-              </CardHeader>
-            </Card>
-            <Card className="border-maroon/20">
-              <CardHeader className="space-y-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-muted">
-                  <TrendingUp className="h-5 w-5 text-maroon" />
-                </div>
-                <div className="space-y-1">
-                  <CardDescription>Employment Rate</CardDescription>
-                  <div className="flex items-end gap-2">
-                    <CardTitle className="text-3xl leading-none">{employmentRate.rate}</CardTitle>
-                    <span className="text-sm font-medium text-muted-foreground">{employmentRate.detail}</span>
-                  </div>
-                </div>
-              </CardHeader>
-            </Card>
+            {stats.map((stat) => {
+              const Icon = stat.icon
+              return (
+                <Card
+                  key={stat.label}
+                  className="group relative overflow-hidden border-maroon/15 bg-card transition-all duration-200 hover:-translate-y-0.5 hover:border-maroon/25 hover:shadow-lg"
+                >
+                  <div className="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full bg-gold/15 blur-2xl opacity-0 transition-opacity group-hover:opacity-100" />
+                  <CardHeader className="relative space-y-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-maroon/8 ring-1 ring-maroon/15 transition-colors group-hover:bg-maroon/12">
+                        <Icon className="h-5 w-5 text-maroon" />
+                      </div>
+                    </div>
+                    <div className="space-y-1.5">
+                      <CardDescription className="text-xs font-semibold uppercase tracking-wider">{stat.label}</CardDescription>
+                      <CardTitle className="text-3xl font-black leading-none tracking-tight text-maroon tabular-nums">
+                        {stat.value}
+                      </CardTitle>
+                      <p className="text-xs text-muted-foreground">{stat.caption}</p>
+                    </div>
+                  </CardHeader>
+                </Card>
+              )
+            })}
           </div>
 
-          <Card className="border-maroon/20">
-            <CardHeader className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+          <Card className="border-maroon/15 shadow-sm">
+            <CardHeader className="flex flex-col gap-4 border-b border-border/50 pb-4 md:flex-row md:items-start md:justify-between">
               <div className="space-y-1">
-                <CardTitle>Survey Responses</CardTitle>
+                <CardTitle className="text-xl text-maroon">Survey Responses</CardTitle>
                 <CardDescription>
                   Showing {surveyResponses.length} response
                   {surveyResponses.length === 1 ? "" : "s"}
-                  {totalResponses > surveyResponses.length
-                    ? ` out of ${totalResponses}`
-                    : ""}
+                  {totalResponses > surveyResponses.length ? ` out of ${totalResponses}` : ""}
                   .
                 </CardDescription>
               </div>
             </CardHeader>
 
-            <CardContent>
+            <CardContent className="pt-4">
               <BatchFilterTable responses={surveyResponses} />
             </CardContent>
           </Card>

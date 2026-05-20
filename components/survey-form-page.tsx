@@ -795,24 +795,31 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
     description: string
     complete: boolean
   }) => (
-    <div id={sectionId} className="relative overflow-hidden rounded-xl border border-maroon/20 bg-white/80 p-4 md:p-5">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,oklch(0.85_0.12_75/.25),transparent_60%)]" />
+    <div
+      id={sectionId}
+      className="group relative scroll-mt-24 overflow-hidden rounded-2xl border border-maroon/15 bg-white/85 p-5 shadow-sm transition-shadow duration-200 hover:shadow-md md:p-6"
+    >
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,oklch(0.85_0.12_75/.22),transparent_60%)]" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-maroon via-maroon/70 to-gold" />
       <div className="relative flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-        <div className="flex items-start gap-3">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-maroon/30 bg-maroon text-sm font-bold text-gold">
+        <div className="flex items-start gap-4">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-maroon/30 bg-maroon text-base font-bold text-gold shadow-sm transition-transform duration-200 group-hover:scale-105">
             {shortLabel}
           </div>
           <div className="space-y-1">
-            <h3 className="text-lg font-bold text-maroon">{title}</h3>
-            <p className="text-sm text-muted-foreground">{description}</p>
+            <h3 className="text-lg font-bold tracking-tight text-maroon md:text-xl">{title}</h3>
+            <p className="text-sm leading-relaxed text-muted-foreground">{description}</p>
           </div>
         </div>
         <p
-          className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide ${
-            complete ? "bg-emerald-50 text-emerald-700 border border-emerald-200" : "bg-maroon/10 text-maroon border border-maroon/20"
+          className={`inline-flex items-center gap-1.5 self-start rounded-full px-3 py-1.5 text-xs font-semibold uppercase tracking-wide transition-colors ${
+            complete
+              ? "border border-emerald-200 bg-emerald-50 text-emerald-700"
+              : "border border-maroon/20 bg-maroon/5 text-maroon"
           }`}
         >
-          {complete ? "Section completed" : "In progress"}
+          <span className={`h-1.5 w-1.5 rounded-full ${complete ? "bg-emerald-500" : "bg-maroon/50 animate-pulse"}`} aria-hidden />
+          {complete ? "Completed" : "In progress"}
         </p>
       </div>
     </div>
@@ -821,41 +828,54 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
   return (
     <SurveyShell>
       {editLoadError && (
-        <div className="rounded-lg border border-maroon/20 bg-white/80 p-4 text-sm text-maroon">
+        <div className="rounded-xl border border-maroon/25 bg-maroon/5 p-4 text-sm font-medium text-maroon animate-fade-in">
           {editLoadError}
         </div>
       )}
       {isLoadingResponse ? (
-        <div className="rounded-lg border border-maroon/20 bg-white/80 p-4 text-sm text-muted-foreground">
-          Loading your saved response...
+        <div className="space-y-3 rounded-xl border border-maroon/15 bg-white/80 p-5 animate-fade-in">
+          <div className="shimmer h-5 w-1/3 rounded-md bg-muted/70" />
+          <div className="shimmer h-4 w-2/3 rounded-md bg-muted/70" />
+          <div className="shimmer h-4 w-1/2 rounded-md bg-muted/70" />
+          <p className="pt-2 text-sm text-muted-foreground">Loading your saved response...</p>
         </div>
       ) : isSubmitted ? (
-        <div className="rounded-lg border border-maroon/20 p-5 space-y-4">
-          <h2 className="text-2xl font-bold text-maroon">Thank You for Completing the Alumni Tracer Survey!</h2>
-          <p className="text-foreground leading-relaxed">
-            Your responses are valuable and will help improve curriculum, alumni support services, and future educational initiatives.
-          </p>
-          <p className="text-foreground leading-relaxed">
-            All submitted information will be handled with confidentiality and used for academic and institutional development purposes.
-          </p>
-          {submitMessage && <p className="text-sm font-semibold text-emerald-700">{submitMessage}</p>}
-          {editLink && (
+        <div className="relative overflow-hidden rounded-2xl border border-emerald-200/70 bg-gradient-to-br from-emerald-50 via-white to-gold/10 p-6 shadow-sm space-y-4 animate-fade-up md:p-8">
+          <div className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-emerald-200/40 blur-2xl" />
+          <div className="relative flex items-start gap-4">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 ring-4 ring-emerald-50">
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2.4" viewBox="0 0 24 24" aria-hidden>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
             <div className="space-y-2">
-              <p className="text-sm text-foreground">Save this private link to edit your response later:</p>
-              <Input readOnly value={editLink} className="bg-white text-foreground border-maroon/20" />
+              <h2 className="text-2xl font-bold tracking-tight text-maroon md:text-3xl">Thank You for Completing the Survey</h2>
+              <p className="max-w-2xl text-foreground leading-relaxed">
+                Your responses are valuable and will help improve curriculum, alumni support services, and future educational initiatives.
+              </p>
+              <p className="max-w-2xl text-sm text-muted-foreground leading-relaxed">
+                All submitted information is handled with confidentiality and used for academic and institutional development purposes.
+              </p>
+            </div>
+          </div>
+          {submitMessage && <p className="relative text-sm font-semibold text-emerald-700">{submitMessage}</p>}
+          {editLink && (
+            <div className="relative space-y-2 rounded-xl border border-maroon/15 bg-white/90 p-4">
+              <p className="text-sm font-medium text-foreground">Save this private link to edit your response later</p>
+              <Input readOnly value={editLink} className="bg-white text-foreground border-maroon/20" onFocus={(e) => e.currentTarget.select()} />
             </div>
           )}
-          <div className="pt-2">
+          <div className="relative pt-2">
             <Button type="button" onClick={handleStartNewSurvey} className="bg-gold text-maroon hover:bg-gold/90 font-semibold">
               Start New Survey
             </Button>
           </div>
         </div>
       ) : formData.consent === "no" ? (
-        <div className="rounded-lg border border-maroon/20 p-5 space-y-4">
-          <h2 className="text-2xl font-bold text-maroon">Survey Ended</h2>
+        <div className="rounded-2xl border border-maroon/20 bg-white/90 p-6 shadow-sm space-y-4 animate-fade-up md:p-8">
+          <h2 className="text-2xl font-bold tracking-tight text-maroon md:text-3xl">Survey Ended</h2>
           <p className="text-foreground leading-relaxed">You chose not to participate in the study.</p>
-          <p className="text-foreground leading-relaxed">Thank you for your time.</p>
+          <p className="text-muted-foreground leading-relaxed">Thank you for your time.</p>
           <div className="pt-2">
             <Button type="button" onClick={handleStartNewSurvey} className="bg-gold text-maroon hover:bg-gold/90 font-semibold">
               Start Survey Again
@@ -863,19 +883,26 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
           </div>
         </div>
       ) : !isConsentStepComplete ? (
-        <div className="space-y-6">
-          <div className="relative overflow-hidden rounded-xl border border-maroon/20 bg-gradient-to-br from-white via-white to-gold/20 p-5 md:p-7 space-y-4">
-            <div className="pointer-events-none absolute -right-12 -top-12 h-36 w-36 rounded-full bg-maroon/10 blur-2xl" />
-            <div className="pointer-events-none absolute -bottom-16 left-8 h-28 w-28 rounded-full bg-gold/50 blur-xl" />
-            <p className="text-sm font-semibold uppercase tracking-wide text-maroon">Alumni Tracer Survey</p>
-            <h2 className="text-3xl font-bold text-maroon">Data Privacy and Informed Consent</h2>
-            <p className="max-w-3xl text-foreground leading-relaxed">
-              Please review the consent statement below before proceeding to the survey form.
-            </p>
-            <div className="flex flex-wrap gap-2 pt-1">
-              <span className="rounded-full border border-maroon/20 bg-white px-3 py-1 text-xs font-semibold text-maroon">Estimated Time: 8-10 minutes</span>
-              <span className="rounded-full border border-maroon/20 bg-white px-3 py-1 text-xs font-semibold text-maroon">Confidential Responses</span>
-              <span className="rounded-full border border-maroon/20 bg-white px-3 py-1 text-xs font-semibold text-maroon">Curriculum Improvement Use</span>
+        <div className="space-y-6 animate-fade-up">
+          <div className="relative overflow-hidden rounded-2xl border border-maroon/15 bg-gradient-to-br from-white via-white to-gold/20 p-6 shadow-sm md:p-8 space-y-4">
+            <div className="pointer-events-none absolute -right-12 -top-12 h-44 w-44 rounded-full bg-maroon/10 blur-2xl" />
+            <div className="pointer-events-none absolute -bottom-16 left-8 h-32 w-32 rounded-full bg-gold/50 blur-xl" />
+            <div className="relative space-y-3">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-maroon">Alumni Tracer Survey</p>
+              <h2 className="text-3xl font-bold tracking-tight text-maroon md:text-4xl text-balance">Data Privacy &amp; Informed Consent</h2>
+              <p className="max-w-3xl text-foreground leading-relaxed">
+                Please review the consent statement below before proceeding to the survey form.
+              </p>
+              <div className="flex flex-wrap gap-2 pt-2">
+                {["Estimated Time: 8-10 minutes", "Confidential Responses", "Curriculum Improvement Use"].map((chip) => (
+                  <span
+                    key={chip}
+                    className="rounded-full border border-maroon/15 bg-white/90 px-3 py-1 text-xs font-semibold text-maroon shadow-sm"
+                  >
+                    {chip}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -886,61 +913,81 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
             onSubmit={handleConsentPageSubmit}
           />
 
-          {formError && <p className="text-sm text-maroon font-medium">{formError}</p>}
+          {formError && (
+            <p className="rounded-lg border border-maroon/25 bg-maroon/5 px-3 py-2 text-sm font-medium text-maroon animate-fade-in">{formError}</p>
+          )}
         </div>
       ) : (
         <div className="combined-survey space-y-6">
-          <div className="relative overflow-hidden rounded-2xl border border-maroon/20 bg-gradient-to-br from-white via-gold/10 to-white p-5 md:p-7 shadow-[0_16px_40px_-24px_rgba(80,30,38,0.65)]">
+          <div className="relative overflow-hidden rounded-2xl border border-maroon/15 bg-gradient-to-br from-white via-gold/10 to-white p-6 shadow-[0_16px_40px_-24px_rgba(80,30,38,0.4)] md:p-8">
             <div className="pointer-events-none absolute -right-16 -top-12 h-52 w-52 rounded-full bg-maroon/10 blur-3xl" />
             <div className="pointer-events-none absolute -left-10 bottom-0 h-40 w-40 rounded-full bg-gold/30 blur-2xl" />
-            <div className="relative grid gap-6 lg:grid-cols-[1.4fr_1fr]">
-              <div className="space-y-3">
-                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-maroon">CIT-U Alumni Tracer 2026</p>
-                <h2 className="text-3xl font-black leading-tight text-maroon md:text-4xl">Help Shape the Future of the Nursing Program</h2>
-                <p className="max-w-2xl text-foreground leading-relaxed">
+            <div className="relative grid gap-6 lg:grid-cols-[1.5fr_1fr]">
+              <div className="space-y-3.5">
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-maroon">CIT-U Alumni Tracer 2026</p>
+                <h2 className="text-3xl font-black leading-[1.1] tracking-tight text-maroon md:text-[2.5rem] text-balance">
+                  Help Shape the Future of the Nursing Program
+                </h2>
+                <p className="max-w-2xl text-foreground leading-relaxed text-pretty">
                   Your participation is voluntary, and all responses will remain confidential. Insights from this survey directly support
                   curriculum planning, alumni engagement initiatives, and student career readiness.
                 </p>
                 <div className="flex flex-wrap gap-2 pt-1">
-                  <span className="rounded-full border border-maroon/20 bg-white px-3 py-1 text-xs font-semibold text-maroon">One-time survey</span>
-                  <span className="rounded-full border border-maroon/20 bg-white px-3 py-1 text-xs font-semibold text-maroon">Mobile-friendly</span>
-                  <span className="rounded-full border border-maroon/20 bg-white px-3 py-1 text-xs font-semibold text-maroon">Secure submission</span>
+                  {["One-time survey", "Mobile-friendly", "Secure submission"].map((chip) => (
+                    <span
+                      key={chip}
+                      className="rounded-full border border-maroon/15 bg-white/90 px-3 py-1 text-xs font-semibold text-maroon shadow-sm"
+                    >
+                      {chip}
+                    </span>
+                  ))}
                 </div>
               </div>
 
-              <div className="rounded-xl border border-maroon/20 bg-white/90 p-4 space-y-3">
-                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Survey progress</p>
-                <div className="flex items-end justify-between">
-                  <p className="text-3xl font-black text-maroon">{completionPercent}%</p>
-                  <p className="text-sm text-muted-foreground">
-                    {completedSections} of {sectionProgress.length} sections complete
+              <div className="rounded-2xl border border-maroon/15 bg-white/95 p-5 space-y-3 shadow-sm">
+                <div className="flex items-center justify-between">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Survey progress</p>
+                  <span className="rounded-full bg-maroon/8 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-maroon">Live</span>
+                </div>
+                <div className="flex items-end justify-between gap-3">
+                  <p className="text-4xl font-black leading-none text-maroon tabular-nums">{completionPercent}%</p>
+                  <p className="text-right text-sm text-muted-foreground">
+                    <span className="font-semibold text-foreground">{completedSections}</span> of {sectionProgress.length} sections
                   </p>
                 </div>
-                <div className="h-2 w-full overflow-hidden rounded-full bg-maroon/10">
-                  <div className="h-full rounded-full bg-maroon transition-all duration-500" style={{ width: `${completionPercent}%` }} />
+                <div className="h-2.5 w-full overflow-hidden rounded-full bg-maroon/10">
+                  <div
+                    className="h-full rounded-full bg-gradient-to-r from-maroon via-maroon to-maroon/80 transition-all duration-700 ease-out"
+                    style={{ width: `${completionPercent}%` }}
+                  />
                 </div>
-                <p className="text-xs text-muted-foreground">Complete each section below, then submit at the bottom of the page.</p>
+                <p className="text-xs leading-relaxed text-muted-foreground">Complete each section below, then submit at the bottom of the page.</p>
               </div>
             </div>
           </div>
 
-          <div className="sticky top-2 z-10 rounded-xl border border-maroon/20 bg-white/95 p-3 backdrop-blur supports-[backdrop-filter]:bg-white/75">
+          <div className="sticky top-16 z-20 -mx-2 rounded-xl border border-maroon/15 bg-white/95 p-2.5 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/80 sm:top-20 sm:mx-0">
             <div className="flex flex-wrap gap-2">
               {sectionProgress.map((section) => (
                 <a
                   key={section.id}
                   href={`#${section.id}`}
-                  className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors ${
+                  className={`group inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold transition-all duration-200 hover:-translate-y-px hover:shadow-sm ${
                     section.complete
-                      ? "border-emerald-300 bg-emerald-50 text-emerald-700"
-                      : "border-maroon/20 bg-white text-maroon hover:bg-maroon/5"
+                      ? "border-emerald-300 bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
+                      : "border-maroon/15 bg-white text-maroon hover:border-maroon/30 hover:bg-maroon/5"
                   }`}
                 >
                   <span
-                    className={`h-2 w-2 rounded-full ${section.complete ? "bg-emerald-500" : "bg-maroon/35"}`}
+                    className={`flex h-4 w-4 items-center justify-center rounded-full text-[10px] font-bold ${
+                      section.complete ? "bg-emerald-500 text-white" : "bg-maroon/10 text-maroon"
+                    }`}
                     aria-hidden="true"
-                  />
-                  {section.shortLabel}. {section.title}
+                  >
+                    {section.complete ? "✓" : section.shortLabel}
+                  </span>
+                  <span className="hidden sm:inline">{section.title}</span>
+                  <span className="sm:hidden">{section.shortLabel}</span>
                 </a>
               ))}
             </div>
@@ -954,14 +1001,14 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
             complete={isGeneralInfoComplete}
           />
 
-          <div className="rounded-lg border border-maroon/20 p-5 space-y-2">
-            <Label htmlFor="email" className="text-foreground text-base">
+          <div className="rounded-xl border border-maroon/15 bg-white/90 p-5 space-y-2 shadow-sm transition-shadow duration-200 hover:shadow-md">
+            <Label htmlFor="email" className="text-foreground text-base font-semibold">
               Email <span className="text-maroon">*</span>
             </Label>
             <Input
               id="email"
               type="email"
-              placeholder="Short answer text"
+              placeholder="you@example.com"
               value={formData.email}
               onChange={handleEmailChange}
               className="bg-white text-foreground border-maroon/20 placeholder:text-muted-foreground"
@@ -969,13 +1016,15 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
             />
           </div>
 
-          <div className="rounded-lg border border-maroon/20 p-5 space-y-3">
-            <Label htmlFor="idUpload" className="text-foreground text-base">
-              Alumni ID Upload <span className="text-muted-foreground font-normal">(optional)</span>
-            </Label>
-            <p className="text-sm text-muted-foreground">
-              Upload a photo or PDF copy of your alumni ID for verification. This does not affect your ability to submit the survey.
-            </p>
+          <div className="rounded-xl border border-maroon/15 bg-white/90 p-5 space-y-3 shadow-sm transition-shadow duration-200 hover:shadow-md">
+            <div className="space-y-1">
+              <Label htmlFor="idUpload" className="text-foreground text-base font-semibold">
+                Alumni ID Upload <span className="text-muted-foreground font-normal">(optional)</span>
+              </Label>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Upload a photo or PDF copy of your alumni ID for verification. This does not affect your ability to submit the survey.
+              </p>
+            </div>
             <Input
               id="idUpload"
               type="file"
@@ -994,11 +1043,15 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
                 {isUploadingId ? "Uploading Alumni ID..." : "Upload Alumni ID"}
               </Button>
               {formData.idUploadUrl && (
-                <p className="text-xs text-emerald-700 break-all">Uploaded URL: {formData.idUploadUrl}</p>
+                <p className="inline-flex items-center gap-1.5 text-xs font-medium text-emerald-700 break-all">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden /> Uploaded
+                </p>
               )}
             </div>
-            {idUploadStatus && <p className="text-sm text-emerald-700 font-medium">{idUploadStatus}</p>}
-            {idUploadError && <p className="text-sm text-maroon font-medium">{idUploadError}</p>}
+            {idUploadStatus && <p className="text-sm font-medium text-emerald-700 animate-fade-in">{idUploadStatus}</p>}
+            {idUploadError && (
+              <p className="rounded-md border border-maroon/25 bg-maroon/5 px-3 py-2 text-sm font-medium text-maroon animate-fade-in">{idUploadError}</p>
+            )}
           </div>
 
           <SurveySectionPersonalInfo
@@ -1162,22 +1215,34 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
             onSubmit={preventSectionSubmit}
           />
 
-          <div className="rounded-lg border border-maroon/20 p-5 space-y-4">
-            <p className="text-sm text-foreground leading-relaxed">
-              By clicking submit, you certify that the information provided is true and you agree to the terms and privacy consent for this
-              Alumni Tracer Survey.
-            </p>
+          <div className="relative overflow-hidden rounded-2xl border border-maroon/15 bg-gradient-to-br from-white via-gold/10 to-white p-6 shadow-sm space-y-4 md:p-7">
+            <div className="pointer-events-none absolute -right-12 -bottom-12 h-40 w-40 rounded-full bg-gold/30 blur-2xl" />
+            <div className="relative space-y-3">
+              <h3 className="text-lg font-bold text-maroon">Submit your response</h3>
+              <p className="text-sm text-foreground leading-relaxed text-pretty">
+                By clicking submit, you certify that the information provided is true and you agree to the terms and privacy consent for this
+                Alumni Tracer Survey.
+              </p>
+            </div>
 
-            {formError && <p className="text-sm text-maroon font-medium">{formError}</p>}
+            {formError && (
+              <p className="relative rounded-md border border-maroon/25 bg-maroon/5 px-3 py-2 text-sm font-medium text-maroon animate-fade-in">
+                {formError}
+              </p>
+            )}
 
-            <Button
-              type="button"
-              onClick={handleCombinedSubmit}
-              className="bg-gold text-maroon hover:bg-gold/90 font-semibold px-8"
-              disabled={isSubmitting || isUploadingId}
-            >
-              {isSubmitting ? "Submitting..." : isUploadingId ? "Uploading Alumni ID..." : "Submit Survey"}
-            </Button>
+            <div className="relative flex flex-wrap items-center gap-3 pt-1">
+              <Button
+                type="button"
+                size="lg"
+                onClick={handleCombinedSubmit}
+                className="bg-gold text-maroon hover:bg-gold/90 font-semibold px-8 shadow-sm"
+                disabled={isSubmitting || isUploadingId}
+              >
+                {isSubmitting ? "Submitting..." : isUploadingId ? "Uploading Alumni ID..." : "Submit Survey"}
+              </Button>
+              <p className="text-xs text-muted-foreground">{completedSections} of {sectionProgress.length} sections complete</p>
+            </div>
           </div>
         </div>
       )}
