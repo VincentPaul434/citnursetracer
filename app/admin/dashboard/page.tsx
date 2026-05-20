@@ -15,6 +15,7 @@ import AdminShellHeader from "@/components/admin/dashboard/admin-shell-header"
 import type { SurveyResponseRow } from "@/components/admin/dashboard/types"
 import {
   ADMIN_SESSION_COOKIE,
+  ADMIN_SURVEY_RESPONSES_CACHE_TAG,
   buildAdminApiUrl,
   parseAdminSession,
 } from "@/lib/admin-auth"
@@ -143,7 +144,10 @@ export default async function AdminDashboardPage() {
         Accept: "application/json",
         Authorization: session.authHeader,
       },
-      cache: "no-store",
+      cache: "force-cache",
+      next: {
+        tags: [ADMIN_SURVEY_RESPONSES_CACHE_TAG],
+      },
     },
   )
 
@@ -266,7 +270,7 @@ export default async function AdminDashboardPage() {
             </CardHeader>
 
             <CardContent className="pt-4">
-              <BatchFilterTable responses={surveyResponses} />
+              <BatchFilterTable responses={surveyResponses} initialTotalCount={totalResponses} />
             </CardContent>
           </Card>
         </div>

@@ -10,10 +10,11 @@ import type { SurveyResponseRow } from "@/components/admin/dashboard/types"
 
 interface BatchFilterTableProps {
   responses: SurveyResponseRow[]
+  initialTotalCount?: number
   fetchFilteredResponses?: (batch: string) => Promise<SurveyResponseRow[]>
 }
 
-export default function BatchFilterTable({ responses }: BatchFilterTableProps) {
+export default function BatchFilterTable({ responses, initialTotalCount }: BatchFilterTableProps) {
   // Get all unique years from responses for dropdown
   const batchOptions = useMemo(() => {
     const years = Array.from(
@@ -28,13 +29,22 @@ export default function BatchFilterTable({ responses }: BatchFilterTableProps) {
   }, [responses])
 
   const [selectedBatch, setSelectedBatch] = useState<string>("all")
-  const [filteredResponses, setFilteredResponses] = useState<SurveyResponseRow[]>([])
+  const [filteredResponses, setFilteredResponses] = useState<SurveyResponseRow[]>(responses)
   const [loading, setLoading] = useState(false)
   const [page, setPage] = useState(1)
-  const [totalCount, setTotalCount] = useState(0)
+  const [totalCount, setTotalCount] = useState(initialTotalCount ?? responses.length)
   const pageSize = 20
 
   useEffect(() => {
+    const isDefaultView = selectedBatch === "all" && page === 1
+
+    if (isDefaultView) {
+      setFilteredResponses(responses)
+      setTotalCount(initialTotalCount ?? responses.length)
+      setLoading(false)
+      return
+    }
+
     let ignore = false;
     async function fetchData() {
       setLoading(true);
@@ -61,12 +71,12 @@ export default function BatchFilterTable({ responses }: BatchFilterTableProps) {
     }
     fetchData();
     return () => { ignore = true };
-  }, [selectedBatch, page, pageSize]);
+  }, [selectedBatch, page, pageSize, responses, initialTotalCount]);
 
-  // Reset to first page when batch changes
-  useEffect(() => {
-    setPage(1);
-  }, [selectedBatch]);
+  const handleBatchChange = (batch: string) => {
+    setSelectedBatch(batch)
+    setPage(1)
+  }
 
   return (
     <div className="space-y-4">
@@ -80,7 +90,7 @@ export default function BatchFilterTable({ responses }: BatchFilterTableProps) {
             <p className="text-xs text-muted-foreground">Narrow responses by graduation year</p>
           </div>
         </div>
-        <Select value={selectedBatch} onValueChange={setSelectedBatch} name="batch">
+        <Select value={selectedBatch} onValueChange={handleBatchChange} name="batch">
           <SelectTrigger className="w-full sm:w-48 bg-white text-foreground border-maroon/20">
             <SelectValue placeholder="Select batch" />
           </SelectTrigger>

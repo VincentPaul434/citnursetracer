@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server"
 import { buildAdminApiUrl } from "@/lib/admin-auth"
+import { revalidateTag } from "next/cache"
+import { ADMIN_SURVEY_RESPONSES_CACHE_TAG } from "@/lib/admin-auth"
 
 const ID_UPLOAD_ENDPOINT = "/api/v1/submissions/id-upload"
 
@@ -78,9 +80,11 @@ export async function POST(request: Request) {
 
     if (contentType.includes("application/json")) {
       const payload = (await backendResponse.json()) as unknown
+      revalidateTag(ADMIN_SURVEY_RESPONSES_CACHE_TAG)
       return NextResponse.json(payload, { status: backendResponse.status })
     }
 
+    revalidateTag(ADMIN_SURVEY_RESPONSES_CACHE_TAG)
     return NextResponse.json({ success: true }, { status: backendResponse.status })
   } catch {
     return NextResponse.json(

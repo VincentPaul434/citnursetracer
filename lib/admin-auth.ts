@@ -1,6 +1,7 @@
 import { createHmac, timingSafeEqual } from "crypto"
 
 export const ADMIN_SESSION_COOKIE = "citnurse_admin_session"
+export const ADMIN_SURVEY_RESPONSES_CACHE_TAG = "admin-survey-responses"
 
 const DEFAULT_ADMIN_API_BASE_URL = "https://tracer-backend-mkls.onrender.com/"
 const DEFAULT_ADMIN_SESSION_SECRET = "citnurse-admin-session-secret"
