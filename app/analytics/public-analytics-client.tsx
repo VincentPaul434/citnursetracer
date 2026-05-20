@@ -603,19 +603,25 @@ export default function PublicAnalyticsClient() {
   )
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="flex-1 p-4 md:p-6">
-        <div className="mx-auto w-full max-w-6xl space-y-6">
-          <div className="rounded-lg border border-maroon/20 bg-white/60 p-5 backdrop-blur">
-            <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-wide text-maroon">Alumni Tracer Survey</p>
-                <h1 className="text-3xl font-bold text-maroon">Public Analytics Dashboard</h1>
-                <p className="text-sm text-muted-foreground">
-                  Summary snapshots from the public analytics API.
+    <div className="relative min-h-screen bg-background">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(60%_60%_at_50%_0%,color-mix(in_oklch,var(--gold)_18%,transparent),transparent_70%)]"
+      />
+      <div className="flex-1 px-4 py-6 md:px-6 md:py-8">
+        <div className="mx-auto w-full max-w-6xl space-y-6 animate-fade-up">
+          <div className="relative overflow-hidden rounded-2xl border border-maroon/15 bg-gradient-to-br from-white via-gold/10 to-white p-6 shadow-sm md:p-7">
+            <div className="pointer-events-none absolute -right-12 -top-12 h-44 w-44 rounded-full bg-maroon/10 blur-2xl" />
+            <div className="relative flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+              <div className="space-y-2">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-maroon">Alumni Tracer Survey</p>
+                <h1 className="text-3xl font-bold tracking-tight text-maroon md:text-4xl text-balance">Public Analytics Dashboard</h1>
+                <p className="max-w-2xl text-sm text-muted-foreground leading-relaxed">
+                  Summary snapshots and breakdowns from the public analytics API.
                 </p>
               </div>
-              <div className="rounded-full border border-maroon/20 bg-maroon/5 px-4 py-2 text-xs font-semibold text-maroon">
+              <div className="inline-flex items-center gap-2 self-start rounded-full border border-maroon/20 bg-white/90 px-3 py-1.5 text-xs font-semibold text-maroon shadow-sm">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" aria-hidden />
                 Updated on load
               </div>
             </div>

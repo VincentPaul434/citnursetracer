@@ -1,4 +1,6 @@
+import { ChevronLeft, ChevronRight, FileX2 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import {
   Table,
   TableBody,
@@ -32,68 +34,102 @@ const toBadgeVariant = (status: string) => {
   return "outline" as const
 }
 
-export default function ResponsesTable({ responses, page = 1, pageSize = 20, onPageChange, totalCount }: ResponsesTableProps) {
-  // No slicing needed, backend already paginates
-  const totalPages = totalCount ? Math.ceil(totalCount / pageSize) : 1;
+export default function ResponsesTable({
+  responses,
+  page = 1,
+  pageSize = 20,
+  onPageChange,
+  totalCount,
+}: ResponsesTableProps) {
+  const totalPages = totalCount ? Math.max(1, Math.ceil(totalCount / pageSize)) : 1
+  const startIndex = totalCount === 0 ? 0 : (page - 1) * pageSize + 1
+  const endIndex = totalCount === 0 ? 0 : Math.min(page * pageSize, totalCount ?? responses.length)
+
   return (
-    <>
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>Email</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Employment</TableHead>
-            <TableHead>Licensure</TableHead>
-            <TableHead className="w-32.5">Action</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {responses.length === 0 ? (
-            <TableRow>
-              <TableCell colSpan={5} className="py-10 text-center text-sm text-muted-foreground">
-                No survey responses found.
-              </TableCell>
+    <div className="space-y-4">
+      <div className="max-h-[640px] overflow-auto rounded-lg border border-border/60">
+        <Table className="border-0">
+          <TableHeader>
+            <TableRow className="border-b border-border/60">
+              <TableHead>Email</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead>Employment</TableHead>
+              <TableHead>Licensure</TableHead>
+              <TableHead className="w-32 text-right">Action</TableHead>
             </TableRow>
-          ) : (
-            responses.map((response, index) => (
-              <TableRow key={`${response.email}-${index}`}>
-                <TableCell className="max-w-60 truncate">{response.email}</TableCell>
-                <TableCell>
-                  <Badge variant={toBadgeVariant(response.status)}>{response.status}</Badge>
-                </TableCell>
-                <TableCell>{response.employmentStatus}</TableCell>
-                <TableCell>{response.licensureStatus}</TableCell>
-                <TableCell>
-                  <ResponseDetailsDialog email={response.email} details={response.details} />
+          </TableHeader>
+          <TableBody>
+            {responses.length === 0 ? (
+              <TableRow>
+                <TableCell colSpan={5} className="py-14 text-center">
+                  <div className="mx-auto flex max-w-sm flex-col items-center gap-3 text-muted-foreground">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-muted">
+                      <FileX2 className="h-5 w-5 text-muted-foreground" />
+                    </div>
+                    <div className="space-y-1">
+                      <p className="text-sm font-semibold text-foreground">No survey responses found</p>
+                      <p className="text-xs leading-relaxed">
+                        Try selecting a different batch year, or check back later as alumni submit their responses.
+                      </p>
+                    </div>
+                  </div>
                 </TableCell>
               </TableRow>
-            ))
-          )}
-        </TableBody>
-      </Table>
-      {/* Pagination Controls */}
-      {totalPages > 1 && (
-        <div className="flex justify-center items-center gap-2 mt-4">
-          <button
-            className="px-2 py-1 border rounded disabled:opacity-50"
-            onClick={() => onPageChange && onPageChange(page - 1)}
-            disabled={page === 1}
-          >
-            Previous
-          </button>
-          <span>
-            Page {page} of {totalPages}
-          </span>
-          <button
-            className="px-2 py-1 border rounded disabled:opacity-50"
-            onClick={() => onPageChange && onPageChange(page + 1)}
-            disabled={page === totalPages}
-          >
-            Next
-          </button>
-        </div>
-      )}
-    </>
-  );
-}
+            ) : (
+              responses.map((response, index) => (
+                <TableRow key={`${response.email}-${index}`} className="group">
+                  <TableCell className="max-w-72 truncate font-medium text-foreground">{response.email}</TableCell>
+                  <TableCell>
+                    <Badge variant={toBadgeVariant(response.status)} className="font-medium capitalize">
+                      {response.status}
+                    </Badge>
+                  </TableCell>
+                  <TableCell className="text-muted-foreground">{response.employmentStatus}</TableCell>
+                  <TableCell className="text-muted-foreground">{response.licensureStatus}</TableCell>
+                  <TableCell className="text-right">
+                    <ResponseDetailsDialog email={response.email} details={response.details} />
+                  </TableCell>
+                </TableRow>
+              ))
+            )}
+          </TableBody>
+        </Table>
+      </div>
 
+      {totalPages > 1 ? (
+        <div className="flex flex-col items-center justify-between gap-3 px-1 text-sm text-muted-foreground sm:flex-row">
+          <p>
+            Showing <span className="font-semibold text-foreground tabular-nums">{startIndex}</span>–
+            <span className="font-semibold text-foreground tabular-nums">{endIndex}</span> of{" "}
+            <span className="font-semibold text-foreground tabular-nums">{totalCount}</span>
+          </p>
+          <div className="flex items-center gap-1">
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => onPageChange?.(page - 1)}
+              disabled={page === 1}
+            >
+              <ChevronLeft className="h-4 w-4" />
+              Previous
+            </Button>
+            <p className="px-3 text-xs font-semibold tabular-nums text-foreground">
+              Page {page} of {totalPages}
+            </p>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => onPageChange?.(page + 1)}
+              disabled={page === totalPages}
+            >
+              Next
+              <ChevronRight className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
+      ) : null}
+    </div>
+  )
+}
