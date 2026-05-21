@@ -45,11 +45,11 @@ export default async function AdminLoginPage() {
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background p-4">
       <div className="pointer-events-none absolute inset-0">
         <Image src="/cit-nurse-bg.jpg" alt="CIT Nursing background" fill priority className="object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-br from-maroon/30 via-background/70 to-background/85" />
-        <div className="absolute inset-0 bg-background/40 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-maroon/55 via-maroon/35 to-background/95" />
+        <div className="absolute inset-0 bg-background/55 backdrop-blur-md" />
       </div>
 
-      <Card className="relative z-10 w-full max-w-md border-maroon/15 bg-card/95 backdrop-blur-md shadow-2xl shadow-maroon/20 animate-fade-up">
+      <Card className="relative z-10 w-full max-w-md border-maroon/15 bg-card backdrop-blur-md shadow-2xl shadow-maroon/25 animate-fade-up">
         <CardHeader className="space-y-3 pb-2">
           <div className="flex items-center gap-3">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-maroon/8 ring-1 ring-maroon/15">

@@ -34,6 +34,13 @@ const toBadgeVariant = (status: string) => {
   return "outline" as const
 }
 
+const maskEmail = (email: string) => {
+  if (!email || email === "-" || email === "N/A") return email
+  const atIndex = email.indexOf("@")
+  if (atIndex <= 0) return email
+  return `${email.charAt(0)}••••••${email.slice(atIndex)}`
+}
+
 export default function ResponsesTable({
   responses,
   page = 1,
@@ -78,7 +85,12 @@ export default function ResponsesTable({
             ) : (
               responses.map((response, index) => (
                 <TableRow key={`${response.email}-${index}`} className="group">
-                  <TableCell className="max-w-72 truncate font-medium text-foreground">{response.email}</TableCell>
+                  <TableCell
+                    className="max-w-72 truncate font-medium text-foreground font-mono tabular-nums"
+                    title="Email is masked. Open View Details to see the full address."
+                  >
+                    {maskEmail(response.email)}
+                  </TableCell>
                   <TableCell>
                     <Badge variant={toBadgeVariant(response.status)} className="font-medium capitalize">
                       {response.status}

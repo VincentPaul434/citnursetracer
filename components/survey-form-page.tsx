@@ -883,17 +883,17 @@ export default function SurveyFormPage({ onSurveyComplete }: SurveyFormPageProps
           </div>
         </div>
       ) : !isConsentStepComplete ? (
-        <div className="space-y-6 animate-fade-up">
-          <div className="relative overflow-hidden rounded-2xl border border-maroon/15 bg-gradient-to-br from-white via-white to-gold/20 p-6 shadow-sm md:p-8 space-y-4">
+        <div className="space-y-4 animate-fade-up">
+          <div className="relative overflow-hidden rounded-2xl border border-maroon/15 bg-gradient-to-br from-white via-white to-gold/20 p-5 shadow-sm md:p-6 space-y-3">
             <div className="pointer-events-none absolute -right-12 -top-12 h-44 w-44 rounded-full bg-maroon/10 blur-2xl" />
             <div className="pointer-events-none absolute -bottom-16 left-8 h-32 w-32 rounded-full bg-gold/50 blur-xl" />
-            <div className="relative space-y-3">
+            <div className="relative space-y-2">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-maroon">Alumni Tracer Survey</p>
               <h2 className="text-3xl font-bold tracking-tight text-maroon md:text-4xl text-balance">Data Privacy &amp; Informed Consent</h2>
               <p className="max-w-3xl text-foreground leading-relaxed">
                 Please review the consent statement below before proceeding to the survey form.
               </p>
-              <div className="flex flex-wrap gap-2 pt-2">
+              <div className="flex flex-wrap gap-2 pt-1">
                 {["Estimated Time: 8-10 minutes", "Confidential Responses", "Curriculum Improvement Use"].map((chip) => (
                   <span
                     key={chip}

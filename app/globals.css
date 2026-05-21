@@ -17,7 +17,7 @@
   --secondary: oklch(0.85 0.12 75);
   --secondary-foreground: oklch(0.35 0.08 30);
   --muted: oklch(0.93 0.01 60);
-  --muted-foreground: oklch(0.5 0.02 30);
+  --muted-foreground: oklch(0.4 0.025 30);
   --accent: oklch(0.85 0.12 75);
   --accent-foreground: oklch(0.35 0.08 30);
   --destructive: oklch(0.577 0.245 27.325);
@@ -165,6 +165,41 @@
   /* Removes the visible disclosure triangle on summary while keeping a11y semantics */
   summary::-webkit-details-marker {
     display: none;
+  }
+
+  /* Unified styling for native <select> so it matches the custom Input component */
+  select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: var(--card);
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23612720' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 8 10 12 14 8'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.85rem center;
+    background-size: 1rem;
+    padding-right: 2.5rem;
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+  }
+  select:hover {
+    border-color: color-mix(in oklch, var(--foreground) 25%, transparent);
+  }
+  select::-ms-expand {
+    display: none;
+  }
+
+  /* Style the native date picker so it matches the form's maroon accent */
+  input[type="date"] {
+    color-scheme: light;
+  }
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.55;
+    /* Tint the default Chromium calendar icon toward the maroon theme */
+    filter: invert(16%) sepia(28%) saturate(2600%) hue-rotate(346deg) brightness(72%) contrast(92%);
+    transition: opacity 150ms ease;
+  }
+  input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
   }
 }
 

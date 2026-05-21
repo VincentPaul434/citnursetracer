@@ -1,5 +1,4 @@
 import type React from "react"
-import Image from "next/image"
 
 import { Button } from "@/components/ui/button"
 
@@ -18,21 +17,18 @@ export default function SurveySectionConsent({
 }: SurveySectionConsentProps) {
   return (
     <>
-      <div className="mb-6">
-        <div className="relative mb-5 overflow-hidden rounded-2xl border border-maroon/20">
-          <div className="relative h-52 w-full md:h-64">
-            <Image
-              src="/welcome page.png"
-              alt="CIT-U welcome banner"
-              fill
-              priority
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-maroon/85 via-maroon/60 to-maroon/20" />
-          </div>
-
-          <div className="absolute inset-0 flex items-center">
-            <div className="max-w-2xl space-y-2 px-4 py-5 text-white md:px-8">
+      <div className="mb-4">
+        <div className="relative mb-4 overflow-hidden rounded-2xl border border-maroon/20 bg-maroon shadow-sm">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_0%_0%,color-mix(in_oklch,var(--gold)_28%,transparent),transparent_55%)]"
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -right-16 -bottom-16 h-48 w-48 rounded-full bg-gold/25 blur-3xl"
+          />
+          <div className="relative px-5 py-7 text-white md:px-9 md:py-9">
+            <div className="max-w-2xl space-y-2">
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gold">CIT-U Nursing Alumni Tracer</p>
               <h2 className="text-2xl font-black leading-tight md:text-4xl">Lead The Future Through Graduate Impact</h2>
               <p className="text-sm text-white/90 md:text-base">
@@ -42,9 +38,12 @@ export default function SurveySectionConsent({
           </div>
         </div>
 
-        <div className="inline-flex rounded-md bg-gold px-3 py-1 text-sm font-semibold text-maroon mb-4">Step 1: Consent</div>
-        <div className="rounded-lg border border-maroon/20 p-5 space-y-5">
-          <h2 className="text-3xl font-bold text-maroon">Data Privacy and Informed Consent Statement</h2>
+        <div className="inline-flex rounded-md bg-gold px-3 py-1 text-sm font-semibold text-maroon mb-3">Step 1: Consent</div>
+        <div className="rounded-lg border border-maroon/20 p-5 space-y-4">
+          <div className="space-y-1">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-maroon">Step 1 of 2</p>
+            <h3 className="text-lg font-semibold text-maroon md:text-xl">Data Privacy and Informed Consent Statement</h3>
+          </div>
           <p className="italic text-foreground">(In accordance with the Data Privacy Act of 2012 – Republic Act No. 10173)</p>
 
           <p className="text-foreground leading-relaxed">
