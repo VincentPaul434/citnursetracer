@@ -1,7 +1,8 @@
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
+import { useMemo } from "react"
 import { useSearchParams } from "next/navigation"
+import { useQuery } from "@tanstack/react-query"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   ChartContainer,
@@ -27,12 +28,9 @@ import {
 import { Briefcase, CheckCircle2, FileText, ClipboardList, Users } from "lucide-react"
 
 const DEFAULT_API_BASE_URL = "https://tracer-backend-mkls.onrender.com"
+const ANALYTICS_STALE_TIME = 5 * 60 * 1000
 
-type AnalyticsState = {
-  status: "idle" | "loading" | "success" | "error"
-  data: unknown
-  error: string
-}
+type AnalyticsStatus = "loading" | "success" | "error"
 
 type SummaryMetric = {
   label: string
@@ -444,11 +442,6 @@ const getMetricIcon = (label: string) => {
 
 export default function PublicAnalyticsClient() {
   const searchParams = useSearchParams()
-  const [state, setState] = useState<AnalyticsState>({
-    status: "idle",
-    data: null,
-    error: "",
-  })
 
   const tokenFromQuery = searchParams.get("token") ?? ""
   const fallbackToken = process.env.NEXT_PUBLIC_PUBLIC_ANALYTICS_TOKEN ?? ""
@@ -464,34 +457,38 @@ export default function PublicAnalyticsClient() {
     return params.toString()
   }, [searchParams, token])
 
-  useEffect(() => {
-    const run = async () => {
-      if (!token) {
-        setState({ status: "error", data: null, error: "Missing analytics token." })
-        return
+  const query = useQuery<unknown, Error>({
+    queryKey: ["public-analytics", analyticsQuery],
+    enabled: Boolean(token),
+    staleTime: ANALYTICS_STALE_TIME,
+    queryFn: async () => {
+      const response = await fetch(
+        `${getApiBaseUrl()}/api/v1/public/analytics?${analyticsQuery}`,
+      )
+
+      if (!response.ok) {
+        throw new Error("Unable to load analytics data.")
       }
 
-      setState((prev) => ({ ...prev, status: "loading", error: "" }))
+      return (await response.json()) as unknown
+    },
+  })
 
-      try {
-        const response = await fetch(
-          `${getApiBaseUrl()}/api/v1/public/analytics?${analyticsQuery}`,
-          { cache: "no-store" },
-        )
-
-        if (!response.ok) {
-          throw new Error("Unable to load analytics data.")
-        }
-
-        const payload = (await response.json()) as unknown
-        setState({ status: "success", data: payload, error: "" })
-      } catch (error) {
-        setState({ status: "error", data: null, error: toErrorMessage(error) })
-      }
+  const state = useMemo<{ status: AnalyticsStatus; data: unknown; error: string }>(() => {
+    if (!token) {
+      return { status: "error", data: null, error: "Missing analytics token." }
     }
 
-    void run()
-  }, [analyticsQuery, token])
+    if (query.isError) {
+      return { status: "error", data: null, error: toErrorMessage(query.error) }
+    }
+
+    if (query.data !== undefined) {
+      return { status: "success", data: query.data, error: "" }
+    }
+
+    return { status: "loading", data: null, error: "" }
+  }, [token, query.isError, query.error, query.data])
 
   const trendSeries = useMemo(() => {
     if (state.status !== "success") {

@@ -1,7 +1,8 @@
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo } from "react"
 import { Bell, CheckCheck } from "lucide-react"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -18,6 +19,8 @@ interface AdminNotification {
   createdAt: string
   isRead: boolean
 }
+
+const NOTIFICATIONS_QUERY_KEY = ["admin-notifications"] as const
 
 const toStringValue = (value: unknown) => {
   if (typeof value !== "string") {
@@ -105,106 +108,92 @@ const formatTimestamp = (value: string) => {
   }).format(new Date(parsedDate))
 }
 
+const fetchNotifications = async (): Promise<AdminNotification[]> => {
+  const [recentResponse, unreadResponse] = await Promise.all([
+    fetch("/api/admin/notifications/recent", { method: "GET" }),
+    fetch("/api/admin/notifications/unread", { method: "GET" }),
+  ])
+
+  if (recentResponse.status === 401 || unreadResponse.status === 401) {
+    if (typeof window !== "undefined") {
+      window.location.href = "/admin/login"
+    }
+    throw new Error("Unauthorized")
+  }
+
+  if (!recentResponse.ok) {
+    throw new Error("Failed to fetch notifications")
+  }
+
+  const recentPayload = (await recentResponse.json()) as unknown
+  const unreadPayload = unreadResponse.ok ? ((await unreadResponse.json()) as unknown) : []
+
+  const recentNotifications = toNotifications(recentPayload)
+  const unreadNotifications = toNotifications(unreadPayload)
+  const unreadIds = new Set(unreadNotifications.map((item) => item.id))
+
+  return recentNotifications
+    .map((item) => ({ ...item, isRead: !unreadIds.has(item.id) }))
+    .sort(byNewest)
+}
+
 export default function AdminNotificationCenter() {
-  const [notifications, setNotifications] = useState<AdminNotification[]>([])
-  const [isLoading, setIsLoading] = useState(true)
+  const queryClient = useQueryClient()
+
+  const { data: notifications = [], isLoading, refetch } = useQuery({
+    queryKey: NOTIFICATIONS_QUERY_KEY,
+    queryFn: fetchNotifications,
+    staleTime: 30_000,
+  })
 
   const unreadCount = useMemo(
     () => notifications.filter((item) => !item.isRead).length,
     [notifications],
   )
 
-  const refreshNotifications = async () => {
-    const [recentResponse, unreadResponse] = await Promise.all([
-      fetch("/api/admin/notifications/recent", {
-        method: "GET",
-        cache: "no-store",
-      }),
-      fetch("/api/admin/notifications/unread", {
-        method: "GET",
-        cache: "no-store",
-      }),
-    ])
+  const markAsReadMutation = useMutation({
+    mutationFn: async (notificationId: string) => {
+      const response = await fetch(`/api/admin/notifications/${notificationId}/read`, {
+        method: "POST",
+      })
 
-    if (recentResponse.status === 401 || unreadResponse.status === 401) {
-      window.location.href = "/admin/login"
-      return
-    }
+      if (!response.ok) {
+        throw new Error("Failed to mark notification as read")
+      }
 
-    if (!recentResponse.ok) {
-      throw new Error("Failed to fetch notifications")
-    }
+      return notificationId
+    },
+    onSuccess: (notificationId) => {
+      queryClient.setQueryData<AdminNotification[]>(NOTIFICATIONS_QUERY_KEY, (prev) =>
+        prev?.map((item) =>
+          item.id === notificationId ? { ...item, isRead: true } : item,
+        ) ?? [],
+      )
+    },
+  })
 
-    const recentPayload = (await recentResponse.json()) as unknown
-    const unreadPayload = unreadResponse.ok ? ((await unreadResponse.json()) as unknown) : []
+  const markAllAsReadMutation = useMutation({
+    mutationFn: async () => {
+      const response = await fetch("/api/admin/notifications/read-all", {
+        method: "POST",
+      })
 
-    const recentNotifications = toNotifications(recentPayload)
-    const unreadNotifications = toNotifications(unreadPayload)
-    const unreadIds = new Set(unreadNotifications.map((item) => item.id))
-
-    const merged = recentNotifications.map((item) => ({
-      ...item,
-      isRead: !unreadIds.has(item.id),
-    }))
-
-    setNotifications(merged.sort(byNewest))
-  }
-
-  const markAsRead = async (notificationId: string) => {
-    const response = await fetch(`/api/admin/notifications/${notificationId}/read`, {
-      method: "POST",
-    })
-
-    if (!response.ok) {
-      throw new Error("Failed to mark notification as read")
-    }
-
-    setNotifications((prev) =>
-      prev.map((item) =>
-        item.id === notificationId
-          ? {
-              ...item,
-              isRead: true,
-            }
-          : item,
-      ),
-    )
-  }
-
-  const markAllAsRead = async () => {
-    const response = await fetch("/api/admin/notifications/read-all", {
-      method: "POST",
-    })
-
-    if (!response.ok) {
-      throw new Error("Failed to mark all notifications as read")
-    }
-
-    setNotifications((prev) => prev.map((item) => ({ ...item, isRead: true })))
-  }
+      if (!response.ok) {
+        throw new Error("Failed to mark all notifications as read")
+      }
+    },
+    onSuccess: () => {
+      queryClient.setQueryData<AdminNotification[]>(NOTIFICATIONS_QUERY_KEY, (prev) =>
+        prev?.map((item) => ({ ...item, isRead: true })) ?? [],
+      )
+    },
+  })
 
   useEffect(() => {
-    let isActive = true
-
-    const load = async () => {
-      try {
-        await refreshNotifications()
-      } catch {
-        if (isActive) {
-          setNotifications([])
-        }
-      } finally {
-        if (isActive) {
-          setIsLoading(false)
-        }
-      }
-    }
-
-    void load()
-
     const stream = new EventSource("/api/admin/notifications/stream")
+
     stream.onmessage = () => {
-      void refreshNotifications()
+      void queryClient.invalidateQueries({ queryKey: NOTIFICATIONS_QUERY_KEY })
     }
 
     stream.onerror = () => {
@@ -212,13 +201,12 @@ export default function AdminNotificationCenter() {
     }
 
     return () => {
-      isActive = false
       stream.close()
     }
-  }, [])
+  }, [queryClient])
 
   return (
-    <DropdownMenu onOpenChange={(open) => open && void refreshNotifications()}>
+    <DropdownMenu onOpenChange={(open) => open && void refetch()}>
       <DropdownMenuTrigger asChild>
         <Button type="button" variant="outline" size="icon" className="relative" aria-label="Notifications">
           <Bell className="h-4 w-4" />
@@ -238,8 +226,8 @@ export default function AdminNotificationCenter() {
             variant="ghost"
             size="sm"
             className="h-7 px-2"
-            onClick={() => void markAllAsRead()}
-            disabled={unreadCount === 0}
+            onClick={() => markAllAsReadMutation.mutate()}
+            disabled={unreadCount === 0 || markAllAsReadMutation.isPending}
           >
             <CheckCheck className="mr-1 h-3.5 w-3.5" />
             Mark all
@@ -257,7 +245,7 @@ export default function AdminNotificationCenter() {
             <DropdownMenuItem
               key={notification.id}
               className="flex flex-col items-start gap-1 py-2"
-              onClick={() => !notification.isRead && void markAsRead(notification.id)}
+              onClick={() => !notification.isRead && markAsReadMutation.mutate(notification.id)}
             >
               <div className="flex w-full items-center justify-between gap-2">
                 <p className="line-clamp-2 text-sm font-medium leading-snug">{notification.message}</p>

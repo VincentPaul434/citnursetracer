@@ -1,6 +1,7 @@
 "use client"
 
-import { useState, useMemo, useEffect } from "react"
+import { useState, useMemo } from "react"
+import { useQuery } from "@tanstack/react-query"
 import { Filter } from "lucide-react"
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@/components/ui/select"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -14,8 +15,14 @@ interface BatchFilterTableProps {
   fetchFilteredResponses?: (batch: string) => Promise<SurveyResponseRow[]>
 }
 
+type FilteredResponsesPayload = {
+  content?: SurveyResponseRow[]
+  totalElements?: number
+}
+
+const PAGE_SIZE = 20
+
 export default function BatchFilterTable({ responses, initialTotalCount }: BatchFilterTableProps) {
-  // Get all unique years from responses for dropdown
   const batchOptions = useMemo(() => {
     const years = Array.from(
       new Set(
@@ -29,49 +36,38 @@ export default function BatchFilterTable({ responses, initialTotalCount }: Batch
   }, [responses])
 
   const [selectedBatch, setSelectedBatch] = useState<string>("all")
-  const [filteredResponses, setFilteredResponses] = useState<SurveyResponseRow[]>(responses)
-  const [loading, setLoading] = useState(false)
   const [page, setPage] = useState(1)
-  const [totalCount, setTotalCount] = useState(initialTotalCount ?? responses.length)
-  const pageSize = 20
+  const isDefaultView = selectedBatch === "all" && page === 1
 
-  useEffect(() => {
-    const isDefaultView = selectedBatch === "all" && page === 1
-
-    if (isDefaultView) {
-      setFilteredResponses(responses)
-      setTotalCount(initialTotalCount ?? responses.length)
-      setLoading(false)
-      return
-    }
-
-    let ignore = false;
-    async function fetchData() {
-      setLoading(true);
-      try {
-        let url = `/api/admin/survey-responses?page=${page - 1}&size=${pageSize}`;
-        if (selectedBatch !== "all") {
-          url += `&yearGraduated=${encodeURIComponent(selectedBatch)}`;
-        }
-        const res = await fetch(url);
-        if (!res.ok) throw new Error("Failed to fetch filtered responses");
-        const data = await res.json();
-        if (!ignore) {
-          setFilteredResponses(data.content || []);
-          setTotalCount(data.totalElements || 0);
-        }
-      } catch (e) {
-        if (!ignore) {
-          setFilteredResponses([]);
-          setTotalCount(0);
-        }
-      } finally {
-        if (!ignore) setLoading(false);
+  const filteredQuery = useQuery<FilteredResponsesPayload>({
+    queryKey: [
+      "admin-survey-responses-filtered",
+      { page: page - 1, pageSize: PAGE_SIZE, batch: selectedBatch },
+    ],
+    enabled: !isDefaultView,
+    staleTime: 60_000,
+    queryFn: async () => {
+      let url = `/api/admin/survey-responses?page=${page - 1}&size=${PAGE_SIZE}`
+      if (selectedBatch !== "all") {
+        url += `&yearGraduated=${encodeURIComponent(selectedBatch)}`
       }
-    }
-    fetchData();
-    return () => { ignore = true };
-  }, [selectedBatch, page, pageSize, responses, initialTotalCount]);
+      const res = await fetch(url)
+      if (!res.ok) {
+        throw new Error("Failed to fetch filtered responses")
+      }
+      return (await res.json()) as FilteredResponsesPayload
+    },
+  })
+
+  const filteredResponses: SurveyResponseRow[] = isDefaultView
+    ? responses
+    : (filteredQuery.data?.content ?? [])
+
+  const totalCount = isDefaultView
+    ? (initialTotalCount ?? responses.length)
+    : (filteredQuery.data?.totalElements ?? 0)
+
+  const loading = !isDefaultView && filteredQuery.isLoading
 
   const handleBatchChange = (batch: string) => {
     setSelectedBatch(batch)
@@ -133,7 +129,7 @@ export default function BatchFilterTable({ responses, initialTotalCount }: Batch
         <ResponsesTable
           responses={filteredResponses}
           page={page}
-          pageSize={pageSize}
+          pageSize={PAGE_SIZE}
           onPageChange={setPage}
           totalCount={totalCount}
         />
