@@ -20,12 +20,7 @@ export default async function AdminDashboardPage() {
   }
 
   return (
-    <div className="relative flex min-h-screen flex-col bg-background">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(60%_60%_at_50%_0%,color-mix(in_oklch,var(--gold)_18%,transparent),transparent_70%)]"
-      />
-
+    <div className="flex min-h-screen flex-col bg-background">
       <AdminShellHeader username="Admin" />
       <AdminDashboardClient />
     </div>

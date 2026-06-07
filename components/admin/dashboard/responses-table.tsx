@@ -34,6 +34,20 @@ const toBadgeVariant = (status: string) => {
   return "outline" as const
 }
 
+const licensureTone = (status: string) => {
+  const value = status.toLowerCase()
+  if (value.includes("pass")) return "text-emerald-700"
+  if (value.includes("fail")) return "text-red-700"
+  return "text-muted-foreground"
+}
+
+const employmentTone = (status: string) => {
+  const value = status.toLowerCase()
+  if (value.includes("unemployed")) return "text-muted-foreground"
+  if (value.includes("employed")) return "text-emerald-700"
+  return "text-muted-foreground"
+}
+
 const maskEmail = (email: string) => {
   if (!email || email === "-" || email === "N/A") return email
   const atIndex = email.indexOf("@")
@@ -54,15 +68,15 @@ export default function ResponsesTable({
 
   return (
     <div className="space-y-4">
-      <div className="max-h-[640px] overflow-auto rounded-lg border border-border/60">
+      <div className="max-h-[640px] overflow-auto rounded-md border border-border">
         <Table className="border-0">
           <TableHeader>
-            <TableRow className="border-b border-border/60">
-              <TableHead>Email</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Employment</TableHead>
-              <TableHead>Licensure</TableHead>
-              <TableHead className="w-32 text-right">Action</TableHead>
+            <TableRow className="border-b border-border bg-muted/50 hover:bg-muted/50">
+              <TableHead scope="col" className="text-xs font-medium text-muted-foreground">Email</TableHead>
+              <TableHead scope="col" className="text-xs font-medium text-muted-foreground">Status</TableHead>
+              <TableHead scope="col" className="text-xs font-medium text-muted-foreground">Employment</TableHead>
+              <TableHead scope="col" className="text-xs font-medium text-muted-foreground">Licensure</TableHead>
+              <TableHead scope="col" className="w-32 text-right text-xs font-medium text-muted-foreground">Action</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -96,8 +110,8 @@ export default function ResponsesTable({
                       {response.status}
                     </Badge>
                   </TableCell>
-                  <TableCell className="text-muted-foreground">{response.employmentStatus}</TableCell>
-                  <TableCell className="text-muted-foreground">{response.licensureStatus}</TableCell>
+                  <TableCell className={employmentTone(response.employmentStatus)}>{response.employmentStatus}</TableCell>
+                  <TableCell className={licensureTone(response.licensureStatus)}>{response.licensureStatus}</TableCell>
                   <TableCell className="text-right">
                     <ResponseDetailsDialog email={response.email} details={response.details} />
                   </TableCell>

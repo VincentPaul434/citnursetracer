@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react"
 import { useQuery } from "@tanstack/react-query"
-import { Filter } from "lucide-react"
+import { Search } from "lucide-react"
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@/components/ui/select"
 import { Skeleton } from "@/components/ui/skeleton"
 import ResponsesTable from "@/components/admin/dashboard/responses-table"
@@ -36,6 +36,7 @@ export default function BatchFilterTable({ responses, initialTotalCount }: Batch
   }, [responses])
 
   const [selectedBatch, setSelectedBatch] = useState<string>("all")
+  const [search, setSearch] = useState("")
   const [page, setPage] = useState(1)
   const isDefaultView = selectedBatch === "all" && page === 1
 
@@ -59,13 +60,20 @@ export default function BatchFilterTable({ responses, initialTotalCount }: Batch
     },
   })
 
-  const filteredResponses: SurveyResponseRow[] = isDefaultView
+  const baseResponses: SurveyResponseRow[] = isDefaultView
     ? responses
     : (filteredQuery.data?.content ?? [])
 
-  const totalCount = isDefaultView
-    ? (initialTotalCount ?? responses.length)
-    : (filteredQuery.data?.totalElements ?? 0)
+  const trimmedSearch = search.trim().toLowerCase()
+  const filteredResponses = trimmedSearch
+    ? baseResponses.filter((r) => r.email.toLowerCase().includes(trimmedSearch))
+    : baseResponses
+
+  const totalCount = trimmedSearch
+    ? filteredResponses.length
+    : isDefaultView
+      ? (initialTotalCount ?? responses.length)
+      : (filteredQuery.data?.totalElements ?? 0)
 
   const loading = !isDefaultView && filteredQuery.isLoading
 
@@ -77,33 +85,43 @@ export default function BatchFilterTable({ responses, initialTotalCount }: Batch
   return (
     <div className="space-y-4">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex items-center gap-2.5">
-          <div className="flex h-9 w-9 items-center justify-center rounded-md border border-border/60 bg-muted/40 text-muted-foreground">
-            <Filter className="h-4 w-4" />
-          </div>
-          <div>
-            <p className="text-sm font-semibold text-foreground">Filter by batch</p>
-            <p className="text-xs text-muted-foreground">Narrow responses by graduation year</p>
-          </div>
+        <div className="relative w-full sm:max-w-xs">
+          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          <input
+            type="search"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search by email…"
+            aria-label="Search responses by email"
+            className="h-9 w-full rounded-md border border-border bg-background pl-9 pr-3 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-maroon/40"
+          />
         </div>
-        <Select value={selectedBatch} onValueChange={handleBatchChange} name="batch">
-          <SelectTrigger className="w-full sm:w-48 bg-white text-foreground border-maroon/20">
-            <SelectValue placeholder="Select batch" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All Batches</SelectItem>
-            {batchOptions
-              .filter((b) => typeof b === "string" && b.trim() !== "")
-              .map((batch) => {
-                const value = String(batch)
-                return (
-                  <SelectItem key={value} value={value}>
-                    {value}
-                  </SelectItem>
-                )
-              })}
-          </SelectContent>
-        </Select>
+        <div className="flex items-center gap-2">
+          <label htmlFor="batch-filter" className="sr-only">
+            Filter by batch year
+          </label>
+          <Select value={selectedBatch} onValueChange={handleBatchChange} name="batch">
+            <SelectTrigger id="batch-filter" className="h-9 w-40 rounded-md border-border bg-background text-sm">
+              <SelectValue placeholder="All batches" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All batches</SelectItem>
+              {batchOptions
+                .filter((b) => typeof b === "string" && b.trim() !== "")
+                .map((batch) => {
+                  const value = String(batch)
+                  return (
+                    <SelectItem key={value} value={value}>
+                      {value}
+                    </SelectItem>
+                  )
+                })}
+            </SelectContent>
+          </Select>
+          <span className="hidden whitespace-nowrap text-xs text-muted-foreground sm:inline tabular-nums">
+            {totalCount} result{totalCount === 1 ? "" : "s"}
+          </span>
+        </div>
       </div>
 
       {loading ? (
